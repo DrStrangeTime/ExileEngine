@@ -6,6 +6,7 @@
 #define INFO_EXT	static_cast<std::string>("INFO:")
 #define WAR_EXT		static_cast<std::string>("WARNING:")
 #define ERR_EXT		static_cast<std::string>("ERROR:")
+#define ARR_EXT		static_cast<std::string>("ARRAY:")
 
 
 namespace ExCore {
@@ -44,6 +45,7 @@ namespace ExCore {
 			SetColour(colour);
 			std::string t = Timestamp();
 			std::cout << t << " " << log_tag << "::" << l_ext << " " << static_cast<T>(s) << std::endl;
+			SetColour(7);
 		}
 
 	public:
@@ -51,7 +53,7 @@ namespace ExCore {
 		static inline void Initialise(const char* lt)
 		{
 			log_tag = lt;	// Assign log tag data
-			const char* msg = { "Log system successfully initialised" };
+			const char* msg = { "Log system successfully initialised!" };
 			PrintInfo(msg);
 		}
 
@@ -59,6 +61,19 @@ namespace ExCore {
 		template<typename T> static inline void PrintInfo(T s)	{ Log(s, INFO_EXT, 10); }
 		template<typename T> static inline void PrintWar(T s)	{ Log(s, WAR_EXT, 14); }
 		template<typename T> static inline void PrintErr(T s)	{ Log(s, ERR_EXT, 12); }
+
+		// Print array of data
+		template<typename T> static inline void PrintArray(T* s, size_t l, const char* n) 
+		{ 
+			std::string t = Timestamp();
+			std::cout << t << " " << log_tag << "::" << ARR_EXT << " ";
+			SetColour(14);
+			std::cout << n << std::endl;
+			SetColour(7);
+
+			for (size_t i = 0; i < l; i++)
+				std::cout << "\t\t[ " << i << " |\t" << static_cast<T>(s[i]) << "\t]" << std::endl;
+		}
 	};
 
 }
