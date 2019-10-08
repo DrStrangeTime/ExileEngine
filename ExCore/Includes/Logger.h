@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "ExCore.h"
 
+#define TAG_EXT		static_cast<std::string>("EXILE")
 #define INFO_EXT	static_cast<std::string>("INFO:")
 #define WAR_EXT		static_cast<std::string>("WARNING:")
 #define ERR_EXT		static_cast<std::string>("ERROR:")
@@ -11,14 +12,12 @@
 
 namespace ExCore {
 
-	/*	Logger contains utilities such as timestamp and text colour formatting.
+	/*	Logger contains utilities such including timestamp and text colour formatting.
 		Templates are used for printing out different variable types.	*/
 
 	class EXILE_CORE_API Logger
 	{
 	private:
-		static const char* log_tag;
-
 		// Adjust text colour
 		static void SetColour(unsigned short colour)
 		{
@@ -44,15 +43,14 @@ namespace ExCore {
 		{
 			SetColour(colour);
 			std::string t = Timestamp();
-			std::cout << t << " " << log_tag << "::" << l_ext << " " << static_cast<T>(s) << std::endl;
+			std::cout << t << " " << TAG_EXT << "::" << l_ext << " " << static_cast<T>(s) << std::endl;
 			SetColour(7);
 		}
 
 	public:
 		// Initialise logger
-		static inline void Initialise(const char* lt)
+		static inline void Initialise()
 		{
-			log_tag = lt;	// Assign log tag data
 			const char* msg = { "Log system successfully initialised!" };
 			PrintInfo(msg);
 		}
@@ -66,7 +64,7 @@ namespace ExCore {
 		template<typename T> static inline void PrintArray(T* s, size_t l, const char* n) 
 		{ 
 			std::string t = Timestamp();
-			std::cout << t << " " << log_tag << "::" << ARR_EXT << " ";
+			std::cout << t << " " << TAG_EXT << "::" << ARR_EXT << " ";
 			SetColour(14);
 			std::cout << n << std::endl;
 			SetColour(7);
@@ -77,5 +75,3 @@ namespace ExCore {
 	};
 
 }
-
-const char* ExCore::Logger::log_tag;

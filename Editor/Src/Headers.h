@@ -4,4 +4,7 @@
 // Engine modules
 #include <ExCore.h>
 
+// Pre-computed headers
+#include <memory>
+
 #endif

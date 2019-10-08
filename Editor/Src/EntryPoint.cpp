@@ -1,28 +1,11 @@
-#include "headers.h"
+#include "Editor.h"
 
 
 int main(int argc, char** argv)
 {
+	Editor::Create();
+	Editor::Loop();
+	Editor::Destroy();
 
-	/*EX_INIT;
-
-	InitImGUI();
-
-	while (EX_CORE_RUNNING)
-	{
-		EX_RENDER;
-		iImGUIRender();
-		
-		EX_UPDATE;
-	}
-
-	EX_DESTROY;*/
-
-
-	ExCore::Logger::Initialise("EXILE_ENGINE");
-
-
-	system("PAUSE");
-
-	return 0;
+	exit(EXIT_SUCCESS);
 }
