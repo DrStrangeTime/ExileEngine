@@ -1,4 +1,4 @@
-#include <ExCore.h>
+#include "headers.h"
 
 
 int main(int argc, char** argv)
@@ -18,6 +18,12 @@ int main(int argc, char** argv)
 
 	EX_DESTROY;*/
 
+	ExCore::Logger::Initialise("EXILE_ENGINE");
+
+	ExCore::Logger::PrintWar("GFX hardware is limited to OpenGL version 330!");
+	ExCore::Logger::PrintErr("Failed to initialise GLEW!");
+
+	system("PAUSE");
 
 	return 0;
 }
