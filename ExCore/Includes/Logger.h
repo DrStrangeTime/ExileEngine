@@ -6,10 +6,11 @@
 namespace ExCore {
 	class EXILE_CORE_API Logger
 	{
+		// TESTING
 	public:
 		static inline void PrintTest()
 		{
-			std::cout << "Initialised\n";
+			std::cout << "Print test!\n";
 			system("PAUSE");
 		}
 	};
