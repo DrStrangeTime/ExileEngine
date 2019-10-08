@@ -5,5 +5,5 @@ git commit -m "New Update"
 git status
 git push origin master
 git status
-echo $'\nFINISHED!!\n'
+printf "\nFINISHED!!\n"
 PAUSE
