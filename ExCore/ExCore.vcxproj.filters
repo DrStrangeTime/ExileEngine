@@ -30,6 +30,12 @@
     <ClInclude Include="Includes\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Includes\KeyEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\MouseEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Includes\dllmain.cpp">
