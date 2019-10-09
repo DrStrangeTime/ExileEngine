@@ -32,12 +32,13 @@ void ExCore::Application::Create(int width, int height, const char* title)
 	GLenum err = glewInit();
 	if (GLEW_OK != err)
 	{
-		ExCore::Logger::PrintErr("Failed to initialise GLAD!");
+		ExCore::Logger::PrintErr("Failed to initialise GLEW!");
 		Sleep(2000);
 		glfwDestroyWindow(window);
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
+	
 	glfwSwapInterval(1);
 
 	// OpenGL properties
