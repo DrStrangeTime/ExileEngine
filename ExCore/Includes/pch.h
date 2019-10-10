@@ -10,6 +10,7 @@
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 
 #include <glew.h>
+#include <glfw3.h>
 #include <windows.h>
 #include <iostream>
 #include <string>
@@ -17,6 +18,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <memory>
-
+#include <vector>
 
 #endif //PCH_H

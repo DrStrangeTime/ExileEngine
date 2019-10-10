@@ -63,6 +63,8 @@ namespace ExCore {
 		// Print array of data
 		template<typename T> static inline void PrintArray(T* s, size_t l, const char* n) 
 		{ 
+			std::cout << std::endl;
+
 			std::string t = Timestamp();
 			std::cout << t << " " << TAG_EXT << "::" << ARR_EXT << " ";
 			SetColour(14);
@@ -70,7 +72,9 @@ namespace ExCore {
 			SetColour(7);
 
 			for (size_t i = 0; i < l; i++)
-				std::cout << "\t\t[ " << i << " |\t" << static_cast<T>(s[i]) << "\t]" << std::endl;
+				std::cout << "\t| " << i << "\t" << static_cast<T>(s[i]) << std::endl;
+
+			std::cout << std::endl;
 		}
 	};
 

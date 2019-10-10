@@ -164,6 +164,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Includes\Core.h" />
+    <ClInclude Include="Includes\InputEvent.h" />
+    <ClInclude Include="Includes\KeyInput.h" />
+    <ClInclude Include="Includes\MouseInput.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\ExCore.h" />
     <ClInclude Include="Includes\Logger.h" />
@@ -172,6 +175,9 @@
   <ItemGroup>
     <ClCompile Include="Includes\Application.cpp" />
     <ClCompile Include="Includes\dllmain.cpp" />
+    <ClCompile Include="Includes\InputEvent.cpp" />
+    <ClCompile Include="Includes\KeyInput.cpp" />
+    <ClCompile Include="Includes\MouseInput.cpp" />
     <ClCompile Include="Includes\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

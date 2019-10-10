@@ -3,10 +3,10 @@
 void Editor::Create()
 {
 	// Initialise sub-modules
-	exCoreInit();	// Init ExCore.dll
+	exInit();	// Init ExCore.dll
 
 	// Initialise window
-	exCoreCreateWindow(600, 500, "Exile Editor");
+	exCreateWindow(600, 500, "Exile Editor");
 
 	// Initialise ImGUI
 
@@ -14,12 +14,12 @@ void Editor::Create()
 
 void Editor::Destroy()
 {
-	exCoreDestroy();
+	exDestroy();
 }
 
 void Editor::Update()
 {
-	// Physics module
+	// Physics & logic module
 }
 
 void Editor::Render()
@@ -30,16 +30,16 @@ void Editor::Render()
 // Main loop
 void Editor::Loop()
 {
-	while (exCoreRunning())
+	while (exRunning())
 	{;
-		
 		// Timestep here
 		Update();
 		// -------------
 
 		Render();
-#
-		exCoreSwap();
+
+		exPollEvents();
+		exSwap();
 	}
 }
 
