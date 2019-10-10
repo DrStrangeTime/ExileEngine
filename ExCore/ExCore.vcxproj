@@ -116,7 +116,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glfw3.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\glfw\lib;$(SolutionDir)libs\glew\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\glfw\lib;$(SolutionDir)libs\glew\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -159,18 +159,16 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glfw3.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\glfw\lib;$(SolutionDir)libs\glew\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\glfw\lib;$(SolutionDir)libs\glew\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Includes\Core.h" />
-    <ClInclude Include="Includes\InputEvent.h" />
-    <ClInclude Include="Includes\KeyInput.h" />
-    <ClInclude Include="Includes\MouseInput.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\ExCore.h" />
     <ClInclude Include="Includes\Logger.h" />
     <ClInclude Include="Includes\Application.h" />
+    <ClInclude Include="Includes\KeyEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Includes\Application.cpp" />

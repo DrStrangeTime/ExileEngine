@@ -16,8 +16,14 @@ void ExCore::Application::Create(int width, int height, const char* title)
 		exit(EXIT_FAILURE);
 	}
 
+<<<<<<< HEAD
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+=======
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+>>>>>>> 19769aef8516a747dfdfd2f1ef02a3194883436e
 
 	window = glfwCreateWindow(width, height, "Exile Editor", NULL, NULL);
 
@@ -36,11 +42,17 @@ void ExCore::Application::Create(int width, int height, const char* title)
 	GLenum err = glewInit();
 	if (GLEW_OK != err)
 	{
+<<<<<<< HEAD
 		ExCore::Logger::PrintErr("Failed to initialise GLAD!");
+=======
+		ExCore::Logger::PrintErr("Failed to initialise GLEW!");
+		Sleep(2000);
+>>>>>>> 19769aef8516a747dfdfd2f1ef02a3194883436e
 		glfwDestroyWindow(window);
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
+	
 	glfwSwapInterval(1);
 
 	std::vector<const char*> glSupport;

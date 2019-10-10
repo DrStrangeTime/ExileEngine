@@ -27,6 +27,7 @@
     <ClInclude Include="Includes\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Includes\InputEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -37,6 +38,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Includes\MouseInput.h">
+=======
+    <ClInclude Include="Includes\KeyEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\MouseEvent.h">
+>>>>>>> 19769aef8516a747dfdfd2f1ef02a3194883436e
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
