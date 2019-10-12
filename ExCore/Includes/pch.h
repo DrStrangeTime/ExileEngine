@@ -7,10 +7,20 @@
 #ifndef PCH_H
 #define PCH_H
 
-#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 
+// Third-party includes
 #include <glew.h>
+
+#define GLFW_INCLUDE_NONE
+#ifdef _WIN32
+#define GLFW_EXPOSE_NATIVE_WIN32
+#endif
 #include <glfw3.h>
+#include <glfw3native.h>
+
+
+// Windows headers
 #include <windows.h>
 #include <iostream>
 #include <string>

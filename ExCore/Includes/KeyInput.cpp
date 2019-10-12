@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "KeyInput.h"
 
-bool ExCore::KeyInput::GetKeyState(int key)
+bool& ExCore::KeyInput::GetKeyState(int key)
 {
 	return key_states[key];
 }

@@ -11,7 +11,7 @@ namespace ExCore
 		static bool key_states[512];
 
 	public:
-		static bool GetKeyState(int key);
+		static bool& GetKeyState(int key);
 		static void Update(int key, int scancode, int action, int mods);
 	};
 }

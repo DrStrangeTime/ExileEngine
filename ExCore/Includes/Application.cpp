@@ -6,7 +6,7 @@ void ExCore::Application::error_callback(int error, const char* description)
 	ExCore::Logger::PrintErr(description);
 }
 
-void ExCore::Application::Create(int width, int height, const char* title)
+void ExCore::Application::Create(int width, int height, const char* title, bool fullscreen)
 {
 	glfwSetErrorCallback(error_callback);
 
@@ -17,8 +17,9 @@ void ExCore::Application::Create(int width, int height, const char* title)
 	}
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+	glfwWindowHint(GLFW_MAXIMIZED, 1);
 
-	window = glfwCreateWindow(width, height, "Exile Editor", NULL, NULL);
+	window = glfwCreateWindow(width, height, "Exile Editor", (fullscreen ? glfwGetPrimaryMonitor() : NULL), NULL);
 
 	if (!window)
 	{
@@ -26,9 +27,15 @@ void ExCore::Application::Create(int width, int height, const char* title)
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
-
+	
+	// GLFW Callback functions ----------------------------------------------------
 	glfwSetKeyCallback(window, ExCore::InputEvent::key_callback);
 	glfwSetMouseButtonCallback(window, ExCore::InputEvent::mouse_button_callback);
+	glfwSetCursorPosCallback(window, ExCore::InputEvent::cursor_position_callback);
+	glfwSetScrollCallback(window, ExCore::InputEvent::scroll_callback);
+	GLFWcursor* cursor = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
+	glfwSetCursor(window, cursor);
+	// ----------------------------------------------------------------------------
 
 	glfwMakeContextCurrent(window);
 
@@ -45,6 +52,7 @@ void ExCore::Application::Create(int width, int height, const char* title)
 
 	rdp.Assign(glGetString(GL_VENDOR), glGetString(GL_RENDERER), glGetString(GL_VERSION));	// Store hardware properties
 
+	// Print hardware stats
 	ExCore::Logger::PrintInfo(rdp.vendor);
 	ExCore::Logger::PrintInfo(rdp.model);
 	ExCore::Logger::PrintInfo(rdp.gl_version);

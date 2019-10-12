@@ -19,7 +19,7 @@ namespace ExCore
 		static GLFWwindow*							window;
 		static ExCore::RenderDevice::Properties		rdp;
 
-		static void Create(int width, int height, const char* title);
+		static void Create(int width, int height, const char* title, bool fullscreen);
 		static void Destroy();
 		static void PollEvents();
 		static void Swap();
