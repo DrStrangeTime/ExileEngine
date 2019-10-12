@@ -8,6 +8,7 @@
     <ClCompile Include="Includes\MouseInput.cpp" />
     <ClCompile Include="Includes\pch.cpp" />
     <ClCompile Include="Includes\ExCore.cpp" />
+    <ClCompile Include="Includes\Cursor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\Core.h" />
@@ -17,6 +18,7 @@
     <ClInclude Include="Includes\Application.h" />
     <ClInclude Include="Includes\KeyEvent.h" />
     <ClInclude Include="Includes\Hardware.h" />
+    <ClInclude Include="Includes\Cursor.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

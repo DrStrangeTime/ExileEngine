@@ -6,10 +6,9 @@ void Editor::Create()
 	exInit();	// Init ExCore.dll
 
 	// Initialise window
-	exCreateWindow(1920, 1080, "Exile Editor", false);
+	exCreateWindow(1920, 1080, "Exile Editor", true, false, false);
 
 	// Initialise ImGUI
-
 }
 
 void Editor::Destroy()

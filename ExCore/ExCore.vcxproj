@@ -166,6 +166,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Includes\Core.h" />
+    <ClInclude Include="Includes\Cursor.h" />
     <ClInclude Include="Includes\Hardware.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\ExCore.h" />
@@ -175,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Includes\Application.cpp" />
+    <ClCompile Include="Includes\Cursor.cpp" />
     <ClCompile Include="Includes\dllmain.cpp" />
     <ClCompile Include="Includes\InputEvent.cpp" />
     <ClCompile Include="Includes\KeyInput.cpp" />
