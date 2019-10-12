@@ -15,12 +15,12 @@
 #define exCreateWindow(...)		ExCore::Application::Create(__VA_ARGS__)
 
 // Logging marco definitions
-#define exLogInfo(...)				ExCore::Logger::PrintInfo(__VA_ARGS__)
-#define exLogWar(...)				ExCore::Logger::PrintWar(__VA_ARGS__)
-#define exLogErr(...)				ExCore::Logger::PrintErr(__VA_ARGS__)
-#define exLogArr(...)				ExCore::Logger::PrintArr(__VA_ARGS__)
+#define exLogInfo(...)			ExCore::Logger::PrintInfo(__VA_ARGS__)
+#define exLogWar(...)			ExCore::Logger::PrintWar(__VA_ARGS__)
+#define exLogErr(...)			ExCore::Logger::PrintErr(__VA_ARGS__)
+#define exLogArr(...)			ExCore::Logger::PrintArr(__VA_ARGS__)
 
 // Input macro definitions
-#define exGetKeyState(x)			ExCore::KeyInput::GetKeyState(x)
+#define exGetKeyState(x)		ExCore::KeyInput::GetKeyState(x)
 
 #endif

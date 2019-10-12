@@ -2,6 +2,7 @@
 #define __APPLICATION_H__
 
 #include "pch.h"
+#include "Hardware.h"
 #include "InputEvent.h"
 
 namespace ExCore
@@ -12,10 +13,11 @@ namespace ExCore
 		static void error_callback(int error, const char* description);
 
 	public:
-		static int				width;
-		static int				height;
-		static const char*		title;
-		static GLFWwindow*		window;
+		static int									width;
+		static int									height;
+		static const char*							title;
+		static GLFWwindow*							window;
+		static ExCore::RenderDevice::Properties		rdp;
 
 		static void Create(int width, int height, const char* title);
 		static void Destroy();
