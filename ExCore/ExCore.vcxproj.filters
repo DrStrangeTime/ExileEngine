@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Includes\Application.cpp" />
+    <ClCompile Include="Includes\dllmain.cpp" />
+    <ClCompile Include="Includes\InputEvent.cpp" />
+    <ClCompile Include="Includes\KeyInput.cpp" />
+    <ClCompile Include="Includes\MouseInput.cpp" />
+    <ClCompile Include="Includes\pch.cpp" />
+    <ClCompile Include="Includes\ExCore.cpp" />
+    <ClCompile Include="Includes\Cursor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Includes\Core.h" />
+    <ClInclude Include="Includes\pch.h" />
+    <ClInclude Include="Includes\ExCore.h" />
+    <ClInclude Include="Includes\Logger.h" />
+    <ClInclude Include="Includes\Application.h" />
+    <ClInclude Include="Includes\KeyEvent.h" />
+    <ClInclude Include="Includes\Hardware.h" />
+    <ClInclude Include="Includes\Cursor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>
