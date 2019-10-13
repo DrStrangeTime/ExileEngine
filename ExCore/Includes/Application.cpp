@@ -6,8 +6,11 @@ void ExCore::Application::error_callback(int error, const char* description)
 	ExCore::Logger::PrintErr(description);
 }
 
-void ExCore::Application::window_resize_callback(GLFWwindow* window, int width, int height)
+void ExCore::Application::window_resize_callback(GLFWwindow* window, int w, int h)
 {
+	width = w;
+	height = h;
+
 	glViewport(0, 0, width, height);
 }
 

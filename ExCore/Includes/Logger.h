@@ -51,7 +51,7 @@ namespace ExCore {
 		// Initialise logger
 		static inline void Initialise()
 		{
-			const char* msg = { "Log system successfully initialised!" };
+			const char* msg = { "Log system initialised!" };
 			PrintInfo(msg);
 		}
 
@@ -72,7 +72,7 @@ namespace ExCore {
 			SetColour(7);
 
 			for (size_t i = 0; i < l; i++)
-				std::cout << "\t| " << i << "\t" << static_cast<T>(s[i]) << std::endl;
+				std::cout << "\t[" << i << "] " << static_cast<T>(s[i]) << std::endl;
 
 			std::cout << std::endl;
 		}
