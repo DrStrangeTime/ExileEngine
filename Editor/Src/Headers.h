@@ -5,6 +5,8 @@
 #include <ExCore.h>
 
 // Pre-computed headers
+#include <thread>
+#include <mutex>
 #include <memory>
 
 #endif

@@ -43,8 +43,8 @@ namespace ExCore {
 		{
 			SetColour(colour);
 			std::string t = Timestamp();
-			std::cout << t << " " << TAG_EXT << "::" << l_ext << " " << static_cast<T>(s) << std::endl;
-			SetColour(7);
+			std::cout << t << " " << TAG_EXT << "::" << l_ext << " " << static_cast<T>(s) << "\n";
+			
 		}
 
 	public:
@@ -68,11 +68,11 @@ namespace ExCore {
 			std::string t = Timestamp();
 			std::cout << t << " " << TAG_EXT << "::" << ARR_EXT << " ";
 			SetColour(14);
-			std::cout << n << std::endl;
+			std::cout << n << "\n";
 			SetColour(7);
 
 			for (size_t i = 0; i < l; i++)
-				std::cout << "\t[" << i << "] " << static_cast<T>(s[i]) << std::endl;
+				std::cout << "\t[" << i << "] " << static_cast<T>(s[i]) << "\n";
 
 			std::cout << std::endl;
 		}

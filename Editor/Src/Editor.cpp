@@ -1,6 +1,5 @@
 #include "Editor.h"
 
-
 //#include <algorithm>
 //
 //std::vector<Object*> Editor::objects;
@@ -9,6 +8,8 @@
 //	return o1->t < o2->t;
 //}
 
+std::thread	Editor::_update_thread;
+std::mutex	Editor::_mutex;
 
 void Editor::Create()
 {
@@ -18,55 +19,45 @@ void Editor::Create()
 	// Initialise window
 	exCreateWindow(1920, 1080, "Exile Editor", true, false, true);
 
+	StartThread();
+
 	// Initialise ImGUI
-
-	/*objects.push_back(new Material());
-	objects.push_back(new StaticMesh());
-	objects.push_back(new Material());
-	objects.push_back(new Texture());
-	objects.push_back(new StaticMesh());
-	objects.push_back(new Texture());
-	objects.push_back(new StaticMesh());
-
-	std::sort(objects.begin(), objects.end(), abstrSmaller);
-
-	std::vector<int> types;
-	for (unsigned int i = 0; i < objects.size(); i++)
-		types.push_back(objects[i]->t);
-
-	objects.clear();
-
-	ExCore::Logger::PrintArray(&types[0], types.size(), "Object Types");*/
+	while (exRunning())
+	{
+		Render();
+		exPollEvents();
+	}
 }
 
 void Editor::Destroy()
 {
+	_update_thread.join();
+
 	exDestroy();
+}
+
+void Editor::StartThread()
+{	
+	_update_thread = std::thread(Editor::Update);
 }
 
 void Editor::Update()
 {
-	// Physics & logic module
+	// Physics & logic modulez
+	while (exRunning())
+	{
+		std::cout << "UPDATING!\n";
+	}
 }
 
 void Editor::Render()
 {
 	// Render module
+	glClearColor(0.0f, 0.0f, 1.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	std::cout << "RENDERING!\n";
+
+	exSwap();
+
 }
-
-// Main loop
-void Editor::Loop()
-{
-	while (exRunning())
-	{;
-		// Timestep here
-		Update();
-		// -------------
-
-		Render();
-
-		exPollEvents();
-		exSwap();
-	}
-}
-

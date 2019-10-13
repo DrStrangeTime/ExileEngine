@@ -54,7 +54,7 @@ void ExCore::Application::Create(int w, int h, const char* title, bool maximise,
 	}
 
 	// Initialise cursor
-	ExCore::Cursor::Initialise();
+	ExCore::Cursor::Initialise(GLFW_ARROW_CURSOR);
 
 	// GLFW Callback functions ----------------------------------------------------
 	glfwSetErrorCallback(error_callback);

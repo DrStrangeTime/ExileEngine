@@ -2,39 +2,19 @@
 
 #include "Headers.h"
 
-//struct Object
-//{
-//	int t;
-//	inline Object() { t = 0; }
-//};
-//
-//struct Texture : Object
-//{
-//	inline Texture() { t = 1; }
-//};
-//
-//struct Material : Object
-//{
-//	inline Material() { t = 2; }
-//};
-//
-//struct StaticMesh : Object
-//{
-//	inline StaticMesh() { t = 3; }
-//};
-
-
-
 class Editor
 {
-public:
-	//static std::vector<Object*> objects;
+private:
+	static std::thread	_update_thread;
+	static std::mutex	_mutex;
 
+	static void StartThread();
+
+	static void Update();
+	static void Render();
+
+public:
 	static void Create();
 	static void Destroy();
 	static void Loop();
-
-private:
-	static void Update();
-	static void Render();
 };

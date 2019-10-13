@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "Cursor.h"
 
-void ExCore::Cursor::Initialise()
+void ExCore::Cursor::Initialise(int cursor_type)
 {
-
+	_cursor = glfwCreateStandardCursor(cursor_type);
 }
 
 void ExCore::Cursor::CreateCustom(int w, int h, GLFWimage i)

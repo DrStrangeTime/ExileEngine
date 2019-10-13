@@ -14,10 +14,8 @@ namespace ExCore
 		static GLFWcursor*					_cursor;
 
 	public:
-		static void							Initialise();
+		static void							Initialise(int cursor_type);
 		static void							CreateCustom(int w, int h, GLFWimage i);
-
-		static void							Assign(GLFWcursor* c);
 
 		static int&							GetWidth();
 		static int&							GetHeight();
