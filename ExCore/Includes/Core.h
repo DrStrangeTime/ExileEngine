@@ -13,8 +13,11 @@
 
 // Window macro definitions
 #define exCreateWindow(...)			ExCore::Application::Create(__VA_ARGS__)
-#define exGetScreenWidth()			ExCore::Application::width
-#define exGetScreenHeight()			ExCore::Application::height
+#define exGetScreenWidth()			ExCore::Application::GetWidth()
+#define exGetScreenHeight()			ExCore::Application::GetHeight()
+#define exGetWindowTitle()			ExCore::Application::GetTitle()
+#define exGetWindow()				ExCore::Application::GetWindow()
+
 
 // Logging marco definitions
 #define exLogInfo(...)				ExCore::Logger::PrintInfo(__VA_ARGS__)

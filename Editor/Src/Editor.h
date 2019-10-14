@@ -6,15 +6,14 @@ class Editor
 {
 private:
 	static std::thread	_update_thread;
-	static std::mutex	_mutex;
 
-	static void StartThread();
+	static void StartUpdateThread();
 
+	static void Initialise();
 	static void Update();
 	static void Render();
+	static void Destroy();
 
 public:
-	static void Create();
-	static void Destroy();
 	static void Loop();
 };

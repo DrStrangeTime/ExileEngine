@@ -3,8 +3,9 @@
 
 int main(int argc, char** argv)
 {
-	Editor::Create();
-	Editor::Destroy();
+	
+
+	Editor::Loop();
 
 	exit(EXIT_SUCCESS);
 }
