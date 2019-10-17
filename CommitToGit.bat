@@ -1,4 +1,4 @@
-@echo
+@ echo $PWD
 git add *
 git status
 git commit -m "New Update"
