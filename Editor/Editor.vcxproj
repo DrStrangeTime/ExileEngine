@@ -83,8 +83,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\glfw\include;$(SolutionDir)libs\glew\include;$(SolutionDir)ExCore\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>C:\Users\Tilly\Desktop\ExileEngine\libs\glm;$(SolutionDir)libs\glfw\include;$(SolutionDir)libs\glew\include;$(SolutionDir)ExCore\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,8 +129,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\glfw\include;$(SolutionDir)libs\glew\include;$(SolutionDir)ExCore\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>C:\Users\Tilly\Desktop\ExileEngine\libs\glm;$(SolutionDir)libs\glfw\include;$(SolutionDir)libs\glew\include;$(SolutionDir)ExCore\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +144,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Src\Editor.cpp" />
     <ClCompile Include="Src\EntryPoint.cpp" />
   </ItemGroup>
@@ -155,6 +154,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Src\Editor.h" />
     <ClInclude Include="Src\Headers.h" />
   </ItemGroup>

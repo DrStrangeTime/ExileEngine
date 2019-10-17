@@ -8,7 +8,6 @@
 //	return o1->t < o2->t;
 //}
 
-std::thread	Editor::_update_thread;
 
 void Editor::Initialise()
 {
@@ -20,23 +19,12 @@ void Editor::Initialise()
 
 void Editor::Destroy()
 {
-	_update_thread.join();
 	exDestroy();
-}
-
-void Editor::StartUpdateThread()
-{	
-	_update_thread = std::thread(Editor::Update);
 }
 
 void Editor::Update()
 {
-	while (exRunning())
-	{
-		// Timestep capping here
 
-		//std::cout << "PHYSICS THREAD!\n";
-	}
 }
 
 void Editor::Render()
@@ -49,15 +37,16 @@ void Editor::Render()
 	exSwap();
 }
 
-void Editor::Loop()
+void Editor::Run()
 {
 	Initialise();
 
 	// --------------- LOOP ---------------
-	StartUpdateThread();
 	while (exRunning())
 	{
+		Update();
 		Render();
+
 		exPollEvents();
 	}
 	// ------------------------------------

@@ -3,9 +3,7 @@
 
 int main(int argc, char** argv)
 {
-	
-
-	Editor::Loop();
+	Editor::Run();
 
 	exit(EXIT_SUCCESS);
 }

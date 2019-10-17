@@ -41,10 +41,11 @@ namespace ExCore {
 		template<typename T>
 		static inline void Log(T s, std::string l_ext, unsigned short colour)
 		{
+#ifdef _DEBUG
 			SetColour(colour);
 			std::string t = Timestamp();
 			std::cout << t << " " << TAG_EXT << "::" << l_ext << " " << static_cast<T>(s) << "\n";
-			
+#endif
 		}
 
 	public:
@@ -56,13 +57,13 @@ namespace ExCore {
 		}
 
 		// Print formats
-		template<typename T> static inline void PrintInfo(T s)	{ Log(s, INFO_EXT, 10); }
-		template<typename T> static inline void PrintWar(T s)	{ Log(s, WAR_EXT, 14); }
-		template<typename T> static inline void PrintErr(T s)	{ Log(s, ERR_EXT, 12); }
+		template<typename T> static inline void PrintInfo(T s) { Log(s, INFO_EXT, 10); }
+		template<typename T> static inline void PrintWar(T s) { Log(s, WAR_EXT, 14); }
+		template<typename T> static inline void PrintErr(T s) { Log(s, ERR_EXT, 12); }
 
 		// Print array of data
-		template<typename T> static inline void PrintArray(T* s, size_t l, const char* n) 
-		{ 
+		template<typename T> static inline void PrintArray(T* s, size_t l, const char* n)
+		{
 			std::cout << std::endl;
 
 			std::string t = Timestamp();
