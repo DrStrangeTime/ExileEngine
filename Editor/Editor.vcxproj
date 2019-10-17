@@ -83,12 +83,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Tilly\Desktop\ExileEngine\libs\glm;$(SolutionDir)libs\glfw\include;$(SolutionDir)libs\glew\include;$(SolutionDir)ExCore\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\glm;$(SolutionDir)libs\glew\include;$(SolutionDir)libs\glfw\include;$(SolutionDir)ExCore\Includes;$(SolutionDir)ExRenderer\Includes;$(SolutionDir)ExPhysics\Includes;$(SolutionDir)ExAudio\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;glfw3.lib;glew32.lib;ExCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\glfw\lib;$(SolutionDir)libs\glew\lib;$(SolutionDir)ExCore\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glfw3.lib;glew32.lib;ExCore.lib;ExRenderer.lib;ExPhysics.lib;ExAudio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\glfw\lib;$(SolutionDir)libs\glew\lib;$(SolutionDir)ExAudio\bin;$(SolutionDir)ExRenderer\bin;$(SolutionDir)ExPhysics\bin;$(SolutionDir)ExCore\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -129,14 +129,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Tilly\Desktop\ExileEngine\libs\glm;$(SolutionDir)libs\glfw\include;$(SolutionDir)libs\glew\include;$(SolutionDir)ExCore\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\glm;$(SolutionDir)libs\glew\include;$(SolutionDir)libs\glfw\include;$(SolutionDir)ExCore\Includes;$(SolutionDir)ExRenderer\Includes;$(SolutionDir)ExPhysics\Includes;$(SolutionDir)ExAudio\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;glfw3.lib;glew32.lib;ExCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\glfw\lib;$(SolutionDir)libs\glew\lib;$(SolutionDir)ExCore\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glfw3.lib;glew32.lib;ExCore.lib;ExRenderer.lib;ExPhysics.lib;ExAudio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\glfw\lib;$(SolutionDir)libs\glew\lib;$(SolutionDir)ExAudio\bin;$(SolutionDir)ExRenderer\bin;$(SolutionDir)ExPhysics\bin;$(SolutionDir)ExCore\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -144,7 +144,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Src\Object.cpp" />
     <ClCompile Include="Src\Editor.cpp" />
     <ClCompile Include="Src\EntryPoint.cpp" />
   </ItemGroup>
@@ -154,7 +154,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Object.h" />
+    <ClInclude Include="Src\Object.h" />
     <ClInclude Include="Src\Editor.h" />
     <ClInclude Include="Src\Headers.h" />
   </ItemGroup>

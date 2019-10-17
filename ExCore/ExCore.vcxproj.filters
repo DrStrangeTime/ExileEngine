@@ -19,6 +19,10 @@
     <ClInclude Include="Includes\KeyEvent.h" />
     <ClInclude Include="Includes\Hardware.h" />
     <ClInclude Include="Includes\Cursor.h" />
+    <ClInclude Include="Includes\InputEvent.h" />
+    <ClInclude Include="Includes\KeyInput.h" />
+    <ClInclude Include="Includes\MouseEvent.h" />
+    <ClInclude Include="Includes\MouseInput.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

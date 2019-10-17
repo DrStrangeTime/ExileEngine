@@ -166,6 +166,10 @@
     <ClInclude Include="Includes\Core.h" />
     <ClInclude Include="Includes\Cursor.h" />
     <ClInclude Include="Includes\Hardware.h" />
+    <ClInclude Include="Includes\InputEvent.h" />
+    <ClInclude Include="Includes\KeyInput.h" />
+    <ClInclude Include="Includes\MouseEvent.h" />
+    <ClInclude Include="Includes\MouseInput.h" />
     <ClInclude Include="Includes\pch.h" />
     <ClInclude Include="Includes\ExCore.h" />
     <ClInclude Include="Includes\Logger.h" />
