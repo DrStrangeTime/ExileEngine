@@ -27,26 +27,42 @@
 #define O_PLAYER			18
 #define O_PATH_NODE			19
 #define O_PATH_NODE_SYSTEM	20
-#define O_INTERP			21
+#define O_ANIM_CONTROLER	21
 
 
-// Object interface
+   // Object interface
 class Object
 {
 protected:
 	uint8_t			_type;	// Object type
-	std::string		_name;
-
-	glm::vec3		_pos;	// Position
-	glm::vec3		_rot;	// Rotation
-	glm::vec3		_sca;	// Scale
+	bool			_active;	// Is object active?
+	std::string		_name;	// Object name
 
 public:
 	Object();
+	
+	uint8_t&		GetType();
+	bool&			GetActive();
+	std::string&	GetName();
 
-	virtual void Update() = 0;
-	virtual void Event() = 0;
-	virtual void Render() = 0;
+	void			SetType(uint8_t x);
+	void			SetActive(bool x);
+	void			SetName(std::string x);
+
+	operator uint8_t() const
+	{
+		return _type;
+	}
+
+	operator bool() const
+	{
+		return _active;
+	}
+
+	operator std::string() const
+	{
+		return _name;
+	}
 };
 
 #endif

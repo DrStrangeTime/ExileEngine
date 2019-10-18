@@ -5,39 +5,37 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Src">
-      <UniqueIdentifier>{d079dc98-2be7-4e02-8c10-f15bddb0ecb7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Core">
+    <Filter Include="Core">
       <UniqueIdentifier>{129feb50-d0b3-465c-bf61-7bd3724644e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Core\Objects">
+    <Filter Include="Objects">
       <UniqueIdentifier>{1b9f698c-d18d-4c70-8b7b-fbd41aa926a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Core\Utils">
+    <Filter Include="Utils">
       <UniqueIdentifier>{a5baf337-dbb6-4542-8580-bed866b943ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Editor.cpp">
-      <Filter>Src</Filter>
+    <ClCompile Include="Object.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Src\EntryPoint.cpp">
-      <Filter>Src</Filter>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object.cpp">
-      <Filter>Src\Core\Objects</Filter>
-    </ClCompile>
+    <ClCompile Include="Editor.cpp" />
+    <ClCompile Include="EntryPoint.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Editor.h">
-      <Filter>Src</Filter>
+    <ClInclude Include="Object.h">
+      <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Headers.h">
-      <Filter>Src</Filter>
+    <ClInclude Include="Actor.h">
+      <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object.h">
-      <Filter>Src\Core\Objects</Filter>
+    <ClInclude Include="Editor.h" />
+    <ClInclude Include="Headers.h" />
+    <ClInclude Include="Transform.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
