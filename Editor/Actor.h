@@ -10,23 +10,56 @@
 class Actor : public Object
 {
 protected:
-	Transform::Data _trans;
+	bool								_active;	// Is object active?
+	bool								_dynamic;	// Is object movable?
+	Transform::Data						_trans;
+	std::vector<std::shared_ptr<Actor>> _components;	// Child actors
+
+	void UpdateComponents();
+	void RenderComponents();
 
 public:
 	Actor();
 	Actor(std::string n);
 	Actor(std::string n, glm::vec3 p, glm::vec3 r, glm::vec3 s);
 
-	virtual void Update() const = 0;
-	virtual void Event() const = 0;
-	virtual void Render() const = 0;
+	void Event() override {}
+	void Update() override {}
+	void Render() override {}
 
+	bool& GetActive();
+	bool& GetDynamic();
 	Transform::Data& GetTransform();
+	std::shared_ptr<Actor> GetComponentByName(std::string x);
+	std::shared_ptr<Actor> GetComponentByIndex(unsigned int x);
+	std::vector<std::shared_ptr<Actor>>& GetComponents();
+	
+	void SetActive(bool x);
+	void SetDynamic(bool x);
 	void SetTransform(Transform::Data x);
+
+	void AddComponent(std::shared_ptr<Actor> x);
+	void RemoveComponentByName(std::string x);
+	void RemoveComponentByIndex(unsigned int x);
 
 	operator Transform::Data() const
 	{
 		return _trans;
+	}
+
+	operator bool() const
+	{
+		return _active;
+	}
+
+	operator uint8_t() const
+	{
+		return _type;
+	}
+
+	operator std::string() const
+	{
+		return _name;
 	}
 };
 

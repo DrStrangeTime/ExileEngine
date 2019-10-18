@@ -1,11 +1,12 @@
 #pragma once
 
-#include "Actor.h"
+#include "RigidBody.h"
 
 class Editor
 {
 private:
 	static void Initialise();
+	static void Event();
 	static void Update();
 	static void Render();
 	static void Destroy();

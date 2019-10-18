@@ -8,34 +8,40 @@
     <Filter Include="Core">
       <UniqueIdentifier>{129feb50-d0b3-465c-bf61-7bd3724644e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects">
+    <Filter Include="Core\Objects">
       <UniqueIdentifier>{1b9f698c-d18d-4c70-8b7b-fbd41aa926a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utils">
+    <Filter Include="Core\Utils">
       <UniqueIdentifier>{a5baf337-dbb6-4542-8580-bed866b943ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
-      <Filter>Objects</Filter>
+      <Filter>Core\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
-      <Filter>Objects</Filter>
+      <Filter>Core\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>Core\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
-      <Filter>Objects</Filter>
+      <Filter>Core\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Actor.h">
-      <Filter>Objects</Filter>
+      <Filter>Core\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="Transform.h">
-      <Filter>Utils</Filter>
+      <Filter>Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Core\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

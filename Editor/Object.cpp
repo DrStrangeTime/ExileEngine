@@ -3,18 +3,14 @@
 Object::Object() 
 {
 	_type = 0;
-	_active = true;
-	_name = "";
+	_name = "Object";
 }
+
+Object::~Object() {}
 
 uint8_t& Object::GetType()
 {
 	return _type;
-}
-
-bool& Object::GetActive()
-{
-	return _active;
 }
 
 std::string& Object::GetName()
@@ -25,11 +21,6 @@ std::string& Object::GetName()
 void Object::SetType(uint8_t x)
 {
 	_type = x;
-}
-
-void Object::SetActive(bool x)
-{
-	_active = x;
 }
 
 void Object::SetName(std::string x)

@@ -22,9 +22,14 @@ void Editor::Destroy()
 	exDestroy();
 }
 
+void Editor::Event()
+{
+	// Input event handling here...
+}
+
 void Editor::Update()
 {
-
+	// Logic, Physics ect...
 }
 
 void Editor::Render()

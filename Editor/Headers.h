@@ -3,7 +3,7 @@
 
 // Third-party libs
 #include <glm/glm.hpp>
-
+#include <glm/gtx/transform.hpp>
 
 // Engine modules
 #include <ExCore.h>
@@ -13,5 +13,6 @@
 
 // Pre-computed headers
 #include <string>
+#include <memory>
 
 #endif
