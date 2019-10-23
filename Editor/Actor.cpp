@@ -58,7 +58,7 @@ std::shared_ptr<Actor> Actor::GetComponentByIndex(unsigned int x)
 	if (x > _components.size() - 1)
 	{
 		exLogErr("Component Index is out of bounds!");
-		return;
+		return nullptr;
 	}
 
 	return _components[x];

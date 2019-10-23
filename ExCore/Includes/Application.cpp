@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Application.h"
 
+
 void ExCore::Application::error_callback(int error, const char* description)
 {
 	ExCore::Logger::PrintErr(description);
@@ -30,7 +31,7 @@ void ExCore::Application::Create(int w, int h, const char* title, bool maximise,
 	}
 
 	// Set GLFW window hints
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	if (maximise)
 		glfwWindowHint(GLFW_MAXIMIZED, 1);
 
@@ -67,6 +68,7 @@ void ExCore::Application::Create(int w, int h, const char* title, bool maximise,
 	// ----------------------------------------------------------------------------
 
 	glfwMakeContextCurrent(window);
+	glfwGetFramebufferSize(window, &width, &height);
 
 	// Initialise GLEW
 	GLenum err = glewInit();

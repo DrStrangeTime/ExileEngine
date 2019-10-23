@@ -16,7 +16,18 @@ public:
 		glm::mat4 m;
 
 		Data() : p(glm::vec3(0.0f)), r(glm::vec3(0.0f)), s(glm::vec3(1.0f)), m(glm::mat4(1.0f)) {}
+		
+		operator glm::mat4() const
+		{
+			return m;
+		}
+
+		operator glm::vec3() const
+		{
+			return p;
+		}
 	};
+
 
 	static void MakeModel(Data& x)
 	{
