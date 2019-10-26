@@ -14,6 +14,27 @@
     <Filter Include="Core\Utils">
       <UniqueIdentifier>{a5baf337-dbb6-4542-8580-bed866b943ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Input">
+      <UniqueIdentifier>{01fe7026-6ded-4ce6-86ac-341a30b99e35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer">
+      <UniqueIdentifier>{dd63eba9-3a5c-4ad9-97e5-b143067d6977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer\Structs">
+      <UniqueIdentifier>{33fa1b7c-aa37-493d-ab50-681acfafdec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer\OpenGL">
+      <UniqueIdentifier>{6aded752-ca86-423c-a0be-7909e384ba4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer\BSP">
+      <UniqueIdentifier>{b7a6e61b-079c-4feb-a3af-0a9721342541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer\OpenGL\Buffers">
+      <UniqueIdentifier>{b39bd181-982b-44d3-94a0-b5fd8fa0e10c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer\OpenGL\Utils">
+      <UniqueIdentifier>{2ddf7c14-9252-46ea-ac6d-dac3e3f75a5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -27,6 +48,22 @@
     <ClCompile Include="RigidBody.cpp">
       <Filter>Core\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBufferObject.cpp">
+      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBufferArray.cpp">
+      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBufferObject.cpp">
+      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
@@ -43,5 +80,27 @@
     <ClInclude Include="RigidBody.h">
       <Filter>Core\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Core\ExRenderer\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleTest.h">
+      <Filter>Core\ExRenderer\BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBufferObject.h">
+      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBufferArray.h">
+      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBufferObject.h">
+      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderLoader.h" />
   </ItemGroup>
 </Project>

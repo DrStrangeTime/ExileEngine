@@ -8,22 +8,112 @@
 //	return o1->t < o2->t;
 //}
 
-void Editor::Initialise()
+
+Editor::Editor()
 {
-	// Initialise sub-modules
+	Create(1920, 1080, "Exile Editor", true, false, true);
+
+	tt = std::make_unique<TriangleTest>();
+}
+
+Editor::~Editor()
+{
+	Destroy();
+}
+
+bool Editor::isRunning()
+{
+	return !glfwWindowShouldClose(window);
+}
+
+void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscreen, bool showCursor)
+{
 	exInit();	// Init ExCore.dll
-	// Initialise glfw window and glew
-	exCreateWindow(1920, 1080, "Exile Editor", true, false, true);
+
+	width = w;
+	height = h;
+
+	if (!glfwInit())
+	{
+		ExCore::Logger::PrintErr("Failed to initialise GLFW!");
+		exit(EXIT_FAILURE);
+	}
+
+	// Set GLFW window hints
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	if (maximise)
+		glfwWindowHint(GLFW_MAXIMIZED, 1);
+
+
+	// Initialise windows
+	window = glfwCreateWindow(width, height, "Exile Editor", (fullscreen ? glfwGetPrimaryMonitor() : NULL), NULL);
+	if (!window)
+	{
+		ExCore::Logger::PrintErr("Failed to initialise GLFW window!");
+		glfwTerminate();
+		exit(EXIT_FAILURE);
+	}
+
+	// Assign width and height of screen
+	if (fullscreen)
+	{
+		const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+		width = mode->width;
+		height = mode->height;
+	}
+
+	// Initialise cursor
+	ExCore::Cursor::Initialise(GLFW_ARROW_CURSOR);
+
+	// GLFW Callback functions ----------------------------------------------------
+	glfwSetKeyCallback(window, InputManager::key_callback);
+	glfwSetMouseButtonCallback(window, InputManager::mouse_button_callback);
+	glfwSetCursorPosCallback(window, InputManager::cursor_position_callback);
+	glfwSetScrollCallback(window, InputManager::scroll_callback);
+	(!showCursor ? glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED) : glfwSetCursor(window, ExCore::Cursor::GetCursor()));
+	// ----------------------------------------------------------------------------
+
+	glfwMakeContextCurrent(window);
+	glfwGetFramebufferSize(window, &width, &height);
+
+	// Initialise GLEW
+	GLenum err = glewInit();
+	if (GLEW_OK != err)
+	{
+		ExCore::Logger::PrintErr("Failed to initialise GLEW!");
+		glfwDestroyWindow(window);
+		glfwTerminate();
+		exit(EXIT_FAILURE);
+	}
+
+	glfwSwapInterval(1);
+
+	rdp.Assign(glGetString(GL_VENDOR), glGetString(GL_RENDERER), glGetString(GL_VERSION));	// Store hardware properties
+
+	// Print hardware stats
+	ExCore::Logger::PrintInfo(rdp.vendor);
+	ExCore::Logger::PrintInfo(rdp.model);
+	ExCore::Logger::PrintInfo(rdp.gl_version);
+
+	// OpenGL properties
+	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glViewport(0, 0, width, height);
 }
 
 void Editor::Destroy()
 {
-	exDestroy();
+	glfwDestroyCursor(ExCore::Cursor::GetCursor());
+	glfwDestroyWindow(window);
+	glfwTerminate();
 }
 
-void Editor::Event()
+void Editor::PollEvents()
 {
-	// Input event handling here...
+	glfwPollEvents();
 }
 
 void Editor::Update()
@@ -33,27 +123,32 @@ void Editor::Update()
 
 void Editor::Render()
 {
-	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT );
+	glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	tt->Render();
 
+	Swap();
+}
 
-	exSwap();
+void Editor::Swap()
+{
+	glfwSwapBuffers(window);
 }
 
 void Editor::Run()
 {
-	Initialise();
-
-	
-
 	// --------------- LOOP ---------------
-	while (exRunning())
+	while (isRunning())
 	{
-		exPollEvents();
 
+		// Surround update with timestep here
 		Update();
+		// ----------------------------------
+
 		Render();
+
+		PollEvents();
 	}
 	// ------------------------------------
 

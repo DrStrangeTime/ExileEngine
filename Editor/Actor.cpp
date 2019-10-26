@@ -51,6 +51,8 @@ std::shared_ptr<Actor> Actor::GetComponentByName(std::string x)
 	}
 
 	exLogErr("Failed to find component by name!");
+
+	return nullptr;
 }
 
 std::shared_ptr<Actor> Actor::GetComponentByIndex(unsigned int x)

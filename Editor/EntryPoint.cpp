@@ -3,7 +3,9 @@
 
 int main(int argc, char** argv)
 {
-	Editor::Run();
+	std::unique_ptr<Editor>app = std::make_unique<Editor>();
+
+	app->Run();
 
 	exit(EXIT_SUCCESS);
 }

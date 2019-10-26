@@ -180,7 +180,6 @@
     <ClCompile Include="Includes\Application.cpp" />
     <ClCompile Include="Includes\Cursor.cpp" />
     <ClCompile Include="Includes\dllmain.cpp" />
-    <ClCompile Include="Includes\InputEvent.cpp" />
     <ClCompile Include="Includes\KeyInput.cpp" />
     <ClCompile Include="Includes\MouseInput.cpp" />
     <ClCompile Include="Includes\pch.cpp">

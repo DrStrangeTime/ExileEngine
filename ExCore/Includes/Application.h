@@ -12,28 +12,27 @@ namespace ExCore
 { 
 	class EXILE_CORE_API Application
 	{
-	public:
-		static int									width;
-		static int									height;
-		static const char*							title;
-		static GLFWwindow*							window;
-		static ExCore::RenderDevice::Properties		rdp;
-
-		static void error_callback(int error, const char* description);
-		static void window_resize_callback(GLFWwindow* window, int width, int height);
+	protected:
+		int									width;
+		int									height;
+		const char*							title;
+		GLFWwindow*							window;
+		ExCore::RenderDevice::Properties	rdp;
 
 	public:
-		static void Create(int width, int height, const char* title, bool maximise, bool fullscreen, bool showCursor);
-		static void Destroy();
-		static void PollEvents();
-		static void Swap();
+		virtual void Create(int width, int height, const char* title, bool maximise, bool fullscreen, bool showCursor) = 0;
+		virtual void Destroy() = 0;
+		virtual void PollEvents() = 0;
+		virtual void Swap() = 0;
+		virtual void Run() = 0;
+		virtual bool isRunning() = 0;
 
-		static int& GetWidth();
-		static int& GetHeight();
-		static const char* GetTitle();
-		static GLFWwindow* GetWindow();
+		int& GetWidth();
+		int& GetHeight();
+		const char* GetTitle();
+		GLFWwindow* GetWindow();
+		ExCore::RenderDevice::Properties& GetRenderDeviceProperties();
 
-		static bool isRunning();
 	};
 }
 

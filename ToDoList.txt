@@ -1,7 +1,3 @@
 
 exCore.dll
-- Convert application class to a class interface in order to encapsulate events.
-
-Client.exe
-- Construct a ClientApplication class that derives from the base application.
-- Inject a ClientApplication object into the Editor class, and parse to EntryPoint.
+- Get something rendering!

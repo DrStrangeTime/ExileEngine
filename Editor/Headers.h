@@ -13,6 +13,9 @@
 
 // Pre-computed headers
 #include <string>
+#include <sstream>
+#include <fstream>
+#include <sstream>
 #include <memory>
 
 #endif
