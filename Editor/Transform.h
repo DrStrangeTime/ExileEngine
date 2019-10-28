@@ -15,7 +15,10 @@ public:
 
 		glm::mat4 m;
 
-		Data() : p(glm::vec3(0.0f)), r(glm::vec3(0.0f)), s(glm::vec3(1.0f)), m(glm::mat4(1.0f)) {}
+		Data() :	p(glm::vec3(0.0f)), 
+					r(glm::vec3(0.0f)), 
+					s(glm::vec3(1.0f)), 
+					m(glm::mat4(1.0f)) {}
 		
 		operator glm::mat4() const
 		{
@@ -29,16 +32,17 @@ public:
 	};
 
 
-	static void MakeModel(Data& x)
+	static void MakeModel(Data t, glm::mat4& m)
 	{
-		x.m = glm::scale(x.m, glm::vec3(x.s));
-		x.m = glm::rotate(x.m, x.r.x, glm::vec3(1.0f, 0.0f, 0.0f));
-		x.m = glm::rotate(x.m, x.r.y, glm::vec3(0.0f, 1.0f, 0.0f));
-		x.m = glm::rotate(x.m, x.r.z, glm::vec3(0.0f, 0.0f, 1.0f));
-		x.m = glm::translate(x.m, glm::vec3(x.p));
+		m =		glm::translate(m, glm::vec3(t.p)) *
+				glm::rotate(m, t.r.x, glm::vec3(1.0f, 0.0f, 0.0f)) *
+				glm::rotate(m, t.r.y, glm::vec3(0.0f, 1.0f, 0.0f)) *
+				glm::rotate(m, t.r.z, glm::vec3(0.0f, 0.0f, 1.0f)) *
+				glm::scale(m, glm::vec3(t.s));
+				
 	}
 
-	static void Translate(Data& d, glm::vec3 x)
+	/*static void Translate(Data& d, glm::vec3 x)
 	{
 		d.p = x;
 		MakeModel(d);
@@ -99,7 +103,7 @@ public:
 	{
 		d.s.z = x;
 		MakeModel(d);
-	}
+	}*/
 };
 
 

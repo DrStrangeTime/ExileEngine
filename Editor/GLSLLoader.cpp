@@ -1,7 +1,10 @@
-#include "ShaderLoader.h"
+#include "GLSLLoader.h"
 
-ShaderLoader::ShaderLoader(const GLchar* vertexPath, const GLchar* fragmentPath)
+
+uint32_t GLSLLoader::LoadVertFrag(const GLchar* vertexPath, const GLchar* fragmentPath)
 {
+	uint32_t _program;	// The returning program
+
 	// 1. Retrieve the vertex/fragment source code from filePath
 	std::string		vertexCode;
 	std::string		fragmentCode;
@@ -32,7 +35,9 @@ ShaderLoader::ShaderLoader(const GLchar* vertexPath, const GLchar* fragmentPath)
 	}
 	catch (std::ifstream::failure e)
 	{
-		ExCore::Logger::PrintErr("ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ");
+#ifdef _DEBUG
+		ExCore::Logger::PrintErr("Failed to read shader file!");
+#endif
 	}
 	const GLchar* vShaderCode = vertexCode.c_str();
 	const GLchar* fShaderCode = fragmentCode.c_str();
@@ -47,52 +52,50 @@ ShaderLoader::ShaderLoader(const GLchar* vertexPath, const GLchar* fragmentPath)
 	glShaderSource(vertex, 1, &vShaderCode, NULL);
 	glCompileShader(vertex);
 
+#ifdef _DEBUG
 	// Print compile errors if any
 	glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
 	if (!success)
 	{
 		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-		ExCore::Logger::PrintErr("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n");
+		ExCore::Logger::PrintErr("Vertex shader compilation failed!");
 	}
+#endif
 
 	// Fragment Shader
 	fragment = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragment, 1, &fShaderCode, NULL);
 	glCompileShader(fragment);
 
+#ifdef _DEBUG
 	// Print compile errors if any
 	glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
 	if (!success)
 	{
 		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-		ExCore::Logger::PrintErr("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n");
+		ExCore::Logger::PrintErr("Fragment shader compilation failed!");
 	}
+#endif
 
 	// Shader Program
-	this->_program = glCreateProgram();
-	glAttachShader(this->_program, vertex);
-	glAttachShader(this->_program, fragment);
-	glLinkProgram(this->_program);
+	_program = glCreateProgram();
+	glAttachShader(_program, vertex);
+	glAttachShader(_program, fragment);
+	glLinkProgram(_program);
 
+#ifdef _DEBUG
 	// Print linking errors if any
-	glGetProgramiv(this->_program, GL_LINK_STATUS, &success);
+	glGetProgramiv(_program, GL_LINK_STATUS, &success);
 	if (!success)
 	{
-		glGetProgramInfoLog(this->_program, 512, NULL, infoLog);
-		ExCore::Logger::PrintErr("ERROR::SHADER::PROGRAM::LINKING_FAILED\n");
+		glGetProgramInfoLog(_program, 512, NULL, infoLog);
+		ExCore::Logger::PrintErr("Failed to link shader program!");
 	}
+#endif
 
 	// Delete the shaders as they're linked into our program now and no longer necessery
 	glDeleteShader(vertex);
 	glDeleteShader(fragment);
-}
 
-ShaderLoader::~ShaderLoader()
-{
-	glDeleteProgram(_program);
-}
-
-void ShaderLoader::Bind()
-{
-	glUseProgram(_program);
+	return _program;
 }

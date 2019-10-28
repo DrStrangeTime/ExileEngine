@@ -152,7 +152,10 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="RigidBody.cpp" />
-    <ClCompile Include="ShaderLoader.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="GLSLLoader.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="VertexBufferArray.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
   </ItemGroup>
@@ -170,7 +173,11 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="RigidBody.h" />
-    <ClInclude Include="ShaderLoader.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="GLSLLoader.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TriangleTest.h" />
     <ClInclude Include="Vertex.h" />

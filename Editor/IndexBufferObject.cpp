@@ -6,6 +6,7 @@ IndexBufferObject::IndexBufferObject(std::vector<uint32_t> index_data)
 	_buffer_type = GL_ELEMENT_ARRAY_BUFFER;
 	_buffer_size = index_data.size() * SIZE_OF_UINT32;
 	_index_data = index_data;
+	_index_size = static_cast<GLsizei>(index_data.size());
 }
 
 IndexBufferObject::~IndexBufferObject()

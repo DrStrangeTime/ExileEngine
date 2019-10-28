@@ -15,11 +15,13 @@ struct VertexElement {
 };
 
 struct Vertex {
+	uint16_t stride;
 	std::vector<VertexElement> vertexElements;
 
 	inline Vertex() = default;
-	inline Vertex(std::vector<VertexElement> ve) {
-		vertexElements = ve;
+	inline Vertex(uint16_t _stride, std::vector<VertexElement> _vertex_elements) {
+		stride = _stride;
+		vertexElements = _vertex_elements;
 	}
 };
 

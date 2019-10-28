@@ -1,10 +1,9 @@
 #include "VertexBufferArray.h"
 
-VertexBufferArray::VertexBufferArray(uint16_t num_vertex_attributes, std::vector<std::shared_ptr<VertexBufferObject>> vertex_buffer_objects, std::shared_ptr<IndexBufferObject> index_buffer_object)
+VertexBufferArray::VertexBufferArray(std::vector<std::shared_ptr<VertexBufferObject>> vertex_buffer_objects, std::shared_ptr<IndexBufferObject> index_buffer_object)
 {
 	_buffer_type = GL_VERTEX_ARRAY;
 	_buffer_size = sizeof(vertex_buffer_objects) + sizeof(_ibo);
-	_num_attribs = num_vertex_attributes;
 	_vbos = vertex_buffer_objects;
 	_ibo = index_buffer_object;
 }
@@ -47,7 +46,7 @@ void VertexBufferArray::Create()
 	}
 #endif
 
-	for (auto i = 0; i < _num_attribs; ++i)
+	for (auto i = 0; i < _vbos.size(); ++i)
 		_vbos[i]->Create();
 	
 	// Only create an ibo if object is valid
@@ -56,12 +55,12 @@ void VertexBufferArray::Create()
 
 	// Only divise vertex attribs if multiple vbos
 	if (_vbos.size() > 1)
-		glVertexAttribDivisor(_num_attribs, 1);
+		glVertexAttribDivisor(static_cast<GLuint>(_vbos.size()), 1);
 }
 
 void VertexBufferArray::Destroy()
 {
-	for (auto i = 0; i < _num_attribs; ++i)
+	for (auto i = 0; i < _vbos.size(); ++i)
 		glDisableVertexAttribArray(i);
 
 	if (!_vbos.empty())
@@ -71,11 +70,6 @@ void VertexBufferArray::Destroy()
 void VertexBufferArray::Bind()
 {
 	glBindVertexArray(_buffer_object);
-}
-
-uint16_t& VertexBufferArray::GetNumAttributes()
-{
-	return _num_attribs;
 }
 
 std::shared_ptr<IndexBufferObject>& VertexBufferArray::GetIndexBuffer()

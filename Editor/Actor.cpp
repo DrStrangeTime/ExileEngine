@@ -6,7 +6,7 @@ Actor::Actor()
 	_name = "Actor";
 	_active = false;
 	_dynamic = false;
-	Transform::MakeModel(_trans);
+	Transform::MakeModel(_trans, _trans.m);
 }
 
 Actor::Actor(std::string n)
@@ -14,7 +14,7 @@ Actor::Actor(std::string n)
 	_name = n;
 	_active = false;
 	_dynamic = false;
-	Transform::MakeModel(_trans);
+	Transform::MakeModel(_trans, _trans.m);
 }
 
 Actor::Actor(std::string n, glm::vec3 p, glm::vec3 r, glm::vec3 s)
@@ -22,7 +22,7 @@ Actor::Actor(std::string n, glm::vec3 p, glm::vec3 r, glm::vec3 s)
 	_name = n;
 	_active = false;
 	_dynamic = false;
-	Transform::MakeModel(_trans);
+	Transform::MakeModel(_trans, _trans.m);
 }
 
 bool& Actor::GetActive()
