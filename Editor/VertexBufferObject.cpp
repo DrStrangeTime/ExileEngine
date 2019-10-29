@@ -37,7 +37,7 @@ void VertexBufferObject::Create()
 
 	glGenBuffers(1, &_buffer_object);
 	glBindBuffer(GL_ARRAY_BUFFER, _buffer_object);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(_packed_vertex_data), &_packed_vertex_data[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, _packed_vertex_data.size() * SIZE_OF_FLOAT, &_packed_vertex_data[0], GL_STATIC_DRAW);
 
 	uint32_t it = 0;
 	uintptr_t offset = 0;
