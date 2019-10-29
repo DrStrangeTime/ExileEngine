@@ -8,14 +8,14 @@
 //	return o1->t < o2->t;
 //}
 
-void window_size_callback(GLFWwindow* window, int width, int height)
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 }
 
 Editor::Editor()
 {
-	Create(1920, 1080, "Exile Editor", true, false, true);
+	Create(600, 500, "Exile Editor", false, false, true);
 
 	tt = std::make_unique<TriangleTest>();
 }
@@ -36,6 +36,8 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 
 	width = w;
 	height = h;
+
+	glewExperimental = GL_TRUE;
 	
 	// Initialise GLFW
 	if (!glfwInit())
@@ -45,9 +47,7 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	}
 
 	// Set GLFW window hints
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	if (maximise)
 		glfwWindowHint(GLFW_MAXIMIZED, 1);
 
@@ -73,7 +73,7 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	ExCore::Cursor::Initialise(GLFW_ARROW_CURSOR);
 
 	// GLFW Callback functions ----------------------------------------------------
-	glfwSetWindowSizeCallback(window, window_size_callback);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	glfwSetKeyCallback(window, InputManager::key_callback);
 	glfwSetMouseButtonCallback(window, InputManager::mouse_button_callback);
 	glfwSetCursorPosCallback(window, InputManager::cursor_position_callback);
@@ -103,9 +103,9 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	ExCore::Logger::PrintInfo(rdp.gl_version);
 
 	// OpenGL properties
-	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
+	//glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+	//glEnable(GL_CULL_FACE);
+	//glCullFace(GL_BACK);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glViewport(0, 0, width, height);
 }

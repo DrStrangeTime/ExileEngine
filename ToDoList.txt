@@ -1,6 +1,5 @@
 ExRenderer.dll
-- Image loading and texture compression
-- Rendering texture to triangle using multiple vert attribs
+- Fix rendering issue with ibo
 
 
 

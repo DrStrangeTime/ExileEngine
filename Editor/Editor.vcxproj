@@ -177,6 +177,7 @@
     <ClInclude Include="GLSLLoader.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureData.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TriangleTest.h" />

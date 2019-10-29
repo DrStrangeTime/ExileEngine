@@ -40,16 +40,14 @@ void VertexBufferObject::Create()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(_packed_vertex_data), &_packed_vertex_data[0], GL_STATIC_DRAW);
 
 	uint32_t it = 0;
-	uint32_t it_size = 0;
+	uintptr_t offset = 0;
 	for (const VertexElement& ve : _vertex_data.vertexElements)
 	{
-		_buffer_size = _buffer_size + sizeof(ve.data[0]);
-
+		glVertexAttribPointer(it, ve.componentSize, GL_FLOAT, GL_FALSE, _vertex_data.stride * SIZE_OF_FLOAT, (void*)(offset));
 		glEnableVertexAttribArray(it);
-		glVertexAttribPointer(it, ve.componentSize, GL_FLOAT, GL_FALSE, _vertex_data.stride * SIZE_OF_FLOAT, (GLvoid*)0);
-
-		++it;
-		it_size += sizeof(ve.data);
+		
+		offset += (ve.componentSize * SIZE_OF_FLOAT);	// Calculate for the next array offset
+		++it;	// Increment current attrib index
 	}
 
 #ifdef _DEBUG

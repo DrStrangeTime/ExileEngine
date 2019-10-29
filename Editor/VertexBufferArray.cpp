@@ -18,10 +18,7 @@ void VertexBufferArray::Create()
 #ifdef _DEBUG
 	// Check for existing vbo(s)
 	if (_vbos.empty())
-	{
-		ExCore::Logger::PrintErr("Failed to read existing vertex buffer object!");
-		return;
-	}
+		ExCore::Logger::PrintWar("NULL buffers assigned to vertex buffer array!");
 
 	// Check for nullptr object(s)
 	for (const std::shared_ptr<VertexBufferObject>& bo : _vbos)
@@ -53,7 +50,7 @@ void VertexBufferArray::Create()
 	if (_ibo != nullptr)
 		_ibo->Create();
 
-	// Only divise vertex attribs if multiple vbos
+	// Only divise vertex attribs if multiple vbos exist
 	if (_vbos.size() > 1)
 		glVertexAttribDivisor(static_cast<GLuint>(_vbos.size()), 1);
 }
@@ -65,6 +62,8 @@ void VertexBufferArray::Destroy()
 
 	if (!_vbos.empty())
 		_vbos.clear();
+
+	glDeleteVertexArrays(1, &_buffer_object);
 }
 
 void VertexBufferArray::Bind()

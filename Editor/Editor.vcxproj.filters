@@ -130,5 +130,8 @@
     <ClInclude Include="TextureLoader.h">
       <Filter>Core\ExRenderer\OpenGL\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="TextureData.h">
+      <Filter>Core\ExRenderer\Structs</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
