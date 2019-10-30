@@ -42,10 +42,8 @@ public:
 		vao = std::make_unique<VertexBufferArray>(vbos, ibo);
 		vao->Create();
 
-		// -------------------------------------------- DEBUG --------------------------------------------
-		//ExCore::Logger::PrintArray(&vbo->GetPackedVertexData()[0], vbo->GetPackedVertexData().size(), "SINGLE VERTEX DATA");
-		//ExCore::Logger::PrintArray(&ibo->GetIndexData()[0], ibo->GetIndexData().size(), "INDEX DATA");
-		// -------------------------------------------- DEBUG --------------------------------------------
+		// -------------------------------------------- DEBUG --------------------------------------------	
+		// -----------------------------------------------------------------------------------------------
 
 		// Setup shader
 		shader = std::make_unique<Shader>(GLSLLoader::LoadVertFrag("shaders/Diffuse.vs", "shaders/Diffuse.fs"));

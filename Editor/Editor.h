@@ -11,7 +11,9 @@
 class Editor : public ExCore::Application
 {
 private:
+	// ------------- TEMP -------------
 	std::unique_ptr<TriangleTest>	tt;
+	// --------------------------------
 
 	void Update();
 	void Render();

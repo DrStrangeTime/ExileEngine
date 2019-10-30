@@ -7,6 +7,8 @@ ExCore::Timestep::Timestep(double fps, double rate)
 	elapsed = 0;
 	frames_per_second = fps;
 	ms = MICRO_SECOND / fps;	// Syncs updates at 60 per second (59 - 61)
+
+	Start();
 }
 
 double& ExCore::Timestep::GetFramesPerSecond()

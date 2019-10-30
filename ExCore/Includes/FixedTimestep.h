@@ -1,7 +1,7 @@
 #ifndef __FIXED_TIMESTEP_H__
 #define __FIXED_TIMESTEP_H__
 
-#define MICRO_SECOND	1000000.0
+#define MICRO_SECOND	static_cast<double>(1000000.0)
 
 #include "pch.h"
 #include "ExCore.h"
@@ -19,6 +19,7 @@ namespace ExCore
 		double			r;
 
 	public:
+		Timestep() = default;
 		Timestep(double fps, double rate);
 
 		bool timeElapsed();

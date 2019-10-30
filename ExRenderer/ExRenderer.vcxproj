@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="Includes\ExRenderer.h" />
     <ClInclude Include="Includes\framework.h" />
+    <ClInclude Include="Includes\stb_image.h" />
     <ClInclude Include="Includes\stdafx.h" />
   </ItemGroup>
   <ItemGroup>

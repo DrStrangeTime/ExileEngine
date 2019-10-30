@@ -175,7 +175,6 @@
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="GLSLLoader.h" />
-    <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureData.h" />
     <ClInclude Include="TextureLoader.h" />

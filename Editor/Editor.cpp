@@ -1,6 +1,6 @@
 #include "Editor.h"
 
-#include <Query.h>
+#include "stb_image.h"
 
 //#include <algorithm>
 //
@@ -20,7 +20,9 @@ Editor::Editor()
 {
 	Create(600, 500, "Exile Editor", false, false, true);
 
+	// ------------- TEMP -------------
 	tt = std::make_unique<TriangleTest>();
+	// --------------------------------
 }
 
 Editor::~Editor()
@@ -45,7 +47,9 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	// Initialise GLFW
 	if (!glfwInit())
 	{
+#ifdef _DEBUG
 		ExCore::Logger::PrintErr("Failed to initialise GLFW!");
+#endif
 		exit(EXIT_FAILURE);
 	}
 
@@ -58,7 +62,9 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	window = glfwCreateWindow(width, height, "Exile Editor", NULL, NULL);
 	if (!window)
 	{
+#ifdef _DEBUG
 		ExCore::Logger::PrintErr("Failed to initialise GLFW window!");
+#endif
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
@@ -84,31 +90,44 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	(!showCursor ? glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED) : glfwSetCursor(window, ExCore::Cursor::GetCursor()));
 	// ----------------------------------------------------------------------------
 
+	// Load app icon
+	GLFWimage icon;
+	icon.pixels = stbi_load("icons/win_icon.png", &icon.width, &icon.height, 0, 4);
+	glfwSetWindowIcon(window, 1, &icon);
+	stbi_image_free(icon.pixels);
+
+	// Set rendering context
 	glfwMakeContextCurrent(window);
 	glfwGetFramebufferSize(window, &width, &height);
 
+	// Initialise GLEW
 	GLenum err = glewInit();
 	if (GLEW_OK != err)
 	{
+#ifdef _DEBUG
 		ExCore::Logger::PrintErr("Failed to initialise GLEW!");
+#endif
 		glfwDestroyWindow(window);
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
 
+	// Enable v-sync
 	glfwSwapInterval(1);
 
+	// Get hardware information
 	rdp.Assign(glGetString(GL_VENDOR), glGetString(GL_RENDERER), glGetString(GL_VERSION));	// Store hardware properties
 
-	// Print hardware stats
+#ifdef _DEBUG
 	ExCore::Logger::PrintInfo(rdp.vendor);
 	ExCore::Logger::PrintInfo(rdp.model);
 	ExCore::Logger::PrintInfo(rdp.gl_version);
+#endif
 
 	// OpenGL properties
 	//glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 	//glEnable(GL_CULL_FACE);
-	//glCullFace(GL_BACK);
+	//glCullFace(GL_FRONT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glViewport(0, 0, width, height);
 }
@@ -135,7 +154,9 @@ void Editor::Render()
 	glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	// -- TEMP --
 	tt->Render();
+	// ----------
 
 	Swap();
 }
@@ -149,8 +170,7 @@ void Editor::Run()
 {
 	ExCore::Timestep _f_time_step(FPS, REALTIME_SPEED);
 
-	_f_time_step.Start();
-
+	// Main loop
 	while (isRunning())
 	{
 		_f_time_step.CalcLastElapsed();

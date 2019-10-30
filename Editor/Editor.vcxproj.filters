@@ -35,9 +35,6 @@
     <Filter Include="Core\ExRenderer\OpenGL\Utils">
       <UniqueIdentifier>{2ddf7c14-9252-46ea-ac6d-dac3e3f75a5f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\ExRenderer\Utils">
-      <UniqueIdentifier>{7edf5c30-3947-4f64-94fd-ac22978d541e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -120,9 +117,6 @@
     </ClInclude>
     <ClInclude Include="GLSLLoader.h">
       <Filter>Core\ExRenderer\OpenGL\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="stb_image.h">
-      <Filter>Core\ExRenderer\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
