@@ -22,6 +22,7 @@
 
 // Windows headers
 #include <windows.h>
+#include <Query.h>
 #include <iostream>
 #include <string>
 #include <time.h>

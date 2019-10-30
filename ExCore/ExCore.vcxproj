@@ -173,7 +173,7 @@
     <ClInclude Include="Includes\ExCore.h" />
     <ClInclude Include="Includes\Logger.h" />
     <ClInclude Include="Includes\Application.h" />
-    <ClInclude Include="Includes\KeyEvent.h" />
+    <ClInclude Include="Includes\FixedTimestep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Includes\Application.cpp" />
@@ -188,6 +188,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Includes\ExCore.cpp" />
+    <ClCompile Include="Includes\FixedTimestep.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

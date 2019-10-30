@@ -1,5 +1,7 @@
 #include "Editor.h"
 
+#include <Query.h>
+
 //#include <algorithm>
 //
 //std::vector<Object*> Editor::objects;
@@ -7,6 +9,7 @@
 //bool abstrSmaller(const Object* o1, const Object* o2) {
 //	return o1->t < o2->t;
 //}
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -124,7 +127,7 @@ void Editor::PollEvents()
 
 void Editor::Update()
 {
-	// Logic, Physics ect...
+	// Interpolation, Physics ect...
 }
 
 void Editor::Render()
@@ -144,21 +147,24 @@ void Editor::Swap()
 
 void Editor::Run()
 {
-	// --------------- LOOP ---------------
+	ExCore::Timestep _f_time_step(FPS, REALTIME_SPEED);
+
+	_f_time_step.Start();
+
 	while (isRunning())
 	{
-
-		// Surround update with timestep here
+		_f_time_step.CalcLastElapsed();
+		while (_f_time_step.timeElapsed())
 		{
 			Update();
+			_f_time_step.ResetElapsed();
 		}
-		// ----------------------------------
+		_f_time_step.Lock();
 
 		Render();
 
 		PollEvents();
 	}
-	// ------------------------------------
 
 	Destroy();
 }

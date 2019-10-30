@@ -3,10 +3,15 @@
 #include "InputManager.h"
 #include "TriangleTest.h"
 
+#define FPS				static_cast<double>(60.0)
+#define REALTIME_SPEED	static_cast<double>(1.0)
+
+
+/* Editor derives from the Exile::Core application interface. */
 class Editor : public ExCore::Application
 {
 private:
-	std::unique_ptr<TriangleTest> tt;
+	std::unique_ptr<TriangleTest>	tt;
 
 	void Update();
 	void Render();

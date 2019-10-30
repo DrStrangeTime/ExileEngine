@@ -42,10 +42,10 @@ public:
 		vao = std::make_unique<VertexBufferArray>(vbos, ibo);
 		vao->Create();
 
-		// -------------------------------------------- DEBUG -------------------------------------------- 
+		// -------------------------------------------- DEBUG --------------------------------------------
 		//ExCore::Logger::PrintArray(&vbo->GetPackedVertexData()[0], vbo->GetPackedVertexData().size(), "SINGLE VERTEX DATA");
 		//ExCore::Logger::PrintArray(&ibo->GetIndexData()[0], ibo->GetIndexData().size(), "INDEX DATA");
-		// -------------------------------------------- DEBUG -------------------------------------------- 
+		// -------------------------------------------- DEBUG --------------------------------------------
 
 		// Setup shader
 		shader = std::make_unique<Shader>(GLSLLoader::LoadVertFrag("shaders/Diffuse.vs", "shaders/Diffuse.fs"));
@@ -55,8 +55,6 @@ public:
 												TextureLoader::LoadTexture2D("textures/test.jpg"),
 												GL_TEXTURE0,
 												"albedoTex");
-
-
 	}
 
 	inline ~TriangleTest() {}
@@ -66,6 +64,6 @@ public:
 		texture->Bind();
 		shader->Bind();
 		vao->Bind();
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, ibo->GetIndexSize(), GL_UNSIGNED_INT, 0);
 	}
 };

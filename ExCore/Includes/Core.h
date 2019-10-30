@@ -3,6 +3,7 @@
 
 #include "Logger.h"
 #include "Application.h"
+#include "FixedTimestep.h"
 
 // Gloal macro definitions
 #define exInit()					ExCore::Logger::Initialise()
