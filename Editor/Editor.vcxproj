@@ -144,6 +144,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActionMap.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Editor.cpp" />
@@ -151,13 +152,13 @@
     <ClCompile Include="IndexBufferObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Object.cpp" />
-    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="GLSLLoader.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="VertexBufferArray.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
+    <ClCompile Include="WorldInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExCore\ExCore.vcxproj">
@@ -165,6 +166,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActionMap.h" />
+    <ClInclude Include="Actions.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Editor.h" />
@@ -172,7 +175,6 @@
     <ClInclude Include="IndexBufferObject.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Object.h" />
-    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="GLSLLoader.h" />
     <ClInclude Include="Texture.h" />
@@ -183,6 +185,7 @@
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="VertexBufferArray.h" />
     <ClInclude Include="VertexBufferObject.h" />
+    <ClInclude Include="WorldInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

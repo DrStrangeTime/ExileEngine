@@ -6,12 +6,12 @@
 /* The object header contains the native macro definitions of each object type,
    and an interface for deriving objects. */
 
-#define O_ACTOR				0	*
+#define O_ACTOR				0	// DONE
 #define O_SPRITE			1
 #define O_STATIC_MESH		2
 #define O_SKELETAL_MESH		3
 #define O_LIGHT				4
-#define O_RIGID_BODY		5	*
+#define O_RIGID_BODY		5
 #define O_CAMERA			6	
 #define O_CLIP				7	
 #define O_PARTICLE			8
@@ -50,7 +50,7 @@ public:
 	std::string&	GetName();
 
 	virtual void	Event() = 0;
-	virtual void	Update() = 0;
+	virtual void	Update(double delta) = 0;
 	virtual void	Render() = 0;
 
 	void			SetType(uint8_t x);

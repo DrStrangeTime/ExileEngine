@@ -35,6 +35,12 @@
     <Filter Include="Core\ExRenderer\OpenGL\Utils">
       <UniqueIdentifier>{2ddf7c14-9252-46ea-ac6d-dac3e3f75a5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Structs">
+      <UniqueIdentifier>{11d15415-3ce3-4d6a-bcc6-7138c6edbda4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Globals">
+      <UniqueIdentifier>{a52ed2d9-9aff-40c7-a172-8e64b76bb30f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -45,9 +51,6 @@
     </ClCompile>
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
-    <ClCompile Include="RigidBody.cpp">
-      <Filter>Core\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Core\Input</Filter>
     </ClCompile>
@@ -75,6 +78,12 @@
     <ClCompile Include="TextureLoader.cpp">
       <Filter>Core\ExRenderer\OpenGL\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="ActionMap.cpp">
+      <Filter>Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldInfo.cpp">
+      <Filter>Core\Globals</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
@@ -87,9 +96,6 @@
     <ClInclude Include="Headers.h" />
     <ClInclude Include="Transform.h">
       <Filter>Core\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="RigidBody.h">
-      <Filter>Core\Objects</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Core\Input</Filter>
@@ -126,6 +132,15 @@
     </ClInclude>
     <ClInclude Include="TextureData.h">
       <Filter>Core\ExRenderer\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldInfo.h">
+      <Filter>Core\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionMap.h">
+      <Filter>Core\Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

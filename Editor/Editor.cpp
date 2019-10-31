@@ -144,8 +144,10 @@ void Editor::PollEvents()
 	glfwPollEvents();
 }
 
-void Editor::Update()
+void Editor::Update(double delta)
 {
+	delta = WorldInfo::GetRealtimeSpeed();
+
 	// Interpolation, Physics ect...
 }
 
@@ -168,7 +170,7 @@ void Editor::Swap()
 
 void Editor::Run()
 {
-	ExCore::Timestep _f_time_step(FPS, REALTIME_SPEED);
+	ExCore::Timestep _f_time_step(WorldInfo::GetFramesPerSecond());
 
 	// Main loop
 	while (isRunning())
@@ -176,7 +178,7 @@ void Editor::Run()
 		_f_time_step.CalcLastElapsed();
 		while (_f_time_step.timeElapsed())
 		{
-			Update();
+			Update(WorldInfo::GetRealtimeSpeed());
 			_f_time_step.ResetElapsed();
 		}
 		_f_time_step.Lock();

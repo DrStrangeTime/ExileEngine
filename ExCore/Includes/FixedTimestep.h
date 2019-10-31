@@ -20,12 +20,11 @@ namespace ExCore
 
 	public:
 		Timestep() = default;
-		Timestep(double fps, double rate);
+		Timestep(double fps);
 
 		bool timeElapsed();
 
 		double& GetFramesPerSecond();
-		double& GetRate();
 
 		void SetFramesPerSecond(double value);
 		void SetRate(double value);

@@ -15,7 +15,7 @@ protected:
 	Transform::Data						_trans;
 	std::vector<std::shared_ptr<Actor>> _components;	// Child actors
 
-	void UpdateComponents();
+	void UpdateComponents(double delta);
 	void RenderComponents();
 
 public:
@@ -24,7 +24,7 @@ public:
 	Actor(std::string n, glm::vec3 p, glm::vec3 r, glm::vec3 s);
 
 	void Event() override {}
-	void Update() override {}
+	void Update(double delta) override {}
 	void Render() override {}
 
 	bool& GetActive();

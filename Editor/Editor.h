@@ -2,9 +2,7 @@
 
 #include "InputManager.h"
 #include "TriangleTest.h"
-
-#define FPS				static_cast<double>(60.0)
-#define REALTIME_SPEED	static_cast<double>(1.0)
+#include "WorldInfo.h"
 
 
 /* Editor derives from the Exile::Core application interface. */
@@ -15,7 +13,7 @@ private:
 	std::unique_ptr<TriangleTest>	tt;
 	// --------------------------------
 
-	void Update();
+	void Update(double delta);
 	void Render();
 
 public:

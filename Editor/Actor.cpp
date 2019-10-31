@@ -117,11 +117,11 @@ void Actor::RemoveComponentByIndex(unsigned int x)
 	_components.erase(_components.begin() + x);
 }
 
-void Actor::UpdateComponents()
+void Actor::UpdateComponents(double delta)
 {
 	for (std::shared_ptr<Actor> c : _components)
 	{
-		c->Update();
+		c->Update(delta);
 	}
 }
 

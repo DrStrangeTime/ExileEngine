@@ -1,9 +1,8 @@
 #include "pch.h"
 #include "FixedTimestep.h"
 
-ExCore::Timestep::Timestep(double fps, double rate)
+ExCore::Timestep::Timestep(double fps)
 {
-	r = rate;
 	elapsed = 0;
 	frames_per_second = fps;
 	ms = MICRO_SECOND / fps;	// Syncs updates at 60 per second (59 - 61)
@@ -14,11 +13,6 @@ ExCore::Timestep::Timestep(double fps, double rate)
 double& ExCore::Timestep::GetFramesPerSecond()
 {
 	return frames_per_second;
-}
-
-double& ExCore::Timestep::GetRate()
-{
-	return r;
 }
 
 void ExCore::Timestep::SetFramesPerSecond(double value)
@@ -40,7 +34,7 @@ void ExCore::Timestep::Start()
 void ExCore::Timestep::CalcLastElapsed()
 {
 	QueryPerformanceCounter(&start);
-	elapsed += (double)(start.QuadPart - end.QuadPart) / ms * r;
+	elapsed += (double)(start.QuadPart - end.QuadPart) / ms;
 }
 
 void ExCore::Timestep::ResetElapsed()
