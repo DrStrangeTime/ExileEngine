@@ -23,9 +23,9 @@ public:
 	Actor(std::string n);
 	Actor(std::string n, glm::vec3 p, glm::vec3 r, glm::vec3 s);
 
-	void Event() override {}
-	void Update(double delta) override {}
-	void Render() override {}
+	virtual void Event() = 0;
+	virtual void Update(double delta) = 0;
+	virtual void Render() = 0;
 
 	bool& GetActive();
 	bool& GetDynamic();

@@ -1,5 +1,4 @@
 #include "Editor.h"
-
 #include "stb_image.h"
 
 //#include <algorithm>
@@ -19,6 +18,12 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 Editor::Editor()
 {
 	Create(600, 500, "Exile Editor", false, false, true);
+
+	// Initialise input mapping data
+	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveFoward",		GLFW_KEY_W, GLFW_PRESS, A_MOVE_FORWARD));
+	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveBackward",	GLFW_KEY_S, GLFW_PRESS, A_MOVE_BACKWARD));
+	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveLeft",		GLFW_KEY_A, GLFW_PRESS, A_MOVE_LEFT));
+	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveRight",		GLFW_KEY_D, GLFW_PRESS, A_MOVE_RIGHT));
 
 	// ------------- TEMP -------------
 	tt = std::make_unique<TriangleTest>();
@@ -144,10 +149,13 @@ void Editor::PollEvents()
 	glfwPollEvents();
 }
 
+void Editor::Event()
+{
+	// Update key events here...
+}
+
 void Editor::Update(double delta)
 {
-	delta = WorldInfo::GetRealtimeSpeed();
-
 	// Interpolation, Physics ect...
 }
 
@@ -185,6 +193,7 @@ void Editor::Run()
 
 		Render();
 
+		Event();
 		PollEvents();
 	}
 

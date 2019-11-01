@@ -8,9 +8,6 @@
     <Filter Include="Core">
       <UniqueIdentifier>{129feb50-d0b3-465c-bf61-7bd3724644e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Objects">
-      <UniqueIdentifier>{1b9f698c-d18d-4c70-8b7b-fbd41aa926a5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Utils">
       <UniqueIdentifier>{a5baf337-dbb6-4542-8580-bed866b943ab}</UniqueIdentifier>
     </Filter>
@@ -41,14 +38,23 @@
     <Filter Include="Core\Globals">
       <UniqueIdentifier>{a52ed2d9-9aff-40c7-a172-8e64b76bb30f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Objects">
+      <UniqueIdentifier>{9060cdae-64c9-4b6b-843f-4a29e318b0d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Input\ActionMaps">
+      <UniqueIdentifier>{b9b115da-e55c-4802-8d49-a00bd26c4784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer\RenderPipelines">
+      <UniqueIdentifier>{67e1d98d-ecf3-4633-b231-f891f93768d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer\OpenGL\Renderers">
+      <UniqueIdentifier>{0e984230-1725-4c50-b1f7-789bfc7221a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer\Renderers">
+      <UniqueIdentifier>{36a34aa1-ee70-4396-83ab-24fe976a06f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Object.cpp">
-      <Filter>Core\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Core\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="InputManager.cpp">
@@ -78,25 +84,45 @@
     <ClCompile Include="TextureLoader.cpp">
       <Filter>Core\ExRenderer\OpenGL\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="ActionMap.cpp">
-      <Filter>Core\Input</Filter>
-    </ClCompile>
     <ClCompile Include="WorldInfo.cpp">
       <Filter>Core\Globals</Filter>
     </ClCompile>
+    <ClCompile Include="ActionMap.cpp">
+      <Filter>Core\Input\ActionMaps</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Core\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Core\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Core\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLoader.cpp">
+      <Filter>Core\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionMapMouseEvent.cpp">
+      <Filter>Core\Input\ActionMaps</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionMapKeyboardEvent.cpp">
+      <Filter>Core\Input\ActionMaps</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterRenderer.cpp">
+      <Filter>Core\ExRenderer\RenderPipelines</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Core\ExRenderer\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="GLForwardRenderer.cpp">
+      <Filter>Core\ExRenderer\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="GLRenderPipeline.cpp">
+      <Filter>Core\ExRenderer\RenderPipelines</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Object.h">
-      <Filter>Core\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Core\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Editor.h" />
-    <ClInclude Include="Headers.h" />
-    <ClInclude Include="Transform.h">
-      <Filter>Core\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Core\Input</Filter>
     </ClInclude>
@@ -133,14 +159,50 @@
     <ClInclude Include="TextureData.h">
       <Filter>Core\ExRenderer\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="Actions.h">
-      <Filter>Core\Input</Filter>
-    </ClInclude>
     <ClInclude Include="WorldInfo.h">
       <Filter>Core\Globals</Filter>
     </ClInclude>
+    <ClInclude Include="Headers.h">
+      <Filter>Core\Globals</Filter>
+    </ClInclude>
     <ClInclude Include="ActionMap.h">
-      <Filter>Core\Input</Filter>
+      <Filter>Core\Input\ActionMaps</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionDefinitions.h">
+      <Filter>Core\Input\ActionMaps</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionMapKeyboardEvent.h">
+      <Filter>Core\Input\ActionMaps</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Core\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Core\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Core\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Core\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLoader.h">
+      <Filter>Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionMapMouseEvent.h">
+      <Filter>Core\Input\ActionMaps</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterRenderer.h">
+      <Filter>Core\ExRenderer\RenderPipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Core\ExRenderer\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="GLForwardRenderer.h">
+      <Filter>Core\ExRenderer\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="GLRenderPipeline.h">
+      <Filter>Core\ExRenderer\RenderPipelines</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

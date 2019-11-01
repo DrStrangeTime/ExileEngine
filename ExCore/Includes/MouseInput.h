@@ -8,6 +8,8 @@ namespace ExCore
 	class EXILE_CORE_API MouseInput
 	{
 	private:
+		static int		_current_button;
+
 		static bool		_ex_mouse_left;
 		static bool		_ex_mouse_right;
 		static bool		_ex_mouse_middle;
@@ -30,6 +32,7 @@ namespace ExCore
 		static bool&	GetMouseRightState();
 
 		static int&		GetMouseScrollState();
+		static int&		GetMouseButtonState();
 	};
 }
 

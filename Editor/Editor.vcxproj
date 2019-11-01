@@ -145,13 +145,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActionMap.cpp" />
+    <ClCompile Include="ActionMapKeyboardEvent.cpp" />
+    <ClCompile Include="ActionMapMouseEvent.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
+    <ClCompile Include="GLForwardRenderer.cpp" />
+    <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="IndexBufferObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MasterRenderer.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="GLRenderPipeline.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="GLSLLoader.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -167,14 +175,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionMap.h" />
-    <ClInclude Include="Actions.h" />
+    <ClInclude Include="ActionDefinitions.h" />
+    <ClInclude Include="ActionMapKeyboardEvent.h" />
+    <ClInclude Include="ActionMapMouseEvent.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Buffer.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Editor.h" />
+    <ClInclude Include="GLForwardRenderer.h" />
     <ClInclude Include="Headers.h" />
+    <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="IndexBufferObject.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MasterRenderer.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="GLRenderPipeline.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="GLSLLoader.h" />
     <ClInclude Include="Texture.h" />

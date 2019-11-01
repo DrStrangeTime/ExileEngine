@@ -1,28 +1,10 @@
 #include "TextureLoader.h"
-
-#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-
-
-TextureData TextureLoader::LoadImageDataFromFile(const char* uri)
-{
-	TextureData td;		// Resulting structure
-
-	stbi_set_flip_vertically_on_load(true);		// Flip horrizontally for OpenGL only
-	td.data = stbi_load(uri, &td.width, &td.height, &td.channels, 0);
-
-#ifdef _DEBUG
-	if (!td.data)
-		ExCore::Logger::PrintErr("Failed to load texture file!");
-#endif
-
-	return td;
-}
 
 uint32_t TextureLoader::LoadTexture2D(const char* uri)
 {
 	uint32_t tex_id = 0;
-	TextureData td = LoadImageDataFromFile(uri);
+	TextureData td = ImageLoader::LoadDataFromFile(uri);
 
 #ifdef _DEBUG
 	if (td.data == NULL)

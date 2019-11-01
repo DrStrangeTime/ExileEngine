@@ -13,6 +13,7 @@ private:
 	std::unique_ptr<TriangleTest>	tt;
 	// --------------------------------
 
+	void Event();
 	void Update(double delta);
 	void Render();
 

@@ -1,27 +1,25 @@
 #ifndef __ACTION_MAP_H__
 #define __ACTION_MAP_H__
 
-#include "Actions.h"
+#include "InputEvent.h"
+#include "ActionDefinitions.h"
 
 class ActionMap
 {
-private:
+protected:
+	bool			_state;
 	const char*		_name;
-	unsigned int	_key;
-	unsigned int	_action;
+	uint16_t		_action;
 
 public:
-	ActionMap() = default;
-	ActionMap(const char* name, unsigned int key, unsigned int action);
+	~ActionMap() = default;
 
+	bool& GetState();
 	const char* GetName();
-	unsigned int GetKey();
-	unsigned int GetAction();
+	uint16_t& GetAction();
 
-	void SetName(const char* name);
-	void SetKey(unsigned int key);
-	void SetAction(unsigned int action);
-	void Map(unsigned int key, unsigned int action);
+	virtual bool isActive() = 0;
+
 };
 
 #endif

@@ -3,6 +3,8 @@
 
 void ExCore::MouseInput::UpdateButton(int button, int action, int mods)
 {
+	_current_button = button;
+	
 	if (GLFW_PRESS)
 	{
 		if (button == GLFW_MOUSE_BUTTON_LEFT)
@@ -67,9 +69,15 @@ int& ExCore::MouseInput::GetMouseScrollState()
 	return _ex_scroll_state;
 }
 
+int& ExCore::MouseInput::GetMouseButtonState()
+{
+	return _current_button;
+}
+
 bool	ExCore::MouseInput::_ex_mouse_left;
 bool	ExCore::MouseInput::_ex_mouse_right;
 bool	ExCore::MouseInput::_ex_mouse_middle;
 double	ExCore::MouseInput::_ex_x;
 double	ExCore::MouseInput::_ex_y;
 int		ExCore::MouseInput::_ex_scroll_state;
+int		ExCore::MouseInput::_current_button;

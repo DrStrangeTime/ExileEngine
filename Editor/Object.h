@@ -12,7 +12,7 @@
 #define O_SKELETAL_MESH		3
 #define O_LIGHT				4
 #define O_RIGID_BODY		5
-#define O_CAMERA			6	
+#define O_CAMERA			6	//
 #define O_CLIP				7	
 #define O_PARTICLE			8
 #define O_PARTICLE_SYSTEM	9	
@@ -48,10 +48,6 @@ public:
 
 	uint8_t&		GetType();
 	std::string&	GetName();
-
-	virtual void	Event() = 0;
-	virtual void	Update(double delta) = 0;
-	virtual void	Render() = 0;
 
 	void			SetType(uint8_t x);
 	void			SetName(std::string x);

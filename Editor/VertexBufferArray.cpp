@@ -21,9 +21,9 @@ void VertexBufferArray::Create()
 		ExCore::Logger::PrintWar("NULL buffers assigned to vertex buffer array!");
 
 	// Check for nullptr object(s)
-	for (const std::shared_ptr<VertexBufferObject>& bo : _vbos)
+	for (auto i = 0; i < _vbos.size(); ++i)
 	{
-		if (bo == nullptr)
+		if (_vbos[i] == nullptr)
 		{
 			ExCore::Logger::PrintErr("One or more vertex buffer objects are invalid!");
 			return;
@@ -59,9 +59,6 @@ void VertexBufferArray::Destroy()
 {
 	for (auto i = 0; i < _vbos.size(); ++i)
 		glDisableVertexAttribArray(i);
-
-	if (!_vbos.empty())
-		_vbos.clear();
 
 	glDeleteVertexArrays(1, &_buffer_object);
 }
