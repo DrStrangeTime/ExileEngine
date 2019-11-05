@@ -12,7 +12,7 @@ namespace ExCore
 
 	public:
 		static bool& GetKeyState(int key);
-		static void Update(int key, int scancode, int action, int mods);
+		static void UpdateKey(int key, int scancode, int action, int mods);
 	};
 }
 

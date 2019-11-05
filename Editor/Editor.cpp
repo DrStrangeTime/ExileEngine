@@ -10,34 +10,27 @@
 //}
 
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+void Editor::FramebufferSize(GLFWwindow* window, int w, int h)
 {
-	glViewport(0, 0, width, height);
-}
+	width = w;
+	height = h;
 
-Editor::Editor()
-{
-	Create(600, 500, "Exile Editor", false, false, true);
-
-	// Initialise input mapping data
-	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveFoward",		GLFW_KEY_W, GLFW_PRESS, A_MOVE_FORWARD));
-	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveBackward",	GLFW_KEY_S, GLFW_PRESS, A_MOVE_BACKWARD));
-	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveLeft",		GLFW_KEY_A, GLFW_PRESS, A_MOVE_LEFT));
-	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveRight",		GLFW_KEY_D, GLFW_PRESS, A_MOVE_RIGHT));
-
-	// ------------- TEMP -------------
-	tt = std::make_unique<TriangleTest>();
-	// --------------------------------
-}
-
-Editor::~Editor()
-{
-	Destroy();
+	glViewport(0, 0, w, h);
 }
 
 bool Editor::isRunning()
 {
 	return !glfwWindowShouldClose(window);
+}
+
+Editor::Editor()
+{
+	Create(600, 500, "Exile Editor", false, false, true);
+}
+
+Editor::~Editor()
+{
+	Destroy();
 }
 
 void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscreen, bool showCursor)
@@ -87,11 +80,11 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	ExCore::Cursor::Initialise(GLFW_ARROW_CURSOR);
 
 	// GLFW Callback functions ----------------------------------------------------
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	glfwSetKeyCallback(window, InputManager::key_callback);
-	glfwSetMouseButtonCallback(window, InputManager::mouse_button_callback);
-	glfwSetCursorPosCallback(window, InputManager::cursor_position_callback);
-	glfwSetScrollCallback(window, InputManager::scroll_callback);
+	glfwSetFramebufferSizeCallback(window, FramebufferSize);
+	glfwSetKeyCallback(window, KeyEvent);
+	glfwSetMouseButtonCallback(window, MouseButtonEvent);
+	glfwSetCursorPosCallback(window, MousePositionEvent);
+	glfwSetScrollCallback(window, MouseScrollEvent);
 	(!showCursor ? glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED) : glfwSetCursor(window, ExCore::Cursor::GetCursor()));
 	// ----------------------------------------------------------------------------
 
@@ -135,6 +128,17 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	//glCullFace(GL_FRONT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glViewport(0, 0, width, height);
+
+
+	// Initialise input mapping data
+	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveFoward", GLFW_KEY_W, GLFW_PRESS, A_MOVE_FORWARD));
+	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveBackward", GLFW_KEY_S, GLFW_PRESS, A_MOVE_BACKWARD));
+	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveLeft", GLFW_KEY_A, GLFW_PRESS, A_MOVE_LEFT));
+	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveRight", GLFW_KEY_D, GLFW_PRESS, A_MOVE_RIGHT));
+
+	// ------------- TEMP -------------
+	tt = std::make_unique<TriangleTest>();
+	// --------------------------------
 }
 
 void Editor::Destroy()
@@ -144,15 +148,27 @@ void Editor::Destroy()
 	glfwTerminate();
 }
 
-void Editor::PollEvents()
+// ---------------------------------------------------------------------- CALLBACK FUNCTIONS ----------------------------------------------------------------------
+void Editor::KeyEvent(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	glfwPollEvents();
+	ExCore::KeyInput::UpdateKey(key, scancode, action, mods);
 }
 
-void Editor::Event()
+void Editor::MouseButtonEvent(GLFWwindow* window, int button, int action, int mods)
 {
-	// Update key events here...
+	ExCore::MouseInput::UpdateButton(button, action, mods);
 }
+
+void Editor::MouseScrollEvent(GLFWwindow* window, double xoffset, double yoffset)
+{
+	ExCore::MouseInput::UpdateScroll(xoffset, yoffset);
+}
+
+void Editor::MousePositionEvent(GLFWwindow* window, double xpos, double ypos)
+{
+	ExCore::MouseInput::UpdatePosition(xpos, ypos);
+}
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 void Editor::Update(double delta)
 {
@@ -193,9 +209,17 @@ void Editor::Run()
 
 		Render();
 
-		Event();
-		PollEvents();
+		// Event stuff here!
+		// ...
+		glfwPollEvents();
 	}
-
-	Destroy();
 }
+
+
+std::unique_ptr<TriangleTest>		Editor::tt;
+
+int									Editor::width;
+int									Editor::height;
+const char*							Editor::title;
+GLFWwindow*							Editor::window;
+ExCore::RenderDevice::Properties	Editor::rdp;

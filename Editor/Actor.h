@@ -6,7 +6,6 @@
 
 /* The actor class defines the lowest level of a physical game component. 
    Each actor contains a dynamic list of child actor components, respectively. */
-
 class Actor : public Object
 {
 protected:
@@ -15,6 +14,9 @@ protected:
 	Transform::Data						_trans;
 	std::vector<std::shared_ptr<Actor>> _components;	// Child actors
 
+	void EventKeyComponents(int key, int scancode, int mods);
+	void EventMouseButtonComponents(int button, int action, int mods);
+	void EventMouseScrollComponents(double xoffset, double yoffset);
 	void UpdateComponents(double delta);
 	void RenderComponents();
 
@@ -23,7 +25,9 @@ public:
 	Actor(std::string n);
 	Actor(std::string n, glm::vec3 p, glm::vec3 r, glm::vec3 s);
 
-	virtual void Event() = 0;
+	virtual void EventKey(int key, int scancode, int mods) = 0;
+	virtual void EventMouseButton(int button, int action, int mods) = 0;
+	virtual void EventMouseScroll(double xoffset, double yoffset) = 0;
 	virtual void Update(double delta) = 0;
 	virtual void Render() = 0;
 

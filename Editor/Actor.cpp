@@ -117,16 +117,32 @@ void Actor::RemoveComponentByIndex(unsigned int x)
 	_components.erase(_components.begin() + x);
 }
 
+void Actor::EventKeyComponents(int key, int scancode, int mods)
+{
+	for (unsigned int i = 0; i < _components.size(); ++i)
+		_components[i]->EventKey(key, scancode, mods);
+}
+
+void Actor::EventMouseButtonComponents(int button, int action, int mods)
+{
+	for (unsigned int i = 0; i < _components.size(); ++i)
+		_components[i]->EventMouseButton(button, action, mods);
+}
+
+void Actor::EventMouseScrollComponents(double xoffset, double yoffset)
+{
+	for (unsigned int i = 0; i < _components.size(); ++i)
+		_components[i]->EventMouseScroll(xoffset, yoffset);
+}
+
 void Actor::UpdateComponents(double delta)
 {
-	for (std::shared_ptr<Actor> c : _components)
-	{
-		c->Update(delta);
-	}
+	for (unsigned int i = 0; i < _components.size(); ++i)
+		_components[i]->Update(delta);
 }
 
 void Actor::RenderComponents()
 {
-	for (std::shared_ptr<Actor> c : _components)
-		c->Render();
+	for (unsigned int i = 0; i < _components.size(); ++i)
+		_components[i]->Render();
 }

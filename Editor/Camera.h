@@ -17,17 +17,19 @@ protected:
 	glm::mat4	_projectionMatrix;
 
 public:
-	void Event() {}
-	void Update(double delta) {}
-	void Render() {}
-		
-	glm::mat4& GetViewMatrix();
-	glm::mat4& GetProjectionMatrix();
-	uint16_t& GetCameraType();
+	virtual void EventKey(int key, int scancode, int mods) {}
+	virtual void EventMouseButton(int button, int action, int mods) {}
+	virtual void EventMouseScroll(double xoffset, double yoffset) {}
+	virtual void Update(double delta) {}
+	virtual void Render() {}
 
-	void SetCameraType(uint16_t value);
-	void SetViewMatrix(glm::mat4 value);
-	void SetProjectionMatrix(glm::mat4 value);
+	inline glm::mat4& GetViewMatrix() { return _viewMatrix; }
+	inline glm::mat4& GetProjectionMatrix() { return _projectionMatrix; }
+	inline uint16_t& GetCameraType() { return _camType; }
+
+	void SetCameraType(uint16_t value) { _camType = value; }
+	void SetViewMatrix(glm::mat4 value) { _viewMatrix = value; }
+	void SetProjectionMatrix(glm::mat4 value) { _projectionMatrix = value; }
 };
 
 #endif

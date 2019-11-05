@@ -1,4 +1,2 @@
 Editor
 - Camera
-- Convert Application members to statics for GLFW callbacks
-- Redesign the input event system for Actor heirarchy

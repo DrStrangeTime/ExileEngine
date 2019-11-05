@@ -57,9 +57,6 @@
   <ItemGroup>
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Core\Input</Filter>
-    </ClCompile>
     <ClCompile Include="Buffer.cpp">
       <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
     </ClCompile>
@@ -120,12 +117,11 @@
     <ClCompile Include="GLRenderPipeline.cpp">
       <Filter>Core\ExRenderer\RenderPipelines</Filter>
     </ClCompile>
+    <ClCompile Include="World.cpp" />
+    <ClCompile Include="Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Editor.h" />
-    <ClInclude Include="InputManager.h">
-      <Filter>Core\Input</Filter>
-    </ClInclude>
     <ClInclude Include="Vertex.h">
       <Filter>Core\ExRenderer\Structs</Filter>
     </ClInclude>
@@ -204,5 +200,7 @@
     <ClInclude Include="GLRenderPipeline.h">
       <Filter>Core\ExRenderer\RenderPipelines</Filter>
     </ClInclude>
+    <ClInclude Include="World.h" />
+    <ClInclude Include="Map.h" />
   </ItemGroup>
 </Project>
