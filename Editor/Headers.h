@@ -18,5 +18,6 @@
 #include <fstream>
 #include <sstream>
 #include <memory>
+#include <algorithm>
 
 #endif

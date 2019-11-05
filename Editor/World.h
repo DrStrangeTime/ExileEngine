@@ -5,20 +5,19 @@
 class World
 {
 private:
-	std::vector<std::vector<Actor>> mapActors;
+	static std::shared_ptr<Map> _map;
 
 public:
-	World();
-
-	virtual void EventKey(int key, int scancode, int mods);
-	virtual void EventMouseButton(int button, int action, int mods);
-	virtual void EventMouseScroll(double xoffset, double yoffset);
-	virtual void Update(double delta);
-	virtual void Render();
-
-	void LerpState(std::shared_ptr<Map> a, std::shared_ptr<Map> b)
-	{
-
-	}
+	static void Initialise();
+	static void EventKey(int key, int scancode, int mods);
+	static void EventMouseButton(int button, int action, int mods);
+	static void EventMouseScroll(double xoffset, double yoffset);
+	static void Update(double delta);
+	static void SubmitVertexData();
+	static void SubmitLightData();
+	static void SubmitParticleData();
+	static void CompileData();
+	
+	static inline std::shared_ptr<Map>& GetMap() { return _map; }
 };
 

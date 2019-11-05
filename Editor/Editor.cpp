@@ -1,14 +1,6 @@
 #include "Editor.h"
 #include "stb_image.h"
 
-//#include <algorithm>
-//
-//std::vector<Object*> Editor::objects;
-//
-//bool abstrSmaller(const Object* o1, const Object* o2) {
-//	return o1->t < o2->t;
-//}
-
 
 void Editor::FramebufferSize(GLFWwindow* window, int w, int h)
 {

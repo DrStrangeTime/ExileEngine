@@ -6,6 +6,7 @@ Actor::Actor()
 	_name = "Actor";
 	_active = false;
 	_dynamic = false;
+	_type = A_ACTOR;
 	Transform::MakeModel(_trans, _trans.m);
 }
 
@@ -14,6 +15,7 @@ Actor::Actor(std::string n)
 	_name = n;
 	_active = false;
 	_dynamic = false;
+	_type = A_ACTOR;
 	Transform::MakeModel(_trans, _trans.m);
 }
 
@@ -22,6 +24,7 @@ Actor::Actor(std::string n, glm::vec3 p, glm::vec3 r, glm::vec3 s)
 	_name = n;
 	_active = false;
 	_dynamic = false;
+	_type = A_ACTOR;
 	Transform::MakeModel(_trans, _trans.m);
 }
 
@@ -35,6 +38,11 @@ bool& Actor::GetDynamic()
 	return _dynamic;
 }
 
+uint32_t& Actor::GetType()
+{
+	return _type;
+}
+
 Transform::Data& Actor::GetTransform()
 {
 	return _trans;
@@ -43,7 +51,7 @@ Transform::Data& Actor::GetTransform()
 std::shared_ptr<Actor> Actor::GetComponentByName(std::string x)
 {
 	
-	for (unsigned int i = 0; i < _components.size(); i++)
+	for (unsigned int i = 0; i < _components.size(); ++i)
 	{
 		std::string n = *_components[i];
 		if (n == x)
@@ -81,6 +89,11 @@ void Actor::SetDynamic(bool x)
 	_dynamic = x;
 }
 
+void Actor::SetType(uint32_t x)
+{
+	_type = x;
+}
+
 void Actor::SetTransform(Transform::Data x)
 {
 	_trans = x;
@@ -93,7 +106,7 @@ void Actor::AddComponent(std::shared_ptr<Actor> x)
 
 void Actor::RemoveComponentByName(std::string x)
 {
-	for (unsigned int i = 0; i < _components.size(); i++)
+	for (unsigned int i = 0; i < _components.size(); ++i)
 	{
 		std::string n = *_components[i];
 		if (n == x)
