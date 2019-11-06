@@ -45,7 +45,7 @@ void Map::AddActor(std::shared_ptr<Actor> value)
 		// Pack temp analytical data to seperate containers
 		bool firstType(true);
 		std::vector<uint32_t> begin_list{ 0 };
-		std::vector<uint32_t> end_list{ 0 };
+		std::vector<uint32_t> end_list{ 1 };
 		std::vector<uint32_t> type_list{ _actors[0]->GetType() };
 		uint32_t offset_index = 0;
 		uint32_t current_type = _actors[0]->GetType();
@@ -59,7 +59,7 @@ void Map::AddActor(std::shared_ptr<Actor> value)
 
 				type_list.push_back(current_type);
 				begin_list.push_back(end_list[offset_index]);
-				end_list.push_back(end_list[offset_index]);
+				end_list.push_back(end_list[offset_index] + 1);
 
 				offset_index++;
 			}
@@ -142,8 +142,8 @@ void Map::EventMouseScroll(double xoffset, double yoffset)
 
 void Map::Update()
 {
-	for (unsigned int i = 0; i < _actors.size(); ++i)
-		_actors[i]->Update();
+	/*for (unsigned int i = 0; i < _actors.size(); ++i)
+		_actors[i]->Update();*/
 }
 
 void Map::SubmitStaticMeshData()
