@@ -30,6 +30,8 @@
 #define A_RADIAL_COLLIDER	26
 #define A_MAP				27
 
+#define NUM_ACTOR_TYPES		28
+
 #include "Object.h"
 #include "Transform.h"
 
@@ -47,7 +49,7 @@ protected:
 	void EventKeyComponents(int key, int scancode, int mods);
 	void EventMouseButtonComponents(int button, int action, int mods);
 	void EventMouseScrollComponents(double xoffset, double yoffset);
-	void UpdateComponents(double delta);
+	void UpdateComponents();
 	void RenderComponents();
 
 public:
@@ -58,7 +60,7 @@ public:
 	virtual void EventKey(int key, int scancode, int mods) = 0;
 	virtual void EventMouseButton(int button, int action, int mods) = 0;
 	virtual void EventMouseScroll(double xoffset, double yoffset) = 0;
-	virtual void Update(double delta) = 0;
+	virtual void Update() = 0;
 	virtual void Render() = 0;
 
 	bool& GetActive();

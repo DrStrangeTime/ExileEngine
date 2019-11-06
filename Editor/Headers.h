@@ -19,5 +19,6 @@
 #include <sstream>
 #include <memory>
 #include <algorithm>
+#include <map>
 
 #endif

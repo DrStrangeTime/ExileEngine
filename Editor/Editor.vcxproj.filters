@@ -38,20 +38,23 @@
     <Filter Include="Core\Globals">
       <UniqueIdentifier>{a52ed2d9-9aff-40c7-a172-8e64b76bb30f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Objects">
-      <UniqueIdentifier>{9060cdae-64c9-4b6b-843f-4a29e318b0d1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Input\ActionMaps">
       <UniqueIdentifier>{b9b115da-e55c-4802-8d49-a00bd26c4784}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\ExRenderer\RenderPipelines">
-      <UniqueIdentifier>{67e1d98d-ecf3-4633-b231-f891f93768d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\ExRenderer\OpenGL\Renderers">
       <UniqueIdentifier>{0e984230-1725-4c50-b1f7-789bfc7221a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\ExRenderer\Renderers">
+    <Filter Include="Core\Renderers">
       <UniqueIdentifier>{36a34aa1-ee70-4396-83ab-24fe976a06f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\RenderPipelines">
+      <UniqueIdentifier>{67e1d98d-ecf3-4633-b231-f891f93768d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL">
+      <UniqueIdentifier>{fae5f822-dc34-4c74-91f2-54556a403543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Objects">
+      <UniqueIdentifier>{9060cdae-64c9-4b6b-843f-4a29e318b0d1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -88,13 +91,13 @@
       <Filter>Core\Input\ActionMaps</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
-      <Filter>Core\Objects</Filter>
+      <Filter>Core\OpenGL\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Core\Objects</Filter>
+      <Filter>Core\OpenGL\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Core\Objects</Filter>
+      <Filter>Core\OpenGL\Objects</Filter>
     </ClCompile>
     <ClCompile Include="ImageLoader.cpp">
       <Filter>Core\Utils</Filter>
@@ -105,20 +108,24 @@
     <ClCompile Include="ActionMapKeyboardEvent.cpp">
       <Filter>Core\Input\ActionMaps</Filter>
     </ClCompile>
-    <ClCompile Include="MasterRenderer.cpp">
-      <Filter>Core\ExRenderer\RenderPipelines</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Core\ExRenderer\Renderers</Filter>
+      <Filter>Core\Renderers</Filter>
     </ClCompile>
     <ClCompile Include="GLForwardRenderer.cpp">
-      <Filter>Core\ExRenderer\Renderers</Filter>
+      <Filter>Core\Renderers</Filter>
     </ClCompile>
     <ClCompile Include="GLRenderPipeline.cpp">
-      <Filter>Core\ExRenderer\RenderPipelines</Filter>
+      <Filter>Core\RenderPipelines</Filter>
     </ClCompile>
-    <ClCompile Include="World.cpp" />
-    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Map.cpp">
+      <Filter>Core\OpenGL\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GLDeferredRenderer.cpp">
+      <Filter>Core\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterRenderer.cpp">
+      <Filter>Core\Renderers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Editor.h" />
@@ -171,13 +178,13 @@
       <Filter>Core\Input\ActionMaps</Filter>
     </ClInclude>
     <ClInclude Include="Actor.h">
-      <Filter>Core\Objects</Filter>
+      <Filter>Core\OpenGL\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Core\Objects</Filter>
+      <Filter>Core\OpenGL\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Core\Objects</Filter>
+      <Filter>Core\OpenGL\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Core\Structs</Filter>
@@ -188,19 +195,26 @@
     <ClInclude Include="ActionMapMouseEvent.h">
       <Filter>Core\Input\ActionMaps</Filter>
     </ClInclude>
-    <ClInclude Include="MasterRenderer.h">
-      <Filter>Core\ExRenderer\RenderPipelines</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Core\ExRenderer\Renderers</Filter>
+      <Filter>Core\Renderers</Filter>
     </ClInclude>
     <ClInclude Include="GLForwardRenderer.h">
-      <Filter>Core\ExRenderer\Renderers</Filter>
+      <Filter>Core\Renderers</Filter>
     </ClInclude>
     <ClInclude Include="GLRenderPipeline.h">
-      <Filter>Core\ExRenderer\RenderPipelines</Filter>
+      <Filter>Core\RenderPipelines</Filter>
     </ClInclude>
-    <ClInclude Include="World.h" />
-    <ClInclude Include="Map.h" />
+    <ClInclude Include="Map.h">
+      <Filter>Core\OpenGL\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="OffsetData.h">
+      <Filter>Core\ExRenderer\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="GLDeferredRenderer.h">
+      <Filter>Core\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterRenderer.h">
+      <Filter>Core\Renderers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

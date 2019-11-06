@@ -152,6 +152,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
+    <ClCompile Include="GLDeferredRenderer.cpp" />
     <ClCompile Include="GLForwardRenderer.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="IndexBufferObject.cpp" />
@@ -166,7 +167,6 @@
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="VertexBufferArray.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
-    <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +183,7 @@
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Editor.h" />
+    <ClInclude Include="GLDeferredRenderer.h" />
     <ClInclude Include="GLForwardRenderer.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="ImageLoader.h" />
@@ -191,6 +192,7 @@
     <ClInclude Include="MasterRenderer.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="GLRenderPipeline.h" />
+    <ClInclude Include="OffsetData.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="GLSLLoader.h" />
@@ -202,7 +204,6 @@
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="VertexBufferArray.h" />
     <ClInclude Include="VertexBufferObject.h" />
-    <ClInclude Include="World.h" />
     <ClInclude Include="WorldInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -122,7 +122,7 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	glViewport(0, 0, width, height);
 
 
-	// Initialise input mapping data
+	// Initialise default action mapping data
 	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveFoward", GLFW_KEY_W, GLFW_PRESS, A_MOVE_FORWARD));
 	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveBackward", GLFW_KEY_S, GLFW_PRESS, A_MOVE_BACKWARD));
 	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveLeft", GLFW_KEY_A, GLFW_PRESS, A_MOVE_LEFT));
@@ -201,8 +201,6 @@ void Editor::Run()
 
 		Render();
 
-		// Event stuff here!
-		// ...
 		glfwPollEvents();
 	}
 }

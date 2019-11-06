@@ -148,10 +148,10 @@ void Actor::EventMouseScrollComponents(double xoffset, double yoffset)
 		_components[i]->EventMouseScroll(xoffset, yoffset);
 }
 
-void Actor::UpdateComponents(double delta)
+void Actor::UpdateComponents()
 {
 	for (unsigned int i = 0; i < _components.size(); ++i)
-		_components[i]->Update(delta);
+		_components[i]->Update();
 }
 
 void Actor::RenderComponents()
