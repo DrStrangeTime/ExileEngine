@@ -123,9 +123,6 @@
     <ClCompile Include="Map.cpp">
       <Filter>Core\OpenGL\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="MasterRenderer.cpp">
-      <Filter>Core\Masters</Filter>
-    </ClCompile>
     <ClCompile Include="GLDeferredRenderer.cpp">
       <Filter>Core\OpenGL\Renderers\Modes</Filter>
     </ClCompile>
@@ -146,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Core\Interfaces\General</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderMaster.cpp">
+      <Filter>Core\Masters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,9 +219,6 @@
     <ClInclude Include="OffsetData.h">
       <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="MasterRenderer.h">
-      <Filter>Core\Masters</Filter>
-    </ClInclude>
     <ClInclude Include="GLDeferredRenderer.h">
       <Filter>Core\OpenGL\Renderers\Modes</Filter>
     </ClInclude>
@@ -242,6 +239,9 @@
     </ClInclude>
     <ClInclude Include="World.h">
       <Filter>Core\Interfaces\General</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderMaster.h">
+      <Filter>Core\Masters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -157,7 +157,7 @@
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="IndexBufferObject.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="MasterRenderer.cpp" />
+    <ClCompile Include="RenderMaster.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="GLRenderPipeline.cpp" />
     <ClCompile Include="RenderMode.cpp" />
@@ -191,7 +191,7 @@
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="IndexBufferObject.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="MasterRenderer.h" />
+    <ClInclude Include="RenderMaster.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="GLRenderPipeline.h" />
     <ClInclude Include="OffsetData.h" />
