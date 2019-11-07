@@ -1,7 +1,7 @@
 @ echo $PWD
 git config --global user.email williamtwheate@hotmail.com
-git config --global user.name DrStrangeTime
+git config --global user.name Williams3DWorld
 git status
-git remote add origin https://github.com/DrStrangeTime/ExileEngine.git
+git remote add origin https://github.com/Williams3DWorld/ExileEngine.git
 git remote -v
 PAUSE
