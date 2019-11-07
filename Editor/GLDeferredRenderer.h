@@ -1,6 +1,6 @@
 #pragma once
-#include "Renderer.h"
-class GLDeferredRenderer : public Renderer
+#include "RenderMode.h"
+class GLDeferredRenderer : public RenderMode
 {
 };
 

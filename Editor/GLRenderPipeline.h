@@ -7,10 +7,10 @@
 class GLRenderPipeline
 {
 private:
-	static std::shared_ptr<Renderer>	_renderer;
+	static std::shared_ptr<RenderMode>	_renderer;
 
 public:
-	static std::shared_ptr<Renderer>& GetRenderer();
+	static std::shared_ptr<RenderMode>& GetRenderer();
 };
 
 #endif

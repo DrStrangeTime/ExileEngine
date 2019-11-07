@@ -14,24 +14,6 @@
     <Filter Include="Core\Input">
       <UniqueIdentifier>{01fe7026-6ded-4ce6-86ac-341a30b99e35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\ExRenderer">
-      <UniqueIdentifier>{dd63eba9-3a5c-4ad9-97e5-b143067d6977}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\ExRenderer\Structs">
-      <UniqueIdentifier>{33fa1b7c-aa37-493d-ab50-681acfafdec3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\ExRenderer\OpenGL">
-      <UniqueIdentifier>{6aded752-ca86-423c-a0be-7909e384ba4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\ExRenderer\BSP">
-      <UniqueIdentifier>{b7a6e61b-079c-4feb-a3af-0a9721342541}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\ExRenderer\OpenGL\Buffers">
-      <UniqueIdentifier>{b39bd181-982b-44d3-94a0-b5fd8fa0e10c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\ExRenderer\OpenGL\Utils">
-      <UniqueIdentifier>{2ddf7c14-9252-46ea-ac6d-dac3e3f75a5f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Structs">
       <UniqueIdentifier>{11d15415-3ce3-4d6a-bcc6-7138c6edbda4}</UniqueIdentifier>
     </Filter>
@@ -41,48 +23,81 @@
     <Filter Include="Core\Input\ActionMaps">
       <UniqueIdentifier>{b9b115da-e55c-4802-8d49-a00bd26c4784}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\ExRenderer\OpenGL\Renderers">
-      <UniqueIdentifier>{0e984230-1725-4c50-b1f7-789bfc7221a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Renderers">
-      <UniqueIdentifier>{36a34aa1-ee70-4396-83ab-24fe976a06f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\RenderPipelines">
-      <UniqueIdentifier>{67e1d98d-ecf3-4633-b231-f891f93768d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\OpenGL">
       <UniqueIdentifier>{fae5f822-dc34-4c74-91f2-54556a403543}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\OpenGL\DataManagers">
+      <UniqueIdentifier>{9801c5ed-61fd-4dbe-ac3b-d43b5a9d2a0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Masters">
+      <UniqueIdentifier>{36a34aa1-ee70-4396-83ab-24fe976a06f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Renderers">
+      <UniqueIdentifier>{2d13efd7-29b9-4f8a-ace1-33be7f55c1c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Renderers\Modes">
+      <UniqueIdentifier>{9b9f27a9-d09c-42a3-a50f-3985e2c7c648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Renderers\Pipeline">
+      <UniqueIdentifier>{f4c6c2ed-2c90-40c5-875c-c6cd5cb646b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Interfaces">
+      <UniqueIdentifier>{d2b7afb7-20e4-46e4-a44f-7a670a644139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Interfaces\Rendering">
+      <UniqueIdentifier>{3f17d3dc-78c8-4aaf-8367-8ce84ff2707b}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Core\OpenGL\Objects">
       <UniqueIdentifier>{9060cdae-64c9-4b6b-843f-4a29e318b0d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer %28TBM%29">
+      <UniqueIdentifier>{dd63eba9-3a5c-4ad9-97e5-b143067d6977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer %28TBM%29\Structs">
+      <UniqueIdentifier>{33fa1b7c-aa37-493d-ab50-681acfafdec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer %28TBM%29\OpenGL">
+      <UniqueIdentifier>{6aded752-ca86-423c-a0be-7909e384ba4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer %28TBM%29\OpenGL\Buffers">
+      <UniqueIdentifier>{b39bd181-982b-44d3-94a0-b5fd8fa0e10c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer %28TBM%29\OpenGL\Utils">
+      <UniqueIdentifier>{2ddf7c14-9252-46ea-ac6d-dac3e3f75a5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer %28TBM%29\BSP">
+      <UniqueIdentifier>{b7a6e61b-079c-4feb-a3af-0a9721342541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Interfaces\General">
+      <UniqueIdentifier>{175be164-e291-4361-b378-355bdf8ffdce}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="Buffer.cpp">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="IndexBufferObject.cpp">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="VertexBufferArray.cpp">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="VertexBufferObject.cpp">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="GLSLLoader.cpp">
-      <Filter>Core\ExRenderer\OpenGL\Utils</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="TextureLoader.cpp">
-      <Filter>Core\ExRenderer\OpenGL\Utils</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Utils</Filter>
     </ClCompile>
     <ClCompile Include="WorldInfo.cpp">
       <Filter>Core\Globals</Filter>
@@ -96,9 +111,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Core\OpenGL\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Core\OpenGL\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="ImageLoader.cpp">
       <Filter>Core\Utils</Filter>
     </ClCompile>
@@ -108,59 +120,68 @@
     <ClCompile Include="ActionMapKeyboardEvent.cpp">
       <Filter>Core\Input\ActionMaps</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Core\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="GLForwardRenderer.cpp">
-      <Filter>Core\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="GLRenderPipeline.cpp">
-      <Filter>Core\RenderPipelines</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Core\OpenGL\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="GLDeferredRenderer.cpp">
-      <Filter>Core\Renderers</Filter>
-    </ClCompile>
     <ClCompile Include="MasterRenderer.cpp">
-      <Filter>Core\Renderers</Filter>
+      <Filter>Core\Masters</Filter>
+    </ClCompile>
+    <ClCompile Include="GLDeferredRenderer.cpp">
+      <Filter>Core\OpenGL\Renderers\Modes</Filter>
+    </ClCompile>
+    <ClCompile Include="GLForwardRenderer.cpp">
+      <Filter>Core\OpenGL\Renderers\Modes</Filter>
+    </ClCompile>
+    <ClCompile Include="GLRenderPipeline.cpp">
+      <Filter>Core\OpenGL\Renderers\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderMode.cpp">
+      <Filter>Core\Interfaces\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderPipeline.cpp">
+      <Filter>Core\Interfaces\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Core\OpenGL\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Core\Interfaces\General</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Vertex.h">
-      <Filter>Core\ExRenderer\Structs</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
     </ClInclude>
     <ClInclude Include="TriangleTest.h">
-      <Filter>Core\ExRenderer\BSP</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\BSP</Filter>
     </ClInclude>
     <ClInclude Include="Buffer.h">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="IndexBufferObject.h">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="VertexBufferArray.h">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="VertexBufferObject.h">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="GLSLLoader.h">
-      <Filter>Core\ExRenderer\OpenGL\Utils</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Core\ExRenderer\OpenGL\Buffers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="TextureLoader.h">
-      <Filter>Core\ExRenderer\OpenGL\Utils</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Utils</Filter>
     </ClInclude>
     <ClInclude Include="TextureData.h">
-      <Filter>Core\ExRenderer\Structs</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
     </ClInclude>
     <ClInclude Include="WorldInfo.h">
       <Filter>Core\Globals</Filter>
@@ -183,9 +204,6 @@
     <ClInclude Include="Camera.h">
       <Filter>Core\OpenGL\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Core\OpenGL\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Core\Structs</Filter>
     </ClInclude>
@@ -195,26 +213,35 @@
     <ClInclude Include="ActionMapMouseEvent.h">
       <Filter>Core\Input\ActionMaps</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Core\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="GLForwardRenderer.h">
-      <Filter>Core\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="GLRenderPipeline.h">
-      <Filter>Core\RenderPipelines</Filter>
-    </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Core\OpenGL\Objects</Filter>
     </ClInclude>
     <ClInclude Include="OffsetData.h">
-      <Filter>Core\ExRenderer\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="GLDeferredRenderer.h">
-      <Filter>Core\Renderers</Filter>
+      <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
     </ClInclude>
     <ClInclude Include="MasterRenderer.h">
-      <Filter>Core\Renderers</Filter>
+      <Filter>Core\Masters</Filter>
+    </ClInclude>
+    <ClInclude Include="GLDeferredRenderer.h">
+      <Filter>Core\OpenGL\Renderers\Modes</Filter>
+    </ClInclude>
+    <ClInclude Include="GLForwardRenderer.h">
+      <Filter>Core\OpenGL\Renderers\Modes</Filter>
+    </ClInclude>
+    <ClInclude Include="GLRenderPipeline.h">
+      <Filter>Core\OpenGL\Renderers\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderMode.h">
+      <Filter>Core\Interfaces\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderPipeline.h">
+      <Filter>Core\Interfaces\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Core\OpenGL\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Core\Interfaces\General</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

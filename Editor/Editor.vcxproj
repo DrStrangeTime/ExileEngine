@@ -160,13 +160,15 @@
     <ClCompile Include="MasterRenderer.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="GLRenderPipeline.cpp" />
-    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="RenderMode.cpp" />
+    <ClCompile Include="RenderPipeline.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="GLSLLoader.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="VertexBufferArray.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
+    <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -193,7 +195,8 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="GLRenderPipeline.h" />
     <ClInclude Include="OffsetData.h" />
-    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RenderMode.h" />
+    <ClInclude Include="RenderPipeline.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="GLSLLoader.h" />
     <ClInclude Include="Texture.h" />
@@ -204,6 +207,7 @@
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="VertexBufferArray.h" />
     <ClInclude Include="VertexBufferObject.h" />
+    <ClInclude Include="World.h" />
     <ClInclude Include="WorldInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
