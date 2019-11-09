@@ -7,24 +7,10 @@ Actor::Actor()
 	_active = false;
 	_dynamic = false;
 	_type = A_ACTOR;
-	Transform::MakeModel(_trans, _trans.m);
-}
-
-Actor::Actor(std::string n)
-{
-	_name = n;
-	_active = false;
-	_dynamic = false;
-	_type = A_ACTOR;
-	Transform::MakeModel(_trans, _trans.m);
-}
-
-Actor::Actor(std::string n, glm::vec3 p, glm::vec3 r, glm::vec3 s)
-{
-	_name = n;
-	_active = false;
-	_dynamic = false;
-	_type = A_ACTOR;
+	_trans.p = glm::vec3(0.0f);
+	_trans.r = glm::vec3(0.0f);
+	_trans.s = glm::vec3(1.0f);
+	_trans.m = glm::mat4(1.0f);
 	Transform::MakeModel(_trans, _trans.m);
 }
 

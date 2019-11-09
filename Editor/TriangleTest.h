@@ -4,16 +4,16 @@
 #include "Transform.h"
 #include "GLSLLoader.h"
 #include "TextureLoader.h"
-#include "Shader.h"
-#include "Texture.h"
+#include "ShaderBuffer.h"
+#include "TextureBuffer.h"
 
 class TriangleTest
 {
 private:
 	uint32_t albedo_tex;
 
-	std::unique_ptr<Shader> shader;
-	std::unique_ptr<Texture> texture;
+	std::unique_ptr<ShaderBuffer> shader;
+	std::unique_ptr<TextureBuffer> texture;
 	std::unique_ptr<VertexBufferArray> vao;
 	std::shared_ptr<VertexBufferObject> vbo;
 	std::shared_ptr<IndexBufferObject> ibo;
@@ -46,10 +46,10 @@ public:
 		// -----------------------------------------------------------------------------------------------
 
 		// Setup shader
-		shader = std::make_unique<Shader>(GLSLLoader::LoadVertFrag("shaders/Diffuse.vs", "shaders/Diffuse.fs"));
+		shader = std::make_unique<ShaderBuffer>(SHADER_TYPE_VERTEX, GLSLLoader::LoadVertFrag("shaders/Diffuse.vs", "shaders/Diffuse.fs"));
 		shader->Bind();
 
-		texture = std::make_unique<Texture>(	shader->GetBufferObject(),
+		texture = std::make_unique<TextureBuffer>(	shader->GetBufferObject(),
 												TextureLoader::LoadTexture2D("textures/test.jpg"),
 												GL_TEXTURE0,
 												"albedoTex");

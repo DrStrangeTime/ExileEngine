@@ -1,10 +1,10 @@
 #include "Map.h"
 
+// Boolean comparison for std::sort
 bool ActorTypeSmaller(std::shared_ptr<Actor> a1, std::shared_ptr<Actor> a2)
 {
 	return a1->GetType() < a2->GetType();
 }
-
 
 
 void Map::RemoveActorByIndex(uint32_t value)
@@ -90,6 +90,11 @@ void Map::AddActor(std::shared_ptr<Actor> value)
 void Map::SortActorsByType()
 {
 	std::sort(_actors.begin(), _actors.end(), ActorTypeSmaller);
+}
+
+Map::Map(std::string name)
+{
+	SetName(name);
 }
 
 uint32_t Map::GetActorIndexByName(std::string value)

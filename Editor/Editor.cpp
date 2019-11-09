@@ -118,7 +118,7 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	//glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 	//glEnable(GL_CULL_FACE);
 	//glCullFace(GL_FRONT);
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor(0.075f, 0.075f, 0.075f, 1.0f);
 	glViewport(0, 0, width, height);
 
 
@@ -129,8 +129,14 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveRight", GLFW_KEY_D, GLFW_PRESS, A_MOVE_RIGHT));
 
 	// ------------- TEMP -------------
-	tt = std::make_unique<TriangleTest>();
+	//tt = std::make_unique<TriangleTest>();
 	// --------------------------------
+
+	RenderMaster::Initialise(USE_OPENGL | USE_FORWARD);
+	//LogicMaster::Initialise();
+	//AudioMaster::Initialise();
+
+	GLWorld::Initialise();
 }
 
 void Editor::Destroy()
@@ -162,19 +168,17 @@ void Editor::MousePositionEvent(GLFWwindow* window, double xpos, double ypos)
 }
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-void Editor::Update(double delta)
+void Editor::Update()
 {
 	// Interpolation, Physics ect...
+	//LogicMaster::Update();
 }
 
-void Editor::Render()
+void Editor::Render(double &delta)
 {
-	glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// -- TEMP --
-	tt->Render();
-	// ----------
+	RenderMaster::Render(delta);
 
 	Swap();
 }
@@ -187,6 +191,7 @@ void Editor::Swap()
 void Editor::Run()
 {
 	ExCore::Timestep _f_time_step(WorldInfo::GetFramesPerSecond());
+	double delta = 0;
 
 	// Main loop
 	while (isRunning())
@@ -194,19 +199,19 @@ void Editor::Run()
 		_f_time_step.CalcLastElapsed();
 		while (_f_time_step.timeElapsed())
 		{
-			Update(WorldInfo::GetRealtimeSpeed());
+			Update();
 			_f_time_step.ResetElapsed();
 		}
 		_f_time_step.Lock();
 
-		Render();
+		Render(delta);
 
 		glfwPollEvents();
 	}
 }
 
 
-std::unique_ptr<TriangleTest>		Editor::tt;
+//std::unique_ptr<TriangleTest>		Editor::tt;
 
 int									Editor::width;
 int									Editor::height;

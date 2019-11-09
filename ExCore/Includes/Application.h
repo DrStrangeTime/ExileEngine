@@ -12,8 +12,8 @@ namespace ExCore
 	class EXILE_CORE_API Application
 	{
 	public:
-		virtual void Update(double delta) = 0;
-		virtual void Render() = 0;
+		virtual void Update() = 0;
+		virtual void Render(double& delta) = 0;
 		virtual void Run() = 0;
 
 		virtual bool isRunning() = 0;

@@ -1,6 +1,6 @@
-#include "Texture.h"
+#include "TextureBuffer.h"
 
-Texture::Texture(uint32_t& shader_program, uint32_t tex_id, uint32_t active_index, const char* uniform_name)
+TextureBuffer::TextureBuffer(uint32_t& shader_program, uint32_t tex_id, uint16_t active_index, const char* uniform_name)
 {
 	_buffer_object = tex_id;
 	_active_index = active_index;
@@ -10,12 +10,12 @@ Texture::Texture(uint32_t& shader_program, uint32_t tex_id, uint32_t active_inde
 	Create();
 }
 
-Texture::~Texture()
+TextureBuffer::~TextureBuffer()
 {
 	Destroy();
 }
 
-void Texture::Create()
+void TextureBuffer::Create()
 {
 #ifdef _DEBUG
 	if (_buffer_object == NULL)
@@ -23,12 +23,12 @@ void Texture::Create()
 #endif
 }
 
-void Texture::Destroy()
+void TextureBuffer::Destroy()
 {
 	glDeleteTextures(1, &_buffer_object);
 }
 
-void Texture::Bind()
+void TextureBuffer::Bind()
 {
 	glActiveTexture(_active_index);
 	glBindTexture(GL_TEXTURE_2D, _buffer_object);

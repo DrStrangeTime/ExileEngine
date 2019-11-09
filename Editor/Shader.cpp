@@ -1,31 +1,16 @@
 #include "Shader.h"
 
-
-Shader::Shader(uint32_t program)
+uint16_t& Shader::GetShaderIndex()
 {
-	_buffer_object = program;
-	Create();
+	return _shader_index;
 }
 
-Shader::~Shader()
+std::unique_ptr<ShaderBuffer>& Shader::GetShaderBuffer()
 {
-	Destroy();
-}
-
-void Shader::Create()
-{
-#ifdef _DEBUG
-	if (_buffer_object == NULL)
-		ExCore::Logger::PrintErr("Shader program is not valid!");
-#endif
-}
-
-void Shader::Destroy()
-{
-	glDeleteProgram(_buffer_object);
+	return _shader_buffer;
 }
 
 void Shader::Bind()
 {
-	glUseProgram(_buffer_object);
+	_shader_buffer->Bind();
 }

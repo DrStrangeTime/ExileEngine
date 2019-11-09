@@ -1,7 +1,7 @@
 #pragma once
 
-#include "TriangleTest.h"
-#include "WorldInfo.h"
+//#include "TriangleTest.h"
+#include "RenderMaster.h"
 
 
 /* Editor derives from the Exile::Core application interface. */
@@ -9,7 +9,7 @@ class Editor : public ExCore::Application
 {
 private:
 	// ------------- TEMP -------------
-	static std::unique_ptr<TriangleTest>	tt;
+	//static std::unique_ptr<TriangleTest>	tt;
 	// --------------------------------
 
 	static int								width;
@@ -31,8 +31,8 @@ public:
 	static void MousePositionEvent(GLFWwindow* window, double xpos, double ypos);
 	static void Swap();
 	
-	void Update(double delta) override;
-	void Render() override;
+	void Update() override;
+	void Render(double& delta) override;
 	void Run() override;
 	bool isRunning() override;
 

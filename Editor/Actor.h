@@ -29,8 +29,9 @@
 #define A_CAPSULE_COLLIDER	25
 #define A_RADIAL_COLLIDER	26
 #define A_MAP				27
+#define A_CUSTOM			28
 
-#define NUM_ACTOR_TYPES		28
+#define NUM_ACTOR_TYPES		29
 
 #include "Object.h"
 #include "Transform.h"
@@ -54,8 +55,6 @@ protected:
 
 public:
 	Actor();
-	Actor(std::string n);
-	Actor(std::string n, glm::vec3 p, glm::vec3 r, glm::vec3 s);
 
 	virtual void EventKey(int key, int scancode, int mods) = 0;
 	virtual void EventMouseButton(int button, int action, int mods) = 0;

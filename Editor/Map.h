@@ -5,8 +5,7 @@
 #include "OffsetData.h"
 
 
-/* The main map class that sorts and filters all actor objects inside one container.
-   This class is a friend of Actor for accessing protected members such as _type. */
+/* The main map class that sorts and filters all actor objects inside one container */
 
 class Map : public Actor
 {
@@ -19,6 +18,9 @@ private:
 	std::vector <std::shared_ptr<Actor>>	_actors;
 
 public:
+	Map() = default;
+	Map(std::string name);
+
 	uint32_t								GetActorIndexByName(std::string value);
 	std::shared_ptr<Actor>					GetActorByName(std::string value);
 	std::vector<std::shared_ptr<Actor>>&	GetActors();
