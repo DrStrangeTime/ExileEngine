@@ -1,16 +1,16 @@
 #ifndef __WORLD_H__
 #define __WORLD_H__
 
-
-/* This abstract object represents the base world class.
-   Distinctive rendering APIs may derive from this object. 
-   This class contains filtered data from graphics to audio,
-   and is used to seperate data into multiple sequences. */
+#include "Map.h"
 
 class World
 {
-protected:
 public:
+	static std::unique_ptr<Map>	map;
+	//static std::unique_ptr<GUI> gui;
+	//static std::unique_ptr<GameMode> gameMode;
+
+	static void Initialise();
 };
 
 #endif

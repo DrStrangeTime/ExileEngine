@@ -148,24 +148,25 @@
     <ClCompile Include="ActionMapKeyboardEvent.cpp" />
     <ClCompile Include="ActionMapMouseEvent.cpp" />
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="AudioMaster.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Content.cpp" />
     <ClCompile Include="CustomActor.cpp" />
+    <ClCompile Include="DiffuseF.cpp" />
+    <ClCompile Include="DynamicVertexBufferObject.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GLDeferredRenderer.cpp" />
     <ClCompile Include="GLForwardRenderer.cpp" />
     <ClCompile Include="GLRenderMode.cpp" />
-    <ClCompile Include="GLWorld.cpp" />
+    <ClCompile Include="World.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="IndexBufferObject.cpp" />
     <ClCompile Include="LogicManager.cpp" />
     <ClCompile Include="LogicMaster.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="RenderMaster.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="GLRenderPipeline.cpp" />
@@ -174,11 +175,13 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderBuffer.cpp" />
     <ClCompile Include="GLSLLoader.cpp" />
+    <ClCompile Include="StaticVertexBufferObject.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="TextureBuffer.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="VertexBufferArray.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
+    <ClCompile Include="VertexOptimiser.cpp" />
     <ClCompile Include="WorldInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -192,24 +195,25 @@
     <ClInclude Include="ActionMapKeyboardEvent.h" />
     <ClInclude Include="ActionMapMouseEvent.h" />
     <ClInclude Include="Actor.h" />
-    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="AudioMaster.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Content.h" />
     <ClInclude Include="CustomActor.h" />
+    <ClInclude Include="DiffuseF.h" />
+    <ClInclude Include="DynamicVertexBufferObject.h" />
     <ClInclude Include="Editor.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="GLDeferredRenderer.h" />
     <ClInclude Include="GLForwardRenderer.h" />
     <ClInclude Include="GLRenderMode.h" />
-    <ClInclude Include="GLWorld.h" />
+    <ClInclude Include="World.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="IndexBufferObject.h" />
     <ClInclude Include="LogicManager.h" />
     <ClInclude Include="LogicMaster.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="RenderManager.h" />
     <ClInclude Include="RenderMaster.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="GLRenderPipeline.h" />
@@ -219,6 +223,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderBuffer.h" />
     <ClInclude Include="GLSLLoader.h" />
+    <ClInclude Include="StaticVertexBufferObject.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TextureBuffer.h" />
     <ClInclude Include="TextureData.h" />
@@ -228,6 +233,7 @@
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="VertexBufferArray.h" />
     <ClInclude Include="VertexBufferObject.h" />
+    <ClInclude Include="VertexOptimiser.h" />
     <ClInclude Include="WorldInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

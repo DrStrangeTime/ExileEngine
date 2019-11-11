@@ -5,7 +5,7 @@ uint16_t& Shader::GetShaderIndex()
 	return _shader_index;
 }
 
-std::unique_ptr<ShaderBuffer>& Shader::GetShaderBuffer()
+std::shared_ptr<ShaderBuffer>& Shader::GetShaderBuffer()
 {
 	return _shader_buffer;
 }

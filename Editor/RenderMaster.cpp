@@ -21,26 +21,24 @@ void RenderMaster::AssignRenderPipeline(uint32_t renderer_hints)
 {
 	if ((_flags & USE_OPENGL) == USE_OPENGL)
 	{
-		_render_pipeline = std::make_shared<GLRenderPipeline>(((_flags & USE_FORWARD) == USE_FORWARD) ? USE_FORWARD : USE_DEFERRED);
-		return;
+		if (((_flags & USE_FORWARD) == USE_FORWARD) || ((_flags & USE_DEFERRED) == USE_DEFERRED))
+		{
+			_render_pipeline = std::make_shared<GLRenderPipeline>(((_flags & USE_FORWARD) == USE_FORWARD) ? USE_FORWARD : USE_DEFERRED);
+			return;
+		}
+
+		_render_pipeline = std::make_shared<GLRenderPipeline>(USE_FORWARD);
 
 #ifdef _DEBUG
-		ExCore::Logger::PrintErr("Failed to read render mode!");
+		ExCore::Logger::PrintWar("Failed to read render mode! Assigning render mode to 'Forward' by default!");
 #endif
 	}
-	/*else if ((_flags & USE_VULKAN) == USE_VULKAN)
-	{
-		_render_pipeline = std::make_shared<VKRenderPipeline>(((_flags & USE_FORWARD) == USE_FORWARD) ? USE_FORWARD : USE_DEFERRED);
-		return;
-
-#ifdef _DEBUG
-		ExCore::Logger::PrintErr("Failed to read render mode!");
-#endif
-	}*/
 	else
 	{
+		_render_pipeline = std::make_shared<GLRenderPipeline>(USE_FORWARD);
+
 #ifdef _DEBUG
-		ExCore::Logger::PrintErr("Value of render api is invalid! Failed to assign render pipeline!");
+		ExCore::Logger::PrintWar("Value of render api was not detected! Assigning render api to 'OpenGL' by default!");
 #endif
 	}
 }

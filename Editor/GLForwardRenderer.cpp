@@ -26,17 +26,12 @@ void GLForwardRenderer::Initialise()
 void GLForwardRenderer::Render(double& delta)
 {
 	// 0: GEOMETRY + LIGHT PASS
-	RenderManager::RenderStaticMeshData();
-	//RenderManager::RenderSkeletalMeshData();
-	//RenderManager::RenderLightData();
 
 
 	// 1: PARTICLE SYSTEM PASS
-	//RenderManager::RenderParticleData();
 
 
 	// 2: GUI PASS
-	//RenderManager::RenderGUIData();
 
 
 	// 3: ...

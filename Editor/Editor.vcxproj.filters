@@ -53,17 +53,11 @@
     <Filter Include="Core\ExRenderer %28TBM%29\OpenGL\Utils">
       <UniqueIdentifier>{2ddf7c14-9252-46ea-ac6d-dac3e3f75a5f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\ExRenderer %28TBM%29\BSP">
-      <UniqueIdentifier>{b7a6e61b-079c-4feb-a3af-0a9721342541}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\OpenGL\Objects\Actors">
       <UniqueIdentifier>{76be6659-fae4-4279-9ab3-d85195632c0b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\OpenGL\Objects\Shaders">
       <UniqueIdentifier>{27326095-116e-43d5-a625-c211f1543c8f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\OpenGL\Managers">
-      <UniqueIdentifier>{0db8f704-7bd3-4270-aabd-6077b64b6204}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Client">
       <UniqueIdentifier>{825c8b16-4433-4db3-aff8-ddf866a4032e}</UniqueIdentifier>
@@ -92,6 +86,18 @@
     <Filter Include="Core\Interfaces\Rendering">
       <UniqueIdentifier>{3f17d3dc-78c8-4aaf-8367-8ce84ff2707b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\ExRenderer %28TBM%29\Utils">
+      <UniqueIdentifier>{b5acc08e-8959-4fe1-b6f0-5bee5ab16db7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Objects\Actors\BSP">
+      <UniqueIdentifier>{b7a6e61b-079c-4feb-a3af-0a9721342541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Objects\Actors\Cameras">
+      <UniqueIdentifier>{6da9c3b3-a6ec-406c-a348-e29ce469ca19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects">
+      <UniqueIdentifier>{1ca7a339-3d2d-4100-be05-b7cf26679282}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Buffer.cpp">
@@ -101,9 +107,6 @@
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="VertexBufferArray.cpp">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexBufferObject.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="GLSLLoader.cpp">
@@ -148,9 +151,6 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Core\OpenGL\Objects\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Core\OpenGL\Objects\Actors</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Core\OpenGL\Objects\Actors</Filter>
     </ClCompile>
@@ -166,14 +166,8 @@
     <ClCompile Include="Editor.cpp">
       <Filter>Core\Client</Filter>
     </ClCompile>
-    <ClCompile Include="RenderManager.cpp">
-      <Filter>Core\OpenGL\Managers</Filter>
-    </ClCompile>
     <ClCompile Include="Content.cpp">
       <Filter>Core\OpenGL\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="GLWorld.cpp">
-      <Filter>Core\OpenGL\Global</Filter>
     </ClCompile>
     <ClCompile Include="RenderMaster.cpp">
       <Filter>Core\OpenGL\Masters</Filter>
@@ -196,11 +190,28 @@
     <ClCompile Include="LogicManager.cpp">
       <Filter>Core\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="AudioManager.cpp">
-      <Filter>Core\Managers</Filter>
-    </ClCompile>
     <ClCompile Include="EntryPoint.cpp">
       <Filter>Core\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Core\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="DiffuseF.cpp" />
+    <ClCompile Include="VertexOptimiser.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Core\OpenGL\Objects\Actors\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticVertexBufferObject.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBufferObject.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicVertexBufferObject.cpp" />
+    <ClCompile Include="World.cpp">
+      <Filter>Core\OpenGL\Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,7 +219,7 @@
       <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
     </ClInclude>
     <ClInclude Include="TriangleTest.h">
-      <Filter>Core\ExRenderer %28TBM%29\BSP</Filter>
+      <Filter>Core\OpenGL\Objects\Actors\BSP</Filter>
     </ClInclude>
     <ClInclude Include="Buffer.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
@@ -217,9 +228,6 @@
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="VertexBufferArray.h">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexBufferObject.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="GLSLLoader.h">
@@ -282,9 +290,6 @@
     <ClInclude Include="Actor.h">
       <Filter>Core\OpenGL\Objects\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Core\OpenGL\Objects\Actors</Filter>
-    </ClInclude>
     <ClInclude Include="ShaderBuffer.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
@@ -297,14 +302,8 @@
     <ClInclude Include="Editor.h">
       <Filter>Core\Client</Filter>
     </ClInclude>
-    <ClInclude Include="RenderManager.h">
-      <Filter>Core\OpenGL\Managers</Filter>
-    </ClInclude>
     <ClInclude Include="Content.h">
       <Filter>Core\OpenGL\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="GLWorld.h">
-      <Filter>Core\OpenGL\Global</Filter>
     </ClInclude>
     <ClInclude Include="RenderMaster.h">
       <Filter>Core\OpenGL\Masters</Filter>
@@ -327,8 +326,25 @@
     <ClInclude Include="LogicManager.h">
       <Filter>Core\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="AudioManager.h">
+    <ClInclude Include="EventManager.h">
       <Filter>Core\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="DiffuseF.h" />
+    <ClInclude Include="VertexOptimiser.h">
+      <Filter>Core\ExRenderer %28TBM%29\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Core\OpenGL\Objects\Actors\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticVertexBufferObject.h">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBufferObject.h">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicVertexBufferObject.h" />
+    <ClInclude Include="World.h">
+      <Filter>Core\OpenGL\Global</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

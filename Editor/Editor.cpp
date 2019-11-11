@@ -132,11 +132,9 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	//tt = std::make_unique<TriangleTest>();
 	// --------------------------------
 
-	RenderMaster::Initialise(USE_OPENGL | USE_FORWARD);
-	//LogicMaster::Initialise();
-	//AudioMaster::Initialise();
+	RenderMaster::Initialise(USE_OPENGL);
 
-	GLWorld::Initialise();
+	World::Initialise();
 }
 
 void Editor::Destroy()

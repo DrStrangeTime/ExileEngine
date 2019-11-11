@@ -35,7 +35,7 @@ public:
 		std::vector<uint32_t> i = {					   0, 1, 3,				// INDEX DATA
 													   1, 2, 3 };
 
-		vbo = std::make_shared<VertexBufferObject>(v);
+		vbo = std::make_shared<StaticVertexBufferObject>(v);
 		ibo = std::make_shared<IndexBufferObject>(i);
 
 		std::vector< std::shared_ptr<VertexBufferObject>> vbos = { vbo };

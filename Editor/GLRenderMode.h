@@ -2,7 +2,6 @@
 #define __GL_RENDER_MODE_H__
 
 #include "RenderMode.h"
-#include "RenderManager.h"
 #include "Shader.h"
 
 class GLRenderMode : public RenderMode

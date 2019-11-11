@@ -7,7 +7,7 @@
 #define USE_FORWARD		0x4
 #define USE_DEFERRED	0x8
 
-#include "GLWorld.h"
+#include "World.h"
 #include "WorldInfo.h"
 
 /* The abstract renderer class to allow toggling between different rendering methods*/
@@ -17,7 +17,7 @@ protected:
 	uint16_t		_render_mode;
 
 public:
-	RenderMode() {}
+	RenderMode() : _render_mode(0) {}
 	uint16_t&		GetRenderMode();
 
 	virtual void	LoadShaders(std::vector<uint16_t> shader_indices) = 0;

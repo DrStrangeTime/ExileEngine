@@ -10,13 +10,13 @@ class Shader : public Object
 {
 private:
 	uint16_t						_shader_index;
-	std::unique_ptr<ShaderBuffer>	_shader_buffer;
+	std::shared_ptr<ShaderBuffer>	_shader_buffer;
 
 public:
-	Shader() {}
+	Shader() : _shader_index(0) {}
 
 	uint16_t&						GetShaderIndex();
-	std::unique_ptr<ShaderBuffer>&	GetShaderBuffer();
+	std::shared_ptr<ShaderBuffer>&	GetShaderBuffer();
 
 	virtual void					Initialise(uint16_t shader_index) = 0;	// Load shader file and store to shader buffer
 

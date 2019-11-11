@@ -3,7 +3,8 @@
 
 #include "Buffer.h"
 #include "IndexBufferObject.h"
-#include "VertexBufferObject.h"
+#include "StaticVertexBufferObject.h"
+#include "DynamicVertexBufferObject.h"
 
 class VertexBufferArray : public Buffer
 {
@@ -18,7 +19,7 @@ public:
 	void Create() override;
 	void Destroy() override;
 	void Bind() override;
-
+	
 	std::shared_ptr<IndexBufferObject>& GetIndexBuffer();
 	std::vector<std::shared_ptr<VertexBufferObject>>& GetVertexBuffers();
 };
