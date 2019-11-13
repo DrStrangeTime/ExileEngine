@@ -6,7 +6,6 @@
 
 class GLRenderMode : public RenderMode
 {
-private:
 protected:
 	std::vector<std::shared_ptr<Shader>>	_shaders;	// Stores all OpenGL shaders
 	std::vector<std::shared_ptr<Shader>>	_active_shaders;	// Only stores shaders that are being used

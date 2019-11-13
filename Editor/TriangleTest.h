@@ -22,18 +22,18 @@ public:
 	inline TriangleTest()
 	{
 		// Set up vertex data and buffer array
-		Vertex v = Vertex(5, {	VertexElement(3,	{  0.5f,  0.5f, 0.0f,	// VERTEX POSITIONS
-													   0.5f, -0.5f, 0.0f,
-													  -0.5f, -0.5f, 0.0f,
-													  -0.5f,  0.5f, 0.0f }),
+		VertexData v = VertexData(5, {	VertexElement(3,	{	0.5f,  0.5f, 0.0f,	// VERTEX POSITIONS
+																0.5f, -0.5f, 0.0f,
+															   -0.5f, -0.5f, 0.0f,
+															   -0.5f,  0.5f, 0.0f }),
 
-								VertexElement(2,	{  1.0f, 1.0f,			// VERTEX TEXCOORDS
-													   1.0f, 0.0f,
-													   0.0f, 0.0f,
-													   0.0f, 1.0f }) });
+										VertexElement(2,	{   1.0f, 1.0f,			// VERTEX TEXCOORDS
+																1.0f, 0.0f,
+																0.0f, 0.0f,
+																0.0f, 1.0f }) });
 
-		std::vector<uint32_t> i = {					   0, 1, 3,				// INDEX DATA
-													   1, 2, 3 };
+		std::vector<uint32_t> i = {								0, 1, 3,				// INDEX DATA
+																1, 2, 3 };
 
 		vbo = std::make_shared<StaticVertexBufferObject>(v);
 		ibo = std::make_shared<IndexBufferObject>(i);
@@ -49,10 +49,7 @@ public:
 		shader = std::make_unique<ShaderBuffer>(SHADER_TYPE_VERTEX, GLSLLoader::LoadVertFrag("shaders/Diffuse.vs", "shaders/Diffuse.fs"));
 		shader->Bind();
 
-		texture = std::make_unique<TextureBuffer>(	shader->GetBufferObject(),
-												TextureLoader::LoadTexture2D("textures/test.jpg"),
-												GL_TEXTURE0,
-												"albedoTex");
+		texture = std::make_unique<TextureBuffer>(TextureLoader::LoadTexture2D("textures/test.jpg"));
 	}
 
 	inline ~TriangleTest() {}

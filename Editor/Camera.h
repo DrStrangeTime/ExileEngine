@@ -17,6 +17,8 @@ protected:
 	glm::mat4	_projectionMatrix;
 
 public:
+	Camera() : _camType(0), _viewMatrix(glm::mat4(1.0f)), _projectionMatrix(glm::mat4(1.0f)) {}
+
 	virtual void EventKey(int key, int scancode, int mods) override {}
 	virtual void EventMouseButton(int button, int action, int mods) override {}
 	virtual void EventMouseScroll(double xoffset, double yoffset) override {}

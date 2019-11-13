@@ -9,7 +9,7 @@ class TextureLoader
 private:
 
 public:
-	static uint32_t LoadTexture2D(const char* uri);
+	static uint32_t LoadTexture2D(const char* uri, GLint wrap, GLint filter);
 	//static uint32_t LoadTextureCubemap2D(const char* uri);
 	//static uint32_t LoadTextureHdri2D(const char* uri);
 	//static uint32_t LoadTexturePolar2D(const char* uri);

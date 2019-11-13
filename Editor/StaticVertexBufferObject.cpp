@@ -1,6 +1,6 @@
 #include "StaticVertexBufferObject.h"
 
-StaticVertexBufferObject::StaticVertexBufferObject(Vertex vertex_data)
+StaticVertexBufferObject::StaticVertexBufferObject(VertexData vertex_data)
 {
 	Initialise(vertex_data);
 

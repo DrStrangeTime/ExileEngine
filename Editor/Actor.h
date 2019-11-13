@@ -1,14 +1,14 @@
 #ifndef __ACTOR_H__
 #define __ACTOR_H__
 
-#define A_ACTOR				0	// DONE
+#define A_PLAYER_CONTROLLER	0
 #define A_SPRITE			1
 #define A_STATIC_MESH		2
 #define A_SKELETAL_MESH		3
 #define A_LIGHT				4
 #define A_RIGID_BODY		5
-#define A_CAMERA			6	//
-#define A_CLIP				7	
+#define A_CAMERA			6
+#define A_AUDIO_CLIP		7	
 #define A_PARTICLE			8
 #define A_PARTICLE_SYSTEM	9	
 #define A_EVENT				10
@@ -30,8 +30,14 @@
 #define A_RADIAL_COLLIDER	26
 #define A_MAP				27
 #define A_CUSTOM			28
+#define A_BSP				29
 
-#define NUM_ACTOR_TYPES		29
+#define NUM_ACTOR_TYPES		30
+
+#define LOOK_X				glm::vec3(1.0f, 0.0f, 0.0f);
+#define LOOK_Y				glm::vec3(0.0f, 1.0f, 0.0f);
+#define LOOK_Z				glm::vec3(0.0f, 0.0f, 1.0f);
+
 
 #include "Object.h"
 #include "Transform.h"

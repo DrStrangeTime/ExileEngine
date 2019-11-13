@@ -6,14 +6,8 @@
 /* */
 class TextureBuffer : public Buffer
 {
-private:
-	uint32_t	_width;
-	uint32_t	_height;
-
-	uint16_t	_active_index;
-
 public:
-	TextureBuffer(uint32_t& shader_program, uint32_t tex_id, uint16_t active_id, const char* uniform_name);
+	TextureBuffer(uint32_t tex_id);
 	~TextureBuffer();
 
 	void Create() override;

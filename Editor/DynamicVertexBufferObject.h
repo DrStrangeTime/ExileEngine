@@ -6,7 +6,7 @@
 class DynamicVertexBufferObject : public VertexBufferObject
 {
 public:
-	DynamicVertexBufferObject(Vertex vertex_data);
+	DynamicVertexBufferObject(VertexData vertex_data);
 
 	virtual void Create() override;
 	virtual void Destroy() {}

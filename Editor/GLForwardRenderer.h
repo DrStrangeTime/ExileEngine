@@ -1,11 +1,8 @@
 #ifndef __GL_FORWARD_RENDERER_H__
 #define __GL_FORWARD_RENDERER_H__
 
-// Sorted macro definitions (must be in rendering order)
-#define SHADER_INDEX_DIFFUSE	static_cast<uint16_t>(0)
-
-
 #include "GLRenderMode.h"
+#include "DiffuseSF.h"
 
 
 class GLForwardRenderer : public GLRenderMode

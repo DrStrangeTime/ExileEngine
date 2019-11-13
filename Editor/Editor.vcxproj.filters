@@ -56,26 +56,11 @@
     <Filter Include="Core\OpenGL\Objects\Actors">
       <UniqueIdentifier>{76be6659-fae4-4279-9ab3-d85195632c0b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\OpenGL\Objects\Shaders">
-      <UniqueIdentifier>{27326095-116e-43d5-a625-c211f1543c8f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Client">
       <UniqueIdentifier>{825c8b16-4433-4db3-aff8-ddf866a4032e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\OpenGL\Data">
-      <UniqueIdentifier>{a045a637-ccff-4405-9fd8-0bfc1dcfffaf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\OpenGL\Global">
-      <UniqueIdentifier>{00991fa3-4bcf-4305-9b23-294f3fcbad5b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\OpenGL\Masters">
       <UniqueIdentifier>{53c77da8-2a3a-4be0-a733-9f0dd80428c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\OpenGL\Objects\Shaders\Forward">
-      <UniqueIdentifier>{d530ef08-204c-40dd-b990-1f99c5648729}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\OpenGL\Objects\Shaders\Deferred">
-      <UniqueIdentifier>{dd8045b1-c3da-4a2f-9550-e5ad83f693e7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Managers">
       <UniqueIdentifier>{104fe50a-4ca3-4e94-a35b-a2f8b169a036}</UniqueIdentifier>
@@ -89,14 +74,50 @@
     <Filter Include="Core\ExRenderer %28TBM%29\Utils">
       <UniqueIdentifier>{b5acc08e-8959-4fe1-b6f0-5bee5ab16db7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\OpenGL\Objects\Actors\BSP">
-      <UniqueIdentifier>{b7a6e61b-079c-4feb-a3af-0a9721342541}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\OpenGL\Objects\Actors\Cameras">
       <UniqueIdentifier>{6da9c3b3-a6ec-406c-a348-e29ce469ca19}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects">
       <UniqueIdentifier>{1ca7a339-3d2d-4100-be05-b7cf26679282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Shaders">
+      <UniqueIdentifier>{27326095-116e-43d5-a625-c211f1543c8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Shaders\Forward">
+      <UniqueIdentifier>{d530ef08-204c-40dd-b990-1f99c5648729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Shaders\Deferred">
+      <UniqueIdentifier>{dd8045b1-c3da-4a2f-9550-e5ad83f693e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Objects\Actors\BinarySpacePartitions">
+      <UniqueIdentifier>{b7a6e61b-079c-4feb-a3af-0a9721342541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Textures">
+      <UniqueIdentifier>{96f62df7-2c1f-43d6-ab9b-e4d172b8a10e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Interfaces\Object">
+      <UniqueIdentifier>{19588d89-d539-4e9e-84c8-6ea60f10d46d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Interfaces\Object\Actor">
+      <UniqueIdentifier>{ff5cd2a0-b712-4b8b-b36e-10adcf1a545e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Vulkan">
+      <UniqueIdentifier>{d7b053e7-26d5-4230-928e-d33d87735ca6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Materials">
+      <UniqueIdentifier>{0336c955-e648-48a3-af98-4d4731df7ec6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\DataManagement">
+      <UniqueIdentifier>{ef77f966-389a-4287-80a5-c1df6b1c4374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Utils">
+      <UniqueIdentifier>{dc419bdb-ef61-45e3-92e7-01d01001b49a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Materials\Forward">
+      <UniqueIdentifier>{94d76407-0aa2-4f70-950c-d5bf52598309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Materials\Deferred">
+      <UniqueIdentifier>{dd3bc579-d75d-4362-85b8-604530bf8b4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,14 +163,8 @@
     <ClCompile Include="RenderPipeline.cpp">
       <Filter>Core\Interfaces\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Core\OpenGL\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="GLRenderMode.cpp">
       <Filter>Core\OpenGL\Renderers\Modes</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Core\OpenGL\Objects\Actors</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Core\OpenGL\Objects\Actors</Filter>
@@ -161,25 +176,16 @@
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>Core\OpenGL\Objects\Shaders</Filter>
+      <Filter>Core\OpenGL\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="Editor.cpp">
       <Filter>Core\Client</Filter>
     </ClCompile>
-    <ClCompile Include="Content.cpp">
-      <Filter>Core\OpenGL\Data</Filter>
-    </ClCompile>
     <ClCompile Include="RenderMaster.cpp">
       <Filter>Core\OpenGL\Masters</Filter>
     </ClCompile>
-    <ClCompile Include="Texture2D.cpp">
-      <Filter>Core\OpenGL\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="CustomActor.cpp">
       <Filter>Core\OpenGL\Objects\Actors</Filter>
-    </ClCompile>
-    <ClCompile Include="LogicMaster.cpp">
-      <Filter>Core\Masters</Filter>
     </ClCompile>
     <ClCompile Include="AudioMaster.cpp">
       <Filter>Core\Masters</Filter>
@@ -196,7 +202,6 @@
     <ClCompile Include="EventManager.cpp">
       <Filter>Core\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="DiffuseF.cpp" />
     <ClCompile Include="VertexOptimiser.cpp">
       <Filter>Core\ExRenderer %28TBM%29\Utils</Filter>
     </ClCompile>
@@ -209,9 +214,44 @@
     <ClCompile Include="VertexBufferObject.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClCompile>
-    <ClCompile Include="DynamicVertexBufferObject.cpp" />
+    <ClCompile Include="DynamicVertexBufferObject.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="DiffuseSF.cpp">
+      <Filter>Core\OpenGL\Shaders\Forward</Filter>
+    </ClCompile>
     <ClCompile Include="World.cpp">
-      <Filter>Core\OpenGL\Global</Filter>
+      <Filter>Core\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Core\Interfaces\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Core\Interfaces\Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="BinarySpacePartition.cpp">
+      <Filter>Core\OpenGL\Objects\Actors\BinarySpacePartitions</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Core\OpenGL\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Core\OpenGL\Objects\Actors\BinarySpacePartitions</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Core\OpenGL\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentManager.cpp">
+      <Filter>Core\OpenGL\DataManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="WavefrontLoader.cpp">
+      <Filter>Core\OpenGL\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="OpaqueFM.cpp">
+      <Filter>Core\OpenGL\Materials\Forward</Filter>
+    </ClCompile>
+    <ClCompile Include="AlbedoT.cpp">
+      <Filter>Core\OpenGL\Textures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +259,7 @@
       <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
     </ClInclude>
     <ClInclude Include="TriangleTest.h">
-      <Filter>Core\OpenGL\Objects\Actors\BSP</Filter>
+      <Filter>Core\OpenGL\Objects\Actors\BinarySpacePartitions</Filter>
     </ClInclude>
     <ClInclude Include="Buffer.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
@@ -278,16 +318,10 @@
     <ClInclude Include="RenderPipeline.h">
       <Filter>Core\Interfaces\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Core\OpenGL\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="GLRenderMode.h">
       <Filter>Core\OpenGL\Renderers\Modes</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Core\OpenGL\Objects\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
       <Filter>Core\OpenGL\Objects\Actors</Filter>
     </ClInclude>
     <ClInclude Include="ShaderBuffer.h">
@@ -297,25 +331,16 @@
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Core\OpenGL\Objects\Shaders</Filter>
+      <Filter>Core\OpenGL\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="Editor.h">
       <Filter>Core\Client</Filter>
     </ClInclude>
-    <ClInclude Include="Content.h">
-      <Filter>Core\OpenGL\Data</Filter>
-    </ClInclude>
     <ClInclude Include="RenderMaster.h">
       <Filter>Core\OpenGL\Masters</Filter>
     </ClInclude>
-    <ClInclude Include="Texture2D.h">
-      <Filter>Core\OpenGL\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="CustomActor.h">
       <Filter>Core\OpenGL\Objects\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="LogicMaster.h">
-      <Filter>Core\Masters</Filter>
     </ClInclude>
     <ClInclude Include="AudioMaster.h">
       <Filter>Core\Masters</Filter>
@@ -329,7 +354,6 @@
     <ClInclude Include="EventManager.h">
       <Filter>Core\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="DiffuseF.h" />
     <ClInclude Include="VertexOptimiser.h">
       <Filter>Core\ExRenderer %28TBM%29\Utils</Filter>
     </ClInclude>
@@ -342,9 +366,44 @@
     <ClInclude Include="VertexBufferObject.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicVertexBufferObject.h" />
+    <ClInclude Include="DynamicVertexBufferObject.h">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="DiffuseSF.h">
+      <Filter>Core\OpenGL\Shaders\Forward</Filter>
+    </ClInclude>
     <ClInclude Include="World.h">
-      <Filter>Core\OpenGL\Global</Filter>
+      <Filter>Core\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Core\Interfaces\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Core\Interfaces\Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="BinarySpacePartition.h">
+      <Filter>Core\OpenGL\Objects\Actors\BinarySpacePartitions</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Core\OpenGL\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Core\OpenGL\Objects\Actors\BinarySpacePartitions</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Core\OpenGL\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentManager.h">
+      <Filter>Core\OpenGL\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="WavefrontLoader.h">
+      <Filter>Core\OpenGL\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="OpaqueFM.h">
+      <Filter>Core\OpenGL\Materials\Forward</Filter>
+    </ClInclude>
+    <ClInclude Include="AlbedoT.h">
+      <Filter>Core\OpenGL\Textures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

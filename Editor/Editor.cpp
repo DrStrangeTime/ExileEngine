@@ -131,10 +131,13 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	// ------------- TEMP -------------
 	//tt = std::make_unique<TriangleTest>();
 	// --------------------------------
-
-	RenderMaster::Initialise(USE_OPENGL);
+	
+	RenderMaster::Initialise(USE_OPENGL | USE_FORWARD);
 
 	World::Initialise();
+
+	World::map->AddActor(std::make_shared<Camera>());
+	World::map->AddActor(ContentManager::bsps[BSP_PLANE]);
 }
 
 void Editor::Destroy()

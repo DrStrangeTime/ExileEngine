@@ -6,7 +6,10 @@
 class VertexOptimiser
 {
 public:
-	static std::vector<float> PackSingleVertex(Vertex vertex_data);
+	VertexOptimiser() = default;
+	static std::vector<float>		PackSingleVertex(VertexData& vertex_data);
+	static VertexElement			PackTangents(std::vector<uint32_t>& indices, VertexElement& uvs);
+	static VertexData				MakeVertexDataUnique(std::vector<uint32_t> indices, VertexData vertex_data);
 };
 
 #endif

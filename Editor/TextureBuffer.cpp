@@ -1,11 +1,8 @@
 #include "TextureBuffer.h"
 
-TextureBuffer::TextureBuffer(uint32_t& shader_program, uint32_t tex_id, uint16_t active_index, const char* uniform_name)
+TextureBuffer::TextureBuffer(uint32_t tex_id)
 {
 	_buffer_object = tex_id;
-	_active_index = active_index;
-
-	glUniform1i(glGetUniformLocation(shader_program, uniform_name), 0);
 
 	Create();
 }
@@ -30,6 +27,5 @@ void TextureBuffer::Destroy()
 
 void TextureBuffer::Bind()
 {
-	glActiveTexture(_active_index);
 	glBindTexture(GL_TEXTURE_2D, _buffer_object);
 }

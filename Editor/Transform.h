@@ -35,9 +35,9 @@ public:
 	static void MakeModel(Data t, glm::mat4& m)
 	{
 		m =		glm::translate(m, glm::vec3(t.p)) *
-				glm::rotate(m, t.r.x, glm::vec3(1.0f, 0.0f, 0.0f)) *
-				glm::rotate(m, t.r.y, glm::vec3(0.0f, 1.0f, 0.0f)) *
-				glm::rotate(m, t.r.z, glm::vec3(0.0f, 0.0f, 1.0f)) *
+				glm::rotate(m, glm::radians(t.r.x), glm::vec3(1.0f, 0.0f, 0.0f)) *
+				glm::rotate(m, glm::radians(t.r.y), glm::vec3(0.0f, 1.0f, 0.0f)) *
+				glm::rotate(m, glm::radians(t.r.z), glm::vec3(0.0f, 0.0f, 1.0f)) *
 				glm::scale(m, glm::vec3(t.s));
 				
 	}

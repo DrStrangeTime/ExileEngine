@@ -1,6 +1,6 @@
 #include "DynamicVertexBufferObject.h"
 
-DynamicVertexBufferObject::DynamicVertexBufferObject(Vertex vertex_data)
+DynamicVertexBufferObject::DynamicVertexBufferObject(VertexData vertex_data)
 {
 	Initialise(vertex_data);
 

@@ -6,7 +6,7 @@ Actor::Actor()
 	_name = "Actor";
 	_active = false;
 	_dynamic = false;
-	_type = A_ACTOR;
+	_type = 0;
 	_trans.p = glm::vec3(0.0f);
 	_trans.r = glm::vec3(0.0f);
 	_trans.s = glm::vec3(1.0f);

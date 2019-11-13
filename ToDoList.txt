@@ -1,6 +1,3 @@
 Editor
-- Make a DiffuseForward > Shader class
-- Use the Texture2D class for loading an albedo texture
-- Move raw data from TriangleTest to CustomActor (temp)
-- Use the AddActor() function in Map to add the CustomActor
-- Test rendering through the RenderMaster pipeline!
+- Camera controls
+- Batch rendering

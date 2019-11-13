@@ -6,6 +6,7 @@
 #define SHADER_TYPE_TESSELATION		0x2
 #define SHADER_TYPE_COMPUTE			0x3
 
+
 #include "Buffer.h"
 
 class ShaderBuffer : public Buffer
