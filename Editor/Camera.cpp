@@ -5,6 +5,11 @@ uint16_t& Camera::GetCameraType()
 	return _cam_type;
 }
 
+uint32_t& Camera::GetLocalDirection()
+{
+	return _local_dir;
+}
+
 float& Camera::GetNear()
 {
 	return _near;

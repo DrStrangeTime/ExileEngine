@@ -3,8 +3,11 @@
 
 #include "Actor.h"
 
+#undef near
+#undef far
+
 /* Constant global variables */
-constexpr glm::vec3	WORLD_FRONT = glm::vec3(0.f, 0.f, 1.f);
+constexpr glm::vec3	WORLD_FRONT = glm::vec3(0.f, 0.f, -1.f);
 constexpr glm::vec3	WORLD_UP	= glm::vec3(0.f, 1.f, 0.f);
 constexpr glm::vec3	WORLD_RIGHT = glm::vec3(1.f, 0.f, 0.f);
 
@@ -14,14 +17,20 @@ constexpr glm::vec3	WORLD_RIGHT = glm::vec3(1.f, 0.f, 0.f);
 #define CAMERA_3D_ORTHOGRAPHIC	0x2
 
 /* Look directions */
-#define LOOK_DIR_FRONT			0x0
-#define LOOK_DIR_BACK			0x1
-#define LOOK_DIR_LEFT			0x2
-#define LOOK_DIR_RIGHT			0x3
-#define LOOK_DIR_FRONT_RIGHT	0x4
-#define LOOK_DIR_FRONT_LEFT		0x5
-#define LOOK_DIR_BACK_RIGHT		0x6
-#define LOOK_DIR_BACK_LEFT		0x7
+#define LOOK_DIR_FRONT			1
+#define LOOK_DIR_BACK			2
+#define LOOK_DIR_LEFT			4
+#define LOOK_DIR_RIGHT			8
+#define LOOK_DIR_FRONT_RIGHT	16
+#define LOOK_DIR_FRONT_LEFT		32
+#define LOOK_DIR_BACK_RIGHT		64
+#define LOOK_DIR_BACK_LEFT		128
+#define LOOK_DIR_UP				256
+#define LOOK_DIR_DOWN			512
+#define LOOK_DIR_UP_RIGHT		1024
+#define LOOK_DIR_UP_LEFT		2048
+#define LOOK_DIR_DOWN_RIGHT		4096
+#define LOOK_DIR_DOWN_LEFT		8192
 
 /* Camera default properties */
 #define CAMERA_NEAR				STATIC_CAST(float, .1f)
@@ -34,6 +43,7 @@ class Camera : public Actor
 {
 protected:
 	uint16_t	_cam_type;
+	uint32_t	_local_dir;
 	float		_near;
 	float		_far;
 	float		_ratio;
@@ -49,6 +59,7 @@ protected:
 
 public:
 	Camera() :	_cam_type(0),
+				_local_dir(LOOK_DIR_FRONT),
 				_near(CAMERA_NEAR),
 				_far(CAMERA_FAR),
 				_ratio(CAMERA_RATIO),
@@ -69,6 +80,7 @@ public:
 	virtual void	Render() {}
 
 	uint16_t&		GetCameraType();
+	uint32_t&		GetLocalDirection();
 	float&			GetNear();
 	float&			GetFar();
 	float&			GetRatio();
@@ -79,6 +91,7 @@ public:
 	glm::mat4&		GetProjectionMatrix();
 
 	inline void		SetCameraType(uint16_t value) { _cam_type = value; }
+	inline void		SetLocalDirection(uint32_t value) { _local_dir = value; }
 	inline void		SetNear(float value) { _near = value; }
 	inline void		SetFar(float value) { _far = value; }
 	inline void		SetRatio(float value) { _ratio = value; }
@@ -91,6 +104,7 @@ public:
 	virtual void	UpdateViewMatrix() = 0;
 	virtual void	UpdateProjectionMatrix() = 0;
 	virtual void	UpdateLookVectors() = 0;
+	virtual void	Move(float speed, glm::vec3 velocity) = 0;
 };
 
 #endif
