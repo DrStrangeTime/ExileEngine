@@ -1,9 +1,9 @@
-#include "Editor.h"
+#include "Client.h"
 
 
 int main(int argc, char** argv)
 {
-	std::unique_ptr<Editor>app = std::make_unique<Editor>();
+	std::unique_ptr<Client>app = std::make_unique<Client>();
 
 	app->Run();
 

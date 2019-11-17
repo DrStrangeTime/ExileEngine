@@ -43,6 +43,8 @@ void StaticVertexBufferObject::Create()
 		++it;	// Increment current attrib index
 	}
 
+	_buffer_size = offset;	// Assign buffer size
+
 #ifdef _DEBUG
 	if (_buffer_object == NULL)
 		ExCore::Logger::PrintErr("Vertex buffer object failed to generate!");

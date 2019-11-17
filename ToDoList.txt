@@ -1,3 +1,2 @@
 Editor
 - Camera controls
-- Batch rendering

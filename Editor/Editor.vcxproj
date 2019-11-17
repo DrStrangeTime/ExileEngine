@@ -153,11 +153,12 @@
     <ClCompile Include="BinarySpacePartition.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraPerspective3D.cpp" />
     <ClCompile Include="ContentManager.cpp" />
     <ClCompile Include="CustomActor.cpp" />
     <ClCompile Include="DiffuseSF.cpp" />
-    <ClCompile Include="DynamicVertexBufferObject.cpp" />
-    <ClCompile Include="Editor.cpp" />
+    <ClCompile Include="BatchVertexBufferObject.cpp" />
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GLDeferredRenderer.cpp" />
@@ -184,7 +185,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureBuffer.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
-    <ClCompile Include="VertexBufferArray.cpp" />
+    <ClCompile Include="VertexArrayObject.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
     <ClCompile Include="VertexOptimiser.cpp" />
     <ClCompile Include="WorldInfo.cpp" />
@@ -205,11 +206,12 @@
     <ClInclude Include="BinarySpacePartition.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraPerspective3D.h" />
     <ClInclude Include="ContentManager.h" />
     <ClInclude Include="CustomActor.h" />
     <ClInclude Include="DiffuseSF.h" />
-    <ClInclude Include="DynamicVertexBufferObject.h" />
-    <ClInclude Include="Editor.h" />
+    <ClInclude Include="BatchVertexBufferObject.h" />
+    <ClInclude Include="Client.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="GLDeferredRenderer.h" />
     <ClInclude Include="GLForwardRenderer.h" />
@@ -241,7 +243,7 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TriangleTest.h" />
     <ClInclude Include="Vertex.h" />
-    <ClInclude Include="VertexBufferArray.h" />
+    <ClInclude Include="VertexArrayObject.h" />
     <ClInclude Include="VertexBufferObject.h" />
     <ClInclude Include="VertexOptimiser.h" />
     <ClInclude Include="WorldInfo.h" />

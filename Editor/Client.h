@@ -5,7 +5,7 @@
 
 
 /* Editor derives from the Exile::Core application interface. */
-class Editor : public ExCore::Application
+class Client : public ExCore::Application
 {
 private:
 	// ------------- TEMP -------------
@@ -19,8 +19,8 @@ private:
 	static ExCore::RenderDevice::Properties	rdp;
 
 public:
-	Editor();
-	~Editor();
+	Client();
+	~Client();
 
 	static void Create(int w, int h, const char* title, bool maximise, bool fullscreen, bool showCursor);
 	static void Destroy();

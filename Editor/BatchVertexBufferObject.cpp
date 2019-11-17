@@ -1,13 +1,13 @@
-#include "DynamicVertexBufferObject.h"
+#include "BatchVertexBufferObject.h"
 
-DynamicVertexBufferObject::DynamicVertexBufferObject(VertexData vertex_data)
+BatchVertexBufferObject::BatchVertexBufferObject(VertexData vertex_data)
 {
 	Initialise(vertex_data);
 
 	_draw_type = GL_DYNAMIC_DRAW;
 }
 
-void DynamicVertexBufferObject::Create()
+void BatchVertexBufferObject::Create()
 {
 #ifdef _DEBUG
 	if (_vertex_data.vertexElements.empty())
@@ -49,7 +49,7 @@ void DynamicVertexBufferObject::Create()
 //#endif
 }
 
-void DynamicVertexBufferObject::Bind()
+void BatchVertexBufferObject::Bind()
 {
 	VertexBufferObject::Bind();
 }

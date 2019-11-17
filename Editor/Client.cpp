@@ -1,8 +1,8 @@
-#include "Editor.h"
+#include "Client.h"
 #include "stb_image.h"
 
 
-void Editor::FramebufferSize(GLFWwindow* window, int w, int h)
+void Client::FramebufferSize(GLFWwindow* window, int w, int h)
 {
 	width = w;
 	height = h;
@@ -10,27 +10,28 @@ void Editor::FramebufferSize(GLFWwindow* window, int w, int h)
 	glViewport(0, 0, w, h);
 }
 
-bool Editor::isRunning()
+bool Client::isRunning()
 {
 	return !glfwWindowShouldClose(window);
 }
 
-Editor::Editor()
+Client::Client()
 {
-	Create(600, 500, "Exile Editor", false, false, true);
+	Create(600, 500, "Exile Engine", false, false, true);
 }
 
-Editor::~Editor()
+Client::~Client()
 {
 	Destroy();
 }
 
-void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscreen, bool showCursor)
+void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen, bool showCursor)
 {
 	exInit();	// Init ExCore.dll
 
 	width = w;
 	height = h;
+	title = t;
 
 	glewExperimental = GL_TRUE;
 	
@@ -44,12 +45,14 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	}
 
 	// Set GLFW window hints
+
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	if (maximise)
 		glfwWindowHint(GLFW_MAXIMIZED, 1);
 
+
 	// Initialise windows
-	window = glfwCreateWindow(width, height, "Exile Editor", NULL, NULL);
+	window = glfwCreateWindow(width, height, title, NULL, NULL);
 	if (!window)
 	{
 #ifdef _DEBUG
@@ -90,7 +93,9 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	glfwMakeContextCurrent(window);
 	glfwGetFramebufferSize(window, &width, &height);
 
+
 	// Initialise GLEW
+	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
 	if (GLEW_OK != err)
 	{
@@ -140,7 +145,7 @@ void Editor::Create(int w, int h, const char* title, bool maximise, bool fullscr
 	World::map->AddActor(ContentManager::bsps[BSP_PLANE]);
 }
 
-void Editor::Destroy()
+void Client::Destroy()
 {
 	glfwDestroyCursor(ExCore::Cursor::GetCursor());
 	glfwDestroyWindow(window);
@@ -148,34 +153,34 @@ void Editor::Destroy()
 }
 
 // ---------------------------------------------------------------------- CALLBACK FUNCTIONS ----------------------------------------------------------------------
-void Editor::KeyEvent(GLFWwindow* window, int key, int scancode, int action, int mods)
+void Client::KeyEvent(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	ExCore::KeyInput::UpdateKey(key, scancode, action, mods);
 }
 
-void Editor::MouseButtonEvent(GLFWwindow* window, int button, int action, int mods)
+void Client::MouseButtonEvent(GLFWwindow* window, int button, int action, int mods)
 {
 	ExCore::MouseInput::UpdateButton(button, action, mods);
 }
 
-void Editor::MouseScrollEvent(GLFWwindow* window, double xoffset, double yoffset)
+void Client::MouseScrollEvent(GLFWwindow* window, double xoffset, double yoffset)
 {
 	ExCore::MouseInput::UpdateScroll(xoffset, yoffset);
 }
 
-void Editor::MousePositionEvent(GLFWwindow* window, double xpos, double ypos)
+void Client::MousePositionEvent(GLFWwindow* window, double xpos, double ypos)
 {
 	ExCore::MouseInput::UpdatePosition(xpos, ypos);
 }
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-void Editor::Update()
+void Client::Update()
 {
 	// Interpolation, Physics ect...
 	//LogicMaster::Update();
 }
 
-void Editor::Render(double &delta)
+void Client::Render(double &delta)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -184,12 +189,12 @@ void Editor::Render(double &delta)
 	Swap();
 }
 
-void Editor::Swap()
+void Client::Swap()
 {
 	glfwSwapBuffers(window);
 }
 
-void Editor::Run()
+void Client::Run()
 {
 	ExCore::Timestep _f_time_step(WorldInfo::GetFramesPerSecond());
 	double delta = 0;
@@ -214,8 +219,8 @@ void Editor::Run()
 
 //std::unique_ptr<TriangleTest>		Editor::tt;
 
-int									Editor::width;
-int									Editor::height;
-const char*							Editor::title;
-GLFWwindow*							Editor::window;
-ExCore::RenderDevice::Properties	Editor::rdp;
+int									Client::width;
+int									Client::height;
+const char*							Client::title;
+GLFWwindow*							Client::window;
+ExCore::RenderDevice::Properties	Client::rdp;

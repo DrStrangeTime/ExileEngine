@@ -2,7 +2,7 @@
 
 void ContentManager::Initialise()
 {
-	bsps[0] = std::make_shared<Plane>(.0f, .0f, .0f, PLANE_DIR_Z, 1.f, 1.f, 0.0f);
+	bsps[0] = std::make_shared<Plane>(.0f, .0f, .0f, PLANE_DIR_Z, 1.f, 1.f, 0);
 }
 
 void ContentManager::Import(uint32_t import_type, const char* file, std::string name)

@@ -1,6 +1,6 @@
-#include "VertexBufferArray.h"
+#include "VertexArrayObject.h"
 
-VertexBufferArray::VertexBufferArray(std::vector<std::shared_ptr<VertexBufferObject>> vertex_buffer_objects, std::shared_ptr<IndexBufferObject> index_buffer_object)
+VertexArrayObject::VertexArrayObject(std::vector<std::shared_ptr<VertexBufferObject>> vertex_buffer_objects, std::shared_ptr<IndexBufferObject> index_buffer_object)
 {
 	_buffer_type = GL_VERTEX_ARRAY;
 	_buffer_size = sizeof(vertex_buffer_objects) + sizeof(_ibo);
@@ -8,12 +8,12 @@ VertexBufferArray::VertexBufferArray(std::vector<std::shared_ptr<VertexBufferObj
 	_ibo = index_buffer_object;
 }
 
-VertexBufferArray::~VertexBufferArray()
+VertexArrayObject::~VertexArrayObject()
 {
 	Destroy();
 }
 
-void VertexBufferArray::Create()
+void VertexArrayObject::Create()
 {
 #ifdef _DEBUG
 	// Check for existing vbo(s)
@@ -55,7 +55,7 @@ void VertexBufferArray::Create()
 		glVertexAttribDivisor(static_cast<GLuint>(_vbos.size()), 1);
 }
 
-void VertexBufferArray::Destroy()
+void VertexArrayObject::Destroy()
 {
 	for (auto i = 0; i < _vbos.size(); ++i)
 		glDisableVertexAttribArray(i);
@@ -63,17 +63,17 @@ void VertexBufferArray::Destroy()
 	glDeleteVertexArrays(1, &_buffer_object);
 }
 
-void VertexBufferArray::Bind()
+void VertexArrayObject::Bind()
 {
 	glBindVertexArray(_buffer_object);
 }
 
-std::shared_ptr<IndexBufferObject>& VertexBufferArray::GetIndexBuffer()
+std::shared_ptr<IndexBufferObject>& VertexArrayObject::GetIndexBuffer()
 {
 	return _ibo;
 }
 
-std::vector<std::shared_ptr<VertexBufferObject>>& VertexBufferArray::GetVertexBuffers()
+std::vector<std::shared_ptr<VertexBufferObject>>& VertexArrayObject::GetVertexBuffers()
 {
 	return _vbos;
 }

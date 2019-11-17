@@ -10,7 +10,8 @@
 #define BSP_SUBTRACTION		0x1
 
 #include "Actor.h"
-#include "VertexBufferArray.h"
+#include "VertexArrayObject.h"
+#include "StaticVertexBufferObject.h"
 
 /* The base BSP class for arbitrary objects */
 class BinarySpacePartition : public Actor
@@ -23,7 +24,7 @@ protected:
 
 	VertexData							_vertex_data;
 
-	std::shared_ptr<VertexBufferArray>	_vertex_array_object;
+	std::shared_ptr<VertexArrayObject>	_vertex_array_object;
 	std::shared_ptr<VertexBufferObject>	_vertex_buffer_object;
 	std::shared_ptr<IndexBufferObject>	_index_buffer_object;
 

@@ -1,20 +1,19 @@
-#ifndef __VERTEX_BUFFER_ARRAY_H__
-#define __VERTEX_BUFFER_ARRAY_H__
+#ifndef __VERTEX_ARRAY_OBJECT_H__
+#define __VERTEX_ARRAY_OBJECT_H__
 
 #include "Buffer.h"
 #include "IndexBufferObject.h"
-#include "StaticVertexBufferObject.h"
-#include "DynamicVertexBufferObject.h"
+#include "VertexBufferObject.h"
 
-class VertexBufferArray : public Buffer
+class VertexArrayObject : public Buffer
 {
 private:
 	std::shared_ptr<IndexBufferObject>					_ibo;
 	std::vector<std::shared_ptr<VertexBufferObject>>	_vbos;
 
 public:
-	VertexBufferArray(std::vector<std::shared_ptr<VertexBufferObject>> vertex_buffer_objects, std::shared_ptr<IndexBufferObject> index_buffer_object);
-	~VertexBufferArray();
+	VertexArrayObject(std::vector<std::shared_ptr<VertexBufferObject>> vertex_buffer_objects, std::shared_ptr<IndexBufferObject> index_buffer_object);
+	~VertexArrayObject();
 
 	void Create() override;
 	void Destroy() override;

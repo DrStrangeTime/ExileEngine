@@ -9,17 +9,22 @@ Plane::Plane(float x, float y, float z, uint16_t direction, float w, float h, ui
 
 	_type = A_STATIC_MESH;
 
-	_vertex_data = VertexData(5, { VertexElement(3,		{	0.5f,  0.5f, 0.0f,	// VERTEX POSITIONS
+	_vertex_data = VertexData(6, { VertexElement(3,		{	0.5f,  0.5f, 0.0f,				// VERTEX POSITIONS
 															0.5f, -0.5f, 0.0f,
 														   -0.5f, -0.5f, 0.0f,
 														   -0.5f,  0.5f, 0.0f }),
 
-									VertexElement(2,	{   1.0f, 1.0f,			// VERTEX TEXCOORDS
+									VertexElement(2,	{   1.0f, 1.0f,						// VERTEX TEXCOORDS
 															1.0f, 0.0f,
 															0.0f, 0.0f,
-															0.0f, 1.0f }) });
+															0.0f, 1.0f }),
 
-	std::vector<uint32_t> indices =						{	0, 1, 3,			// INDEX DATA
+									VertexElement(1,	{   STATIC_CAST(float, mat_id),		// MATERIAL IDS
+															STATIC_CAST(float, mat_id),
+															STATIC_CAST(float, mat_id),
+															STATIC_CAST(float, mat_id) }) });
+
+	std::vector<uint32_t> indices =						{	0, 1, 3,						// INDEX DATA
 															1, 2, 3 };
 
 	//_vertex_data.vertexElements.emplace_back(VertexElement(3, {}));		// Create empty container for tangents
@@ -30,7 +35,7 @@ Plane::Plane(float x, float y, float z, uint16_t direction, float w, float h, ui
 
 	std::vector<std::shared_ptr<VertexBufferObject>> vbos = { _vertex_buffer_object };
 
-	_vertex_array_object = std::make_shared<VertexBufferArray>(vbos, _index_buffer_object);	
+	_vertex_array_object = std::make_shared<VertexArrayObject>(vbos, _index_buffer_object);
 	_vertex_array_object->Create();
 
 	_trans.p = glm::vec3(x, y, z);

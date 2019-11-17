@@ -127,9 +127,6 @@
     <ClCompile Include="IndexBufferObject.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
-    <ClCompile Include="VertexBufferArray.cpp">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
-    </ClCompile>
     <ClCompile Include="GLSLLoader.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Utils</Filter>
     </ClCompile>
@@ -178,9 +175,6 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Core\OpenGL\Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="Editor.cpp">
-      <Filter>Core\Client</Filter>
-    </ClCompile>
     <ClCompile Include="RenderMaster.cpp">
       <Filter>Core\OpenGL\Masters</Filter>
     </ClCompile>
@@ -212,9 +206,6 @@
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClCompile>
     <ClCompile Include="VertexBufferObject.cpp">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="DynamicVertexBufferObject.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClCompile>
     <ClCompile Include="DiffuseSF.cpp">
@@ -253,6 +244,16 @@
     <ClCompile Include="AlbedoT.cpp">
       <Filter>Core\OpenGL\Textures</Filter>
     </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>Core\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="BatchVertexBufferObject.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexArrayObject.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraPerspective3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vertex.h">
@@ -265,9 +266,6 @@
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="IndexBufferObject.h">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexBufferArray.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="GLSLLoader.h">
@@ -333,9 +331,6 @@
     <ClInclude Include="Shader.h">
       <Filter>Core\OpenGL\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="Editor.h">
-      <Filter>Core\Client</Filter>
-    </ClInclude>
     <ClInclude Include="RenderMaster.h">
       <Filter>Core\OpenGL\Masters</Filter>
     </ClInclude>
@@ -364,9 +359,6 @@
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClInclude>
     <ClInclude Include="VertexBufferObject.h">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="DynamicVertexBufferObject.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClInclude>
     <ClInclude Include="DiffuseSF.h">
@@ -405,5 +397,15 @@
     <ClInclude Include="AlbedoT.h">
       <Filter>Core\OpenGL\Textures</Filter>
     </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>Core\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="BatchVertexBufferObject.h">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArrayObject.h">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraPerspective3D.h" />
   </ItemGroup>
 </Project>
