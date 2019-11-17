@@ -141,7 +141,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 
 	World::Initialise();
 
-	World::map->AddActor(std::make_shared<Camera>());
+	World::map->AddActor(std::make_shared<CameraPerspective3D>());
 	World::map->AddActor(ContentManager::bsps[BSP_PLANE]);
 }
 

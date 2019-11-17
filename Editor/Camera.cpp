@@ -25,6 +25,16 @@ float& Camera::GetSpeed()
 	return _speed;
 }
 
+glm::vec3& Camera::GetVelocity()
+{
+	return _velocity;
+}
+
+glm::vec3& Camera::GetWorldUpVector()
+{
+	return _world_up_vector;
+}
+
 glm::mat4& Camera::GetViewMatrix()
 {
 	return _view;

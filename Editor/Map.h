@@ -4,9 +4,8 @@
 #include "OffsetData.h"
 #include "ContentManager.h"
 
-// TEMP ------------
-#include "Camera.h"
-// -----------------
+/* Camera presets */
+#include "CameraPerspective3D.h"
 
 
 /* The main map class that sorts and filters all actor objects inside one container */
