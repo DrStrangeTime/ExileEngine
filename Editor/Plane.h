@@ -10,7 +10,7 @@
 class Plane : public BinarySpacePartition
 {
 public:
-	Plane(float x, float y, float z, uint16_t direction, float w, float h, uint32_t mat_id);
+	Plane(uint32_t &shader_program, float x, float y, float z, uint16_t direction, float w, float h, uint32_t mat_id);
 
 	virtual void	EventKey(int key, int scancode, int mods) {}
 	virtual void	EventMouseButton(int button, int action, int mods) {}

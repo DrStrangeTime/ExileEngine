@@ -59,7 +59,7 @@ protected:
 
 public:
 	Camera() :	_cam_type(0),
-				_local_dir(LOOK_DIR_FRONT),
+				_local_dir(0),
 				_near(CAMERA_NEAR),
 				_far(CAMERA_FAR),
 				_ratio(CAMERA_RATIO),
@@ -71,13 +71,14 @@ public:
 				_u_view(0),
 				_u_proj(0) {}
 
+	Camera(const Camera& x);	// Copy constructor
 
-	virtual void	EventKey(int key, int scancode, int mods) {}
-	virtual void	EventMouseButton(int button, int action, int mods) {}
-	virtual void	EventMouseScroll(double xoffset, double yoffset) {}
+	virtual void	EventKey(int key, int scancode, int mods) = 0;
+	virtual void	EventMouseButton(int button, int action, int mods) = 0;
+	virtual void	EventMouseScroll(double xoffset, double yoffset) = 0;
 
-	virtual void	Update() {}
-	virtual void	Render() {}
+	virtual void	Update() = 0;
+	virtual void	Render() = 0;
 
 	uint16_t&		GetCameraType();
 	uint32_t&		GetLocalDirection();

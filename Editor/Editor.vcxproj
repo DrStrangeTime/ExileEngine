@@ -241,7 +241,6 @@
     <ClInclude Include="TextureData.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Transform.h" />
-    <ClInclude Include="TriangleTest.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="VertexArrayObject.h" />
     <ClInclude Include="VertexBufferObject.h" />

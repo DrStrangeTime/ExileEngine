@@ -27,7 +27,7 @@ Client::~Client()
 
 void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen, bool showCursor)
 {
-	exInit();	// Init ExCore.dll
+	ExCoreInit();	// Init ExCore.dll
 
 	width = w;
 	height = h;
@@ -121,28 +121,51 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 
 	// OpenGL properties
 	//glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
-	//glEnable(GL_CULL_FACE);
-	//glCullFace(GL_FRONT);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 	glClearColor(0.075f, 0.075f, 0.075f, 1.0f);
 	glViewport(0, 0, width, height);
 
 
-	// Initialise default action mapping data
+	// Initialise world information
+	WorldInfo::SetFramesPerSecond(6.f);
 	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveFoward", GLFW_KEY_W, GLFW_PRESS, A_MOVE_FORWARD));
 	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveBackward", GLFW_KEY_S, GLFW_PRESS, A_MOVE_BACKWARD));
 	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveLeft", GLFW_KEY_A, GLFW_PRESS, A_MOVE_LEFT));
 	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveRight", GLFW_KEY_D, GLFW_PRESS, A_MOVE_RIGHT));
 
-	// ------------- TEMP -------------
-	//tt = std::make_unique<TriangleTest>();
-	// --------------------------------
-	
+
+	/* -------------------------------- INITIALISE ENGINE PIPELINE -------------------------------- */
+	// Initialise render master
 	RenderMaster::Initialise(USE_OPENGL | USE_FORWARD);
 
+	// Initialise world
 	World::Initialise();
 
-	World::map->AddActor(std::make_shared<CameraPerspective3D>());
+	// Get reference to OpenGL shaders from current gl render object
+	std::vector<std::shared_ptr<Shader>> gl_shaders = std::dynamic_pointer_cast<GLRenderMode>(RenderMaster::GetRenderPipeline()->GetRenderObject())->GetShaders();
+	
+	// Add default camera object
+	World::map->AddActor(std::make_shared<CameraPerspective3D>(
+		gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
+		.1f,
+		1000.f,
+		45.f,
+		STATIC_CAST(float, width / height),
+		10.f,
+		.0f,
+		.0f,
+		glm::vec2(.25f),
+		glm::vec3(.0f),
+		SpringArm(85.f, glm::vec3(.0f))));
+
+	// -------------------------------- TEMP --------------------------------
 	World::map->AddActor(ContentManager::bsps[BSP_PLANE]);
+	// -------------------------------- TEMP --------------------------------
+
+
+	// Compile dynamic actors
+	LogicManager::CompileDynamics();
 }
 
 void Client::Destroy()
@@ -176,8 +199,7 @@ void Client::MousePositionEvent(GLFWwindow* window, double xpos, double ypos)
 
 void Client::Update()
 {
-	// Interpolation, Physics ect...
-	//LogicMaster::Update();
+	LogicManager::Update();
 }
 
 void Client::Render(double &delta)
@@ -215,9 +237,6 @@ void Client::Run()
 		glfwPollEvents();
 	}
 }
-
-
-//std::unique_ptr<TriangleTest>		Editor::tt;
 
 int									Client::width;
 int									Client::height;

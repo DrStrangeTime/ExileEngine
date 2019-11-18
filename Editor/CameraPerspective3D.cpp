@@ -1,8 +1,12 @@
 #include "CameraPerspective3D.h"
 
-
 CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, float far, float fov, float ratio, float speed, float yaw, float pitch, glm::vec2 look_sensitivity, glm::vec3 position, SpringArm spring_arm)
 {
+	_active = true;
+	_dynamic = true;
+	_type = A_CAMERA;
+	_name = "Perspective_cam";
+
 	_near = near;
 	_far = far;
 	_fov = fov;
@@ -18,7 +22,7 @@ CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, fl
 	_right = WORLD_RIGHT;
 	_world_up_vector = _up;
 
-	UpdateLookVectors();
+	UpdateMouseRotation(.0f, .0f);
 	UpdateViewMatrix();
 	UpdateProjectionMatrix();
 
@@ -26,15 +30,46 @@ CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, fl
 	_u_proj = glGetUniformLocation(shader_program, "proj");
 }
 
+/* Copy constructor */
+CameraPerspective3D::CameraPerspective3D(const CameraPerspective3D& x)
+{
+	_active = x._active;
+	_dynamic = x._dynamic;
+	_type = x._type;
+	_name = x._name;
+
+	_near = x._near;
+	_far = x._far;
+	_fov = x._fov;
+	_ratio = x._ratio;
+	_speed = x._speed;
+	_yaw = x._yaw;
+	_pitch = x._pitch;
+	_look_sensitivity = x._look_sensitivity;
+	_trans.p = x._trans.p;
+	_spring_arm = x._spring_arm;
+	_front = x._front;
+	_up = x._up;
+	_right = x._right;
+	_world_up_vector = x._world_up_vector;
+
+	UpdateMouseRotation(.0f, .0f);
+	UpdateViewMatrix();
+	UpdateProjectionMatrix();
+
+	_u_view = x._u_view;
+	_u_proj = x._u_proj;
+}
+
 void CameraPerspective3D::Update()
 {
-	ExCore::KeyInput::GetKeyState(GLFW_KEY_W) ? _local_dir |= LOOK_DIR_FRONT : _local_dir &= ~LOOK_DIR_FRONT_RIGHT;
+	ExCore::KeyInput::GetKeyState(GLFW_KEY_W) ? _local_dir |= LOOK_DIR_FRONT : _local_dir &= ~LOOK_DIR_FRONT;
 }
 
 void CameraPerspective3D::Render()
 {
-	glUniformMatrix4fv(_u_view, 1, GL_FALSE, value_ptr(_view));
 	glUniformMatrix4fv(_u_proj, 1, GL_FALSE, value_ptr(_projection));
+	glUniformMatrix4fv(_u_view, 1, GL_FALSE, value_ptr(_view));
 }
 
 void CameraPerspective3D::UpdateViewMatrix()

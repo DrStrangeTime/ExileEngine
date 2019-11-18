@@ -6,8 +6,6 @@ bool ActorTypeSmaller(std::shared_ptr<Actor> a1, std::shared_ptr<Actor> a2)
 	return a1->GetType() < a2->GetType();
 }
 
-
-Map::Map() {}
 Map::Map(std::string name)
 {
 	SetName(name);
@@ -27,7 +25,7 @@ uint32_t Map::GetActorIndexByName(std::string value)
 			return static_cast<uint32_t>(i);
 	}
 
-	exLogErr("Failed to find actor index by name!");
+	ExLogErr("Failed to find actor index by name!");
 
 	return 0;
 }
@@ -41,7 +39,7 @@ std::shared_ptr<Actor> Map::GetActorByName(std::string value)
 			return _actors[i];
 	}
 
-	exLogErr("Failed to find actor by name!");
+	ExLogErr("Failed to find actor by name!");
 
 	return nullptr;
 }
@@ -63,7 +61,7 @@ void Map::SortActorsByType()
 
 void Map::BindPlayerController()
 {
-	// _player_controller_ref->Render();
+	_actors[0]->Render();
 }
 
 void Map::BindStaticMeshData()
@@ -152,9 +150,6 @@ void Map::AddActor(std::shared_ptr<Actor> value)
 		{
 			switch (type_list[i])
 			{
-			case A_PLAYER_CONTROLLER:
-				// _player_controller_ref = value;
-				break;
 			case A_STATIC_MESH:
 				_staticMeshOffsetData = OffsetData(begin_list[i], end_list[i]);
 				break;

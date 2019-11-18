@@ -44,7 +44,6 @@ private:
 	SpringArm	_spring_arm;
 	
 public:
-	/* Default constructor */
 	CameraPerspective3D() : _fov(CAMERA_FIELD_OF_VIEW),
 							_yaw(CAMERA_YAW),
 							_pitch(CAMERA_PITCH),
@@ -56,8 +55,18 @@ public:
 							_right(glm::vec3(.0f)), 
 							_spring_arm(SpringArm()) {}
 
-
-	CameraPerspective3D(uint32_t shader_program, float near, float far, float fov, float ratio, float speed, float yaw, float pitch, glm::vec2 look_sensitivity, glm::vec3 position, SpringArm spring_arm);
+	CameraPerspective3D(const CameraPerspective3D& x);	// Copy constructor
+	CameraPerspective3D(	uint32_t shader_program, 
+							float near, 
+							float far, 
+							float fov, 
+							float ratio, 
+							float speed, 
+							float yaw, 
+							float pitch, 
+							glm::vec2 look_sensitivity, 
+							glm::vec3 position, 
+							SpringArm spring_arm	);
 
 
 

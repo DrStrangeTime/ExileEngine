@@ -14,13 +14,17 @@ class Material
 protected:
 	float									_s;
 	float									_t;
+	bool									_two_sided;
 	uint16_t								_material_type;
 	std::string								_name;
 	std::vector<uint32_t>					_uniforms;
 	std::vector<std::shared_ptr<Texture>>	_textures;
 
 public:
-	Material() : _s(1.f), _t(1.f),_material_type(0) {}
+	Material() :	_s(1.f), 
+					_t(1.f),
+					_two_sided(false),
+					_material_type(0) {}
 
 	float& GetS();
 	float& GetT();

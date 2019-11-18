@@ -18,8 +18,6 @@ void GLRenderPipeline::Initialise(uint32_t render_mode)
 
 	ExCore::Logger::PrintInfo("RENDER_INFO::API::OPENGL");
 #endif
-
-	ContentManager::Initialise();
 }
 
 void GLRenderPipeline::Render(double& delta)

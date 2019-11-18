@@ -1,6 +1,5 @@
 #include "Actor.h"
 
-
 Actor::Actor()
 {
 	_name = "Actor";
@@ -11,15 +10,31 @@ Actor::Actor()
 	_trans.r = glm::vec3(0.0f);
 	_trans.s = glm::vec3(1.0f);
 	_trans.m = glm::mat4(1.0f);
+
 	Transform::MakeModel(_trans, _trans.m);
 }
 
-bool& Actor::GetActive()
+// Copy constructor
+Actor::Actor(const Actor& x)
+{
+	_name = x._name;
+	_active = x._active;
+	_dynamic = x._dynamic;
+	_type = x._type;
+	_trans.p = x._trans.p;
+	_trans.r = x._trans.r;
+	_trans.s = x._trans.s;
+	_trans.m = x._trans.m;
+
+	Transform::MakeModel(_trans, _trans.m);
+}
+
+bool& Actor::IsActive()
 {
 	return _active;
 }
 
-bool& Actor::GetDynamic()
+bool& Actor::IsDynamic()
 {
 	return _dynamic;
 }
@@ -44,7 +59,7 @@ std::shared_ptr<Actor> Actor::GetComponentByName(std::string x)
 			return _components[i];
 	}
 
-	exLogErr("Failed to find component by name!");
+	ExLogErr("Failed to find component by name!");
 
 	return nullptr;
 }
@@ -53,7 +68,7 @@ std::shared_ptr<Actor> Actor::GetComponentByIndex(unsigned int x)
 {
 	if (x > _components.size() - 1)
 	{
-		exLogErr("Component Index is out of bounds!");
+		ExLogErr("Component Index is out of bounds!");
 		return nullptr;
 	}
 
@@ -102,14 +117,14 @@ void Actor::RemoveComponentByName(std::string x)
 		}
 	}
 
-	exLogErr("Failed to find component by name!");
+	ExLogErr("Failed to find component by name!");
 }
 
 void Actor::RemoveComponentByIndex(unsigned int x)
 {
 	if (x > _components.size() - 1)
 	{
-		exLogErr("Component Index is out of bounds!");
+		ExLogErr("Component Index is out of bounds!");
 		return;
 	}
 

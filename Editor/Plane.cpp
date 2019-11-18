@@ -1,7 +1,7 @@
 #include "Plane.h"
 #include "ContentManager.h"
 
-Plane::Plane(float x, float y, float z, uint16_t direction, float w, float h, uint32_t mat_id)
+Plane::Plane(uint32_t& shader_program, float x, float y, float z, uint16_t direction, float w, float h, uint32_t mat_id)
 {
 	_mat_id = mat_id;
 	_active = true;
@@ -24,9 +24,10 @@ Plane::Plane(float x, float y, float z, uint16_t direction, float w, float h, ui
 															STATIC_CAST(float, mat_id),
 															STATIC_CAST(float, mat_id) }) });
 
-	std::vector<uint32_t> indices =						{	0, 1, 3,						// INDEX DATA
-															1, 2, 3 };
+	std::vector<uint32_t> indices =						{	3, 2, 1,						// INDEX DATA
+															3, 1, 0 };
 
+	//_vertex_data.vertexElements.reserve(1);
 	//_vertex_data.vertexElements.emplace_back(VertexElement(3, {}));		// Create empty container for tangents
 	//_vertex_data.vertexElements[3] = VertexOptimiser::PackTangents(indices, _vertex_data.vertexElements[2]);
 
@@ -46,10 +47,13 @@ Plane::Plane(float x, float y, float z, uint16_t direction, float w, float h, ui
 		_trans.r.z = 90.0f;
 
 	Transform::MakeModel(_trans, _trans.m);
+
+	_u_model = glGetUniformLocation(shader_program, "model");
 }
 
 void Plane::Render()
 {
+	glUniformMatrix4fv(_u_model, 1, GL_FALSE, glm::value_ptr(_trans.m));
 	ContentManager::materials[_mat_id]->Bind();
 	_index_buffer_object->Bind();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

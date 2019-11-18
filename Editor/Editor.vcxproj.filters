@@ -253,14 +253,13 @@
     <ClCompile Include="VertexArrayObject.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
-    <ClCompile Include="CameraPerspective3D.cpp" />
+    <ClCompile Include="CameraPerspective3D.cpp">
+      <Filter>Core\OpenGL\Objects\Actors\Cameras</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vertex.h">
       <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="TriangleTest.h">
-      <Filter>Core\OpenGL\Objects\Actors\BinarySpacePartitions</Filter>
     </ClInclude>
     <ClInclude Include="Buffer.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
@@ -406,6 +405,8 @@
     <ClInclude Include="VertexArrayObject.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
-    <ClInclude Include="CameraPerspective3D.h" />
+    <ClInclude Include="CameraPerspective3D.h">
+      <Filter>Core\OpenGL\Objects\Actors\Cameras</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

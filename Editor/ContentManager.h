@@ -27,8 +27,6 @@
 class ContentManager
 {
 public:
-	static void Initialise();
-
 	static std::shared_ptr<BinarySpacePartition>		bsps[4];
 	static std::vector<std::shared_ptr<AlbedoT>>		albedo_textures;
 	static std::vector<std::shared_ptr<Material>>		materials;

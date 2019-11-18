@@ -18,11 +18,10 @@ private:
 	OffsetData								_lightOffsetData;
 	OffsetData								_particleOffsetData;
 
-	//std::shared_ptr<PlayerController>		_player_controller_ref;
 	std::vector <std::shared_ptr<Actor>>	_actors;
 
 public:
-	Map();
+	Map() = default;
 	Map(std::string name);
 
 	uint32_t								GetActorIndexByName(std::string value);

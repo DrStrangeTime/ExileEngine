@@ -1,5 +1,22 @@
 #include "Camera.h"
 
+/* Copy constructor */
+Camera::Camera(const Camera& x)
+{
+	_cam_type = x._cam_type;
+	_local_dir = x._local_dir;
+	_near = x._near;
+	_far = x._far;
+	_ratio = x._ratio;
+	_speed = x._speed;
+	_velocity = x._velocity;
+	_world_up_vector = x._world_up_vector;
+	_view = x._view;
+	_projection = x._projection;
+	_u_view = x._u_view;
+	_u_proj = x._u_proj;
+}
+
 uint16_t& Camera::GetCameraType()
 {
 	return _cam_type;

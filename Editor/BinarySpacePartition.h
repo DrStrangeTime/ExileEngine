@@ -21,6 +21,7 @@ protected:
 	uint16_t							_arbitrary_type;
 
 	uint32_t							_mat_id;
+	uint32_t							_u_model;
 
 	VertexData							_vertex_data;
 
@@ -31,7 +32,7 @@ protected:
 	void								Inverse();
 
 public:
-	BinarySpacePartition() : _mat_id(0), _cull_mode(0), _arbitrary_type(0) {}
+	BinarySpacePartition() : _mat_id(0), _u_model(0), _cull_mode(0), _arbitrary_type(0) {}
 
 	VertexData&							GetVertexData();
 

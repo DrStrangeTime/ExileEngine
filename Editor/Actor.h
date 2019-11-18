@@ -61,6 +61,7 @@ protected:
 
 public:
 	Actor();
+	Actor(const Actor &x);
 
 	virtual void EventKey(int key, int scancode, int mods) = 0;
 	virtual void EventMouseButton(int button, int action, int mods) = 0;
@@ -68,8 +69,8 @@ public:
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 
-	bool& GetActive();
-	bool& GetDynamic();
+	bool& IsActive();
+	bool& IsDynamic();
 	uint32_t& GetType();
 	Transform::Data& GetTransform();
 	std::shared_ptr<Actor> GetComponentByName(std::string x);

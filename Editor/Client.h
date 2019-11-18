@@ -1,7 +1,7 @@
 #pragma once
 
-//#include "TriangleTest.h"
 #include "RenderMaster.h"
+#include "LogicManager.h"
 
 
 /* Editor derives from the Exile::Core application interface. */
