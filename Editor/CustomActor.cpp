@@ -16,7 +16,7 @@ CustomActor::CustomActor(std::string n, glm::vec3 p, glm::vec3 r, glm::vec3 s)
 
 	_trans.m = glm::mat4(1.0f);
 
-	Transform::MakeModel(_trans, _trans.m);
+	MakeModel();
 }
 
 void CustomActor::EventKey(int key, int scancode, int mods)

@@ -1,2 +1,5 @@
 Editor
-- Camera controls
+- Fix look direction on camera initialisation
+- Add mouse input macros for setters and getters
+- Create a bool var in camera class for checking if camera view needs updating
+- Fix camera smoothstep rotation

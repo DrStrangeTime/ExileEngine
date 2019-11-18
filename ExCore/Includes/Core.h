@@ -6,13 +6,17 @@
 #include "FixedTimestep.h"
 
 // Gloal macro definitions
-#define ExCoreInit()				ExCore::Logger::Initialise()
+#define ExCoreInit()					ExCore::Logger::Initialise()
 
 // Logging marco definitions
-#define ExLogInfo(...)				ExCore::Logger::PrintInfo(__VA_ARGS__)
-#define ExLogWar(...)				ExCore::Logger::PrintWar(__VA_ARGS__)
-#define ExLogErr(...)				ExCore::Logger::PrintErr(__VA_ARGS__)
-#define ExLogArr(...)				ExCore::Logger::PrintArr(__VA_ARGS__)
+#define ExLogInfo(...)					ExCore::Logger::PrintInfo(__VA_ARGS__)
+#define ExLogWar(...)					ExCore::Logger::PrintWar(__VA_ARGS__)
+#define ExLogErr(...)					ExCore::Logger::PrintErr(__VA_ARGS__)
+#define ExLogArr(...)					ExCore::Logger::PrintArr(__VA_ARGS__)
+
+/* Input definitions */
+#define ExGetMouseXNormalised(...)		ExCore::MouseInput::GetMouseXNormalised(__VA_ARGS__)
+#define ExGetMouseYNormalised(...)		ExCore::MouseInput::GetMouseYNormalised(__VA_ARGS__)
 
 /* Redefinitions */
 #define STATIC_CAST(cast_to, obj)		static_cast<cast_to>(obj)

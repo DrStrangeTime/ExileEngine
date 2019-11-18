@@ -29,6 +29,7 @@ void ExCore::MouseInput::UpdatePosition(double xpos, double ypos)
 {
 	_ex_x = xpos;
 	_ex_y = ypos;
+	std::cout << "UPDATING!\n";
 }
 
 void ExCore::MouseInput::UpdateScroll(double xoffset, double yoffset)
@@ -47,6 +48,36 @@ double& ExCore::MouseInput::GetMouseX()
 double& ExCore::MouseInput::GetMouseY()
 {
 	return _ex_y;
+}
+
+double& ExCore::MouseInput::GetMouseXOffset()
+{
+	return _ex_x_offset;
+}
+
+double& ExCore::MouseInput::GetMouseYOffset()
+{
+	return _ex_y_offset;
+}
+
+double& ExCore::MouseInput::GetMouseXLast()
+{
+	return _ex_x_last;
+}
+
+double& ExCore::MouseInput::GetMouseYLast()
+{
+	return _ex_y_last;
+}
+
+double ExCore::MouseInput::GetMouseXNormalised(double width)
+{
+	return ((_ex_x / width) * 2) - 1;
+}
+
+double ExCore::MouseInput::GetMouseYNormalised(double height)
+{
+	return -(((_ex_y / height) * 2) - 1);
 }
 
 bool& ExCore::MouseInput::GetMouseLeftState()
@@ -74,10 +105,34 @@ int& ExCore::MouseInput::GetMouseButtonState()
 	return _current_button;
 }
 
+void ExCore::MouseInput::SetMouseXOffset(double value)
+{
+	_ex_x_offset = value;
+}
+
+void ExCore::MouseInput::SetMouseYOffset(double value)
+{
+	_ex_y_offset = value;
+}
+
+void ExCore::MouseInput::SetMouseXLast(double value)
+{
+	_ex_x_last = value;
+}
+
+void ExCore::MouseInput::SetMouseYLast(double value)
+{
+	_ex_y_last = value;
+}
+
 bool	ExCore::MouseInput::_ex_mouse_left;
 bool	ExCore::MouseInput::_ex_mouse_right;
 bool	ExCore::MouseInput::_ex_mouse_middle;
 double	ExCore::MouseInput::_ex_x;
 double	ExCore::MouseInput::_ex_y;
+double	ExCore::MouseInput::_ex_x_offset;
+double	ExCore::MouseInput::_ex_y_offset;
+double	ExCore::MouseInput::_ex_x_last;
+double	ExCore::MouseInput::_ex_y_last;
 int		ExCore::MouseInput::_ex_scroll_state;
 int		ExCore::MouseInput::_current_button;

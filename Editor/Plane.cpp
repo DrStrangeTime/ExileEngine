@@ -9,10 +9,10 @@ Plane::Plane(uint32_t& shader_program, float x, float y, float z, uint16_t direc
 
 	_type = A_STATIC_MESH;
 
-	_vertex_data = VertexData(6, { VertexElement(3,		{	0.5f,  0.5f, 0.0f,				// VERTEX POSITIONS
-															0.5f, -0.5f, 0.0f,
-														   -0.5f, -0.5f, 0.0f,
-														   -0.5f,  0.5f, 0.0f }),
+	_vertex_data = VertexData(6, { VertexElement(3,		{	w / 2.f,  h / 2.f, 0.0f,		// VERTEX POSITIONS
+															w / 2.f, -h / 2.f, 0.0f,
+														   -w / 2.f, -h / 2.f, 0.0f,
+														   -w / 2.f,  h / 2.f, 0.0f }),
 
 									VertexElement(2,	{   1.0f, 1.0f,						// VERTEX TEXCOORDS
 															1.0f, 0.0f,
@@ -46,7 +46,7 @@ Plane::Plane(uint32_t& shader_program, float x, float y, float z, uint16_t direc
 	else if (direction == PLANE_DIR_Y)
 		_trans.r.z = 90.0f;
 
-	Transform::MakeModel(_trans, _trans.m);
+	MakeModel();
 
 	_u_model = glGetUniformLocation(shader_program, "model");
 }

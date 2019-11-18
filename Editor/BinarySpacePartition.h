@@ -34,6 +34,8 @@ protected:
 public:
 	BinarySpacePartition() : _mat_id(0), _u_model(0), _cull_mode(0), _arbitrary_type(0) {}
 
+	virtual ~BinarySpacePartition() {}
+
 	VertexData&							GetVertexData();
 
 	void								SetMatID(uint32_t value);

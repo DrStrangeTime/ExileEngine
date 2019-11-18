@@ -68,7 +68,7 @@ public:
 							glm::vec3 position, 
 							SpringArm spring_arm	);
 
-
+	virtual ~CameraPerspective3D() {}
 
 	virtual void	EventKey(int key, int scancode, int mods) override {}
 	virtual void	EventMouseButton(int button, int action, int mods) override {}
@@ -79,10 +79,10 @@ public:
 
 	virtual void	UpdateViewMatrix() override;
 	virtual void	UpdateProjectionMatrix() override;
+	virtual void	UpdateAspectRatio(float aspect) override;
 	virtual void	UpdateLookVectors() override;
+	virtual void	UpdateMouseRotation(double x_pos, double y_pos) override;
 	virtual void	Move(float speed, glm::vec3 velocity) override;
-
-	void			UpdateMouseRotation(double x_pos, double y_pos);
 };
 
 #endif

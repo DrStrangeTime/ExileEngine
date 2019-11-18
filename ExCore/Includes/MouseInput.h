@@ -16,7 +16,11 @@ namespace ExCore
 
 		static double	_ex_x;
 		static double	_ex_y;
-		
+		static double	_ex_x_offset;
+		static double	_ex_y_offset;
+		static double	_ex_x_last;
+		static double	_ex_y_last;
+
 		static int		_ex_scroll_state;
 	
 	public:
@@ -26,6 +30,13 @@ namespace ExCore
 
 		static double&	GetMouseX();
 		static double&	GetMouseY();
+		static double&	GetMouseXOffset();
+		static double&	GetMouseYOffset();
+		static double&	GetMouseXLast();
+		static double&	GetMouseYLast();
+
+		static double	GetMouseXNormalised(double width);
+		static double	GetMouseYNormalised(double height);
 
 		static bool&	GetMouseLeftState();
 		static bool&	GetMouseMiddleState();
@@ -33,6 +44,11 @@ namespace ExCore
 
 		static int&		GetMouseScrollState();
 		static int&		GetMouseButtonState();
+
+		static void		SetMouseXOffset(double value);
+		static void		SetMouseYOffset(double value);
+		static void		SetMouseXLast(double value);
+		static void		SetMouseYLast(double value);
 	};
 }
 

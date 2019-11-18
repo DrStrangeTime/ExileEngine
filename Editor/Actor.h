@@ -1,42 +1,42 @@
 #ifndef __ACTOR_H__
 #define __ACTOR_H__
 
-#define A_PLAYER_CONTROLLER	0
-#define A_SPRITE			1
-#define A_STATIC_MESH		2
-#define A_SKELETAL_MESH		3
-#define A_LIGHT				4
-#define A_RIGID_BODY		5
-#define A_CAMERA			6
-#define A_AUDIO_CLIP		7	
-#define A_PARTICLE			8
-#define A_PARTICLE_SYSTEM	9	
-#define A_EVENT				10
-#define A_ANIM_SEQUENCE		11
-#define A_TRIGGER_VOLUME	12
-#define A_BLOCK_VOLUME		13
-#define A_POST_FX_VOLUME	14
-#define A_PAWN				15	
-#define A_CONTROLLER		16
-#define A_PLAYER			17
-#define A_PATH_NODE			18
-#define A_PATH_NODE_SYSTEM	19
-#define A_LERP_CONTROL		20
-#define A_PROJECTILE		21
-#define A_PROJECTOR			22
-#define A_MESH_COLLIDER		23
-#define A_BOX_COLLIDER		24
-#define A_CAPSULE_COLLIDER	25
-#define A_RADIAL_COLLIDER	26
-#define A_MAP				27
-#define A_CUSTOM			28
-#define A_BSP				29
+#define A_CAMERA				0
+#define A_SPRITE				1
+#define A_STATIC_MESH			2
+#define A_SKELETAL_MESH			3
+#define A_LIGHT					4
+#define A_RIGID_BODY			5
+#define A_PLAYER_CONTROLLER		6
+#define A_AUDIO_CLIP			7	
+#define A_PARTICLE				8
+#define A_PARTICLE_SYSTEM		9	
+#define A_EVENT					10
+#define A_ANIM_SEQUENCE			11
+#define A_TRIGGER_VOLUME		12
+#define A_BLOCK_VOLUME			13
+#define A_POST_FX_VOLUME		14
+#define A_PAWN					15	
+#define A_CONTROLLER			16
+#define A_PLAYER				17
+#define A_PATH_NODE				18
+#define A_PATH_NODE_SYSTEM		19
+#define A_LERP_CONTROL			20
+#define A_PROJECTILE			21
+#define A_PROJECTOR				22
+#define A_MESH_COLLIDER			23
+#define A_BOX_COLLIDER			24
+#define A_CAPSULE_COLLIDER		25
+#define A_RADIAL_COLLIDER		26
+#define A_MAP					27
+#define A_CUSTOM				28
+#define A_BSP					29
 
-#define NUM_ACTOR_TYPES		30
+#define NUM_ACTOR_TYPES			30
 
-#define LOOK_X				glm::vec3(1.0f, 0.0f, 0.0f);
-#define LOOK_Y				glm::vec3(0.0f, 1.0f, 0.0f);
-#define LOOK_Z				glm::vec3(0.0f, 0.0f, 1.0f);
+#define LOOK_X					glm::vec3(1.0f, 0.0f, 0.0f);
+#define LOOK_Y					glm::vec3(0.0f, 1.0f, 0.0f);
+#define LOOK_Z					glm::vec3(0.0f, 0.0f, 1.0f);
 
 
 #include "Object.h"
@@ -62,6 +62,7 @@ protected:
 public:
 	Actor();
 	Actor(const Actor &x);
+	virtual ~Actor() {}
 
 	virtual void EventKey(int key, int scancode, int mods) = 0;
 	virtual void EventMouseButton(int button, int action, int mods) = 0;
@@ -81,6 +82,7 @@ public:
 	void SetDynamic(bool x);
 	void SetType(uint32_t x);
 	void SetTransform(Transform::Data x);
+	void MakeModel();
 
 	void AddComponent(std::shared_ptr<Actor> x);
 	void RemoveComponentByName(std::string x);

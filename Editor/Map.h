@@ -27,6 +27,8 @@ public:
 	uint32_t								GetActorIndexByName(std::string value);
 	std::shared_ptr<Actor>					GetActorByName(std::string value);
 	std::vector<std::shared_ptr<Actor>>&	GetActors();
+
+	std::shared_ptr<Camera>					GetCameraObject();
 	
 	void									AddActor(std::shared_ptr<Actor> value);
 	void									RemoveActorByIndex(uint32_t value);

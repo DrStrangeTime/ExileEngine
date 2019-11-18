@@ -17,7 +17,7 @@ bool Client::isRunning()
 
 Client::Client()
 {
-	Create(600, 500, "Exile Engine", false, false, true);
+	Create(1920, 1080, "Exile Engine", false, true, false);
 }
 
 Client::~Client()
@@ -50,9 +50,18 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	if (maximise)
 		glfwWindowHint(GLFW_MAXIMIZED, 1);
 
+	// Assign width and height of screen
+	if (fullscreen)
+	{
+		mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+		width = mode->width;
+		height = mode->height;
+	}
 
 	// Initialise windows
-	window = glfwCreateWindow(width, height, title, NULL, NULL);
+	window = glfwCreateWindow(width, height, title, fullscreen ? glfwGetPrimaryMonitor() : NULL, NULL);
+	ExLogInfo(std::to_string(width) + " " + std::to_string(height));
 	if (!window)
 	{
 #ifdef _DEBUG
@@ -62,14 +71,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 		exit(EXIT_FAILURE);
 	}
 
-	// Assign width and height of screen
-	if (fullscreen)
-	{
-		const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-
-		width = mode->width;
-		height = mode->height;
-	}
+	
 
 	// Initialise cursor
 	ExCore::Cursor::Initialise(GLFW_ARROW_CURSOR);
@@ -142,20 +144,37 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	// Initialise world
 	World::Initialise();
 
+	/* ----------------------------- INITIALISE DEFAULT CONTENT (TEMP) PIPELINE ----------------------------- */
 	// Get reference to OpenGL shaders from current gl render object
 	std::vector<std::shared_ptr<Shader>> gl_shaders = std::dynamic_pointer_cast<GLRenderMode>(RenderMaster::GetRenderPipeline()->GetRenderObject())->GetShaders();
 	
+	// BSP data
+	ContentManager::bsps[0] = std::make_shared<Plane>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(), .0f, .0f, -5.f, PLANE_DIR_Z, 1.f, 1.f, 0);
+	// Texture data
+	ContentManager::albedo_textures.emplace_back(std::make_shared<AlbedoT>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
+		"textures/default_a.tga",
+		"default_albedo",
+		GL_REPEAT,
+		GL_LINEAR,
+		0)); // Mat ID
+	// Material data
+	std::vector<std::shared_ptr<Texture>> textures = { ContentManager::albedo_textures[0] };
+	ContentManager::materials.emplace_back(std::make_shared<OpaqueFM>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
+		"default_mat",
+		false,
+		textures));
+
 	// Add default camera object
 	World::map->AddActor(std::make_shared<CameraPerspective3D>(
 		gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
 		.1f,
 		1000.f,
 		45.f,
-		STATIC_CAST(float, width / height),
+		STATIC_CAST(float, width) / STATIC_CAST(float, height),
 		10.f,
 		.0f,
 		.0f,
-		glm::vec2(.25f),
+		glm::vec2(0.4f),
 		glm::vec3(.0f),
 		SpringArm(85.f, glm::vec3(.0f))));
 
@@ -163,9 +182,9 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	World::map->AddActor(ContentManager::bsps[BSP_PLANE]);
 	// -------------------------------- TEMP --------------------------------
 
-
 	// Compile dynamic actors
 	LogicManager::CompileDynamics();
+
 }
 
 void Client::Destroy()
@@ -194,6 +213,14 @@ void Client::MouseScrollEvent(GLFWwindow* window, double xoffset, double yoffset
 void Client::MousePositionEvent(GLFWwindow* window, double xpos, double ypos)
 {
 	ExCore::MouseInput::UpdatePosition(xpos, ypos);
+
+	ExCore::MouseInput::SetMouseXOffset(ExCore::MouseInput::GetMouseX() - ExCore::MouseInput::GetMouseXLast());
+	ExCore::MouseInput::SetMouseYOffset(ExCore::MouseInput::GetMouseY() - ExCore::MouseInput::GetMouseYLast());
+
+	ExCore::MouseInput::SetMouseXLast(ExCore::MouseInput::GetMouseX());
+	ExCore::MouseInput::SetMouseYLast(ExCore::MouseInput::GetMouseY());
+
+	World::map->GetCameraObject()->UpdateMouseRotation(ExCore::MouseInput::GetMouseXOffset(), -ExCore::MouseInput::GetMouseYOffset());
 }
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -242,4 +269,5 @@ int									Client::width;
 int									Client::height;
 const char*							Client::title;
 GLFWwindow*							Client::window;
+const GLFWvidmode*					Client::mode;
 ExCore::RenderDevice::Properties	Client::rdp;

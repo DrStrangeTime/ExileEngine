@@ -64,6 +64,8 @@ CameraPerspective3D::CameraPerspective3D(const CameraPerspective3D& x)
 void CameraPerspective3D::Update()
 {
 	ExCore::KeyInput::GetKeyState(GLFW_KEY_W) ? _local_dir |= LOOK_DIR_FRONT : _local_dir &= ~LOOK_DIR_FRONT;
+
+	UpdateViewMatrix(); // TEMP
 }
 
 void CameraPerspective3D::Render()
@@ -84,6 +86,12 @@ void CameraPerspective3D::UpdateViewMatrix()
 void CameraPerspective3D::UpdateProjectionMatrix()
 {
 	_projection = glm::perspective(_fov, _ratio, _near, _far);
+}
+
+void CameraPerspective3D::UpdateAspectRatio(float aspect)
+{
+	_ratio = aspect;
+	UpdateProjectionMatrix();
 }
 
 void CameraPerspective3D::UpdateLookVectors()
@@ -112,14 +120,14 @@ void CameraPerspective3D::UpdateMouseRotation(double x_pos, double y_pos)
 	x_pos *= _look_sensitivity.x;
 	y_pos *= _look_sensitivity.y;
 
-	_yaw += STATIC_CAST(float, x_pos);
-	_pitch += STATIC_CAST(float,y_pos);
+	_yaw += static_cast<float>(x_pos);
+	_pitch += static_cast<float>(y_pos);
 
 	if (_yaw > 360.0f)	_yaw = 0.0f;
 	if (_yaw < 0.0f)	_yaw = 360.0f;
 
 	if (_pitch > _spring_arm.pitch_threshold)	_pitch = _spring_arm.pitch_threshold;
 	if (_pitch < -_spring_arm.pitch_threshold)	_pitch = -_spring_arm.pitch_threshold;
-
+	
 	UpdateLookVectors();
 }

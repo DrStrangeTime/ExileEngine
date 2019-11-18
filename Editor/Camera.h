@@ -73,10 +73,11 @@ public:
 
 	Camera(const Camera& x);	// Copy constructor
 
+	~Camera() {}
+
 	virtual void	EventKey(int key, int scancode, int mods) = 0;
 	virtual void	EventMouseButton(int button, int action, int mods) = 0;
 	virtual void	EventMouseScroll(double xoffset, double yoffset) = 0;
-
 	virtual void	Update() = 0;
 	virtual void	Render() = 0;
 
@@ -104,7 +105,9 @@ public:
 
 	virtual void	UpdateViewMatrix() = 0;
 	virtual void	UpdateProjectionMatrix() = 0;
+	virtual void	UpdateAspectRatio(float aspect) = 0;
 	virtual void	UpdateLookVectors() = 0;
+	virtual void	UpdateMouseRotation(double x_pos, double y_pos) = 0;
 	virtual void	Move(float speed, glm::vec3 velocity) = 0;
 };
 

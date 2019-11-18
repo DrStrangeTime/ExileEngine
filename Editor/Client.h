@@ -8,14 +8,11 @@
 class Client : public ExCore::Application
 {
 private:
-	// ------------- TEMP -------------
-	//static std::unique_ptr<TriangleTest>	tt;
-	// --------------------------------
-
 	static int								width;
 	static int								height;
 	static const char*						title;
 	static GLFWwindow*						window;
+	static const GLFWvidmode*				mode;
 	static ExCore::RenderDevice::Properties	rdp;
 
 public:

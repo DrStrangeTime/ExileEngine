@@ -11,7 +11,7 @@ Actor::Actor()
 	_trans.s = glm::vec3(1.0f);
 	_trans.m = glm::mat4(1.0f);
 
-	Transform::MakeModel(_trans, _trans.m);
+	MakeModel();
 }
 
 // Copy constructor
@@ -26,7 +26,7 @@ Actor::Actor(const Actor& x)
 	_trans.s = x._trans.s;
 	_trans.m = x._trans.m;
 
-	Transform::MakeModel(_trans, _trans.m);
+	MakeModel();
 }
 
 bool& Actor::IsActive()
@@ -98,6 +98,15 @@ void Actor::SetType(uint32_t x)
 void Actor::SetTransform(Transform::Data x)
 {
 	_trans = x;
+}
+
+void Actor::MakeModel()
+{
+	_trans.m = glm::scale(_trans.s) *	// Assign the position
+		glm::rotate(glm::radians(_trans.r.z), glm::vec3(0.0f, 0.0f, 1.0f)) *		// Rotation Z
+		glm::rotate(glm::radians(_trans.r.y), glm::vec3(0.0f, 1.0f, 0.0f)) *		// Rotation Y
+		glm::rotate(glm::radians(_trans.r.x), glm::vec3(1.0f, 0.0f, 0.0f)) *		// Rotation X
+		glm::translate(_trans.p);	// And the scale
 }
 
 void Actor::AddComponent(std::shared_ptr<Actor> x)
