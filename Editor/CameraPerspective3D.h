@@ -8,7 +8,7 @@
 #define CAMERA_PITCH				STATIC_CAST(float, 0.f)
 #define CAMERA_PITCH_THRESHOLD		STATIC_CAST(float, 85.f)
 #define CAMERA_FIELD_OF_VIEW		STATIC_CAST(float, 45.f)
-#define CAMERA_LOOK_SENSITIVITY		STATIC_CAST(glm::vec2, glm::vec2(1.f))
+#define CAMERA_LOOK_SENSITIVITY		STATIC_CAST(double, .1f)
 
 
 /* Contains data for thresholding camera mechanics */
@@ -30,16 +30,15 @@ class CameraPerspective3D : public Camera
 {
 private:
 	float		_fov;
+
 	float		_yaw;
 	float		_pitch;
-
-	glm::vec2	_look_sensitivity;
+	float		_look_sensitivity_x;
+	float		_look_sensitivity_y;
 
 	glm::vec3	_front;
 	glm::vec3	_right;
 	glm::vec3	_up;
-	glm::vec3	_front_right;
-	glm::vec3	_front_left;
 
 	SpringArm	_spring_arm;
 	
@@ -47,10 +46,8 @@ public:
 	CameraPerspective3D() : _fov(CAMERA_FIELD_OF_VIEW),
 							_yaw(CAMERA_YAW),
 							_pitch(CAMERA_PITCH),
-							_look_sensitivity(CAMERA_LOOK_SENSITIVITY),
+							_look_sensitivity_x(CAMERA_LOOK_SENSITIVITY),
 							_front(glm::vec3(.0f)), 
-							_front_right(glm::vec3(.0f)),
-							_front_left(glm::vec3(.0f)),
 							_up(glm::vec3(.0f)), 
 							_right(glm::vec3(.0f)), 
 							_spring_arm(SpringArm()) {}
@@ -62,9 +59,8 @@ public:
 							float fov, 
 							float ratio, 
 							float speed, 
-							float yaw, 
-							float pitch, 
-							glm::vec2 look_sensitivity, 
+							float look_sensitivity_x,
+							float look_sensitivity_y,
 							glm::vec3 position, 
 							SpringArm spring_arm	);
 
@@ -77,11 +73,29 @@ public:
 	virtual void	Update() override;
 	virtual void	Render() override;
 
+	float&			GetFov();
+	float&			GetYaw();
+	float&			GetPitch();
+	float&			GetLookSensitivityX();
+	float&			GetLookSensitivityY();
+	glm::vec3&		GetFrontVector();
+	glm::vec3&		GetRightVector();
+	glm::vec3&		GetUpVector();
+
+	inline void		SetFov(float value) { _fov = value; }
+	inline void		SetYaw(float value) { _yaw = value; }
+	inline void		SetPitch(float value) { _pitch = value; }
+	inline void		SetLookSensitivityX(float value) { _look_sensitivity_x = value; }
+	inline void		SetLookSensitivityY(float value) { _look_sensitivity_y = value; }
+	inline void		SetFrontVector(glm::vec3 value) { _front = value; }
+	inline void		SetRightVector(glm::vec3 value) { _right = value; }
+	inline void		SetUpVector(glm::vec3 value) { _up = value; }
+
 	virtual void	UpdateViewMatrix() override;
 	virtual void	UpdateProjectionMatrix() override;
 	virtual void	UpdateAspectRatio(float aspect) override;
 	virtual void	UpdateLookVectors() override;
-	virtual void	UpdateMouseRotation(double x_pos, double y_pos) override;
+	virtual void	UpdateMouseRotation() override;
 	virtual void	Move(float speed, glm::vec3 velocity) override;
 };
 

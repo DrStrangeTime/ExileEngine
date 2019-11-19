@@ -84,7 +84,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	glfwSetScrollCallback(window, MouseScrollEvent);
 	(!showCursor ? glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED) : glfwSetCursor(window, ExCore::Cursor::GetCursor()));
 	// ----------------------------------------------------------------------------
-
+	
 	// Load app icon
 	GLFWimage icon;
 	icon.pixels = stbi_load("icons/win_icon.png", &icon.width, &icon.height, 0, 4);
@@ -167,15 +167,14 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	// Add default camera object
 	World::map->AddActor(std::make_shared<CameraPerspective3D>(
 		gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
-		.1f,
-		1000.f,
-		45.f,
-		STATIC_CAST(float, width) / STATIC_CAST(float, height),
-		10.f,
-		.0f,
-		.0f,
-		glm::vec2(0.4f),
-		glm::vec3(.0f),
+		.1f,				// Near
+		1000.f,				// Far
+		45.f,				// Fov
+		STATIC_CAST(float, width) / STATIC_CAST(float, height),		// Ratio
+		.1f,				// Speed
+		.22f,				// Sensitivity X
+		.22f,				// Sensitivity Y
+		glm::vec3(.0f),		// Position
 		SpringArm(85.f, glm::vec3(.0f))));
 
 	// -------------------------------- TEMP --------------------------------
@@ -184,6 +183,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 
 	// Compile dynamic actors
 	LogicManager::CompileDynamics();
+
 
 }
 
@@ -213,14 +213,7 @@ void Client::MouseScrollEvent(GLFWwindow* window, double xoffset, double yoffset
 void Client::MousePositionEvent(GLFWwindow* window, double xpos, double ypos)
 {
 	ExCore::MouseInput::UpdatePosition(xpos, ypos);
-
-	ExCore::MouseInput::SetMouseXOffset(ExCore::MouseInput::GetMouseX() - ExCore::MouseInput::GetMouseXLast());
-	ExCore::MouseInput::SetMouseYOffset(ExCore::MouseInput::GetMouseY() - ExCore::MouseInput::GetMouseYLast());
-
-	ExCore::MouseInput::SetMouseXLast(ExCore::MouseInput::GetMouseX());
-	ExCore::MouseInput::SetMouseYLast(ExCore::MouseInput::GetMouseY());
-
-	World::map->GetCameraObject()->UpdateMouseRotation(ExCore::MouseInput::GetMouseXOffset(), -ExCore::MouseInput::GetMouseYOffset());
+	World::map->GetCameraObject()->UpdateMouseRotation();
 }
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 

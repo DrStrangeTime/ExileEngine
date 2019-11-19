@@ -29,6 +29,7 @@ public:
 	std::vector<std::shared_ptr<Actor>>&	GetActors();
 
 	std::shared_ptr<Camera>					GetCameraObject();
+	std::shared_ptr<CameraPerspective3D>	GetCameraPerspectiveObject();
 	
 	void									AddActor(std::shared_ptr<Actor> value);
 	void									RemoveActorByIndex(uint32_t value);

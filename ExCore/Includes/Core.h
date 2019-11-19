@@ -2,6 +2,7 @@
 #define __CORE_H__
 
 #include "Logger.h"
+#include "Precision.h"
 #include "Application.h"
 #include "FixedTimestep.h"
 
@@ -15,8 +16,14 @@
 #define ExLogArr(...)					ExCore::Logger::PrintArr(__VA_ARGS__)
 
 /* Input definitions */
+#define ExGetMouseX()					ExCore::MouseInput::GetMouseX()
+#define ExGetMouseY()					ExCore::MouseInput::GetMouseY()
 #define ExGetMouseXNormalised(...)		ExCore::MouseInput::GetMouseXNormalised(__VA_ARGS__)
 #define ExGetMouseYNormalised(...)		ExCore::MouseInput::GetMouseYNormalised(__VA_ARGS__)
+
+/* Precision operators */
+#define ExToRadians(...)				ExCore::Precision::ToRadians(__VA_ARGS__)		
+#define ExToDegrees(...)				ExCore::Precision::ToDegrees(__VA_ARGS__)		
 
 /* Redefinitions */
 #define STATIC_CAST(cast_to, obj)		static_cast<cast_to>(obj)

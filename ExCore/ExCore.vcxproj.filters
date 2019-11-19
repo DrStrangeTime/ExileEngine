@@ -9,6 +9,7 @@
     <ClCompile Include="Includes\ExCore.cpp" />
     <ClCompile Include="Includes\Cursor.cpp" />
     <ClCompile Include="Includes\FixedTimestep.cpp" />
+    <ClCompile Include="Includes\Precision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\Core.h" />
@@ -22,6 +23,7 @@
     <ClInclude Include="Includes\KeyInput.h" />
     <ClInclude Include="Includes\MouseInput.h" />
     <ClInclude Include="Includes\FixedTimestep.h" />
+    <ClInclude Include="Includes\Precision.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

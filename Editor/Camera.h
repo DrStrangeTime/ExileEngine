@@ -42,12 +42,15 @@ constexpr glm::vec3	WORLD_RIGHT = glm::vec3(1.f, 0.f, 0.f);
 class Camera : public Actor
 {
 protected:
+	bool		_first_mouse;
 	uint16_t	_cam_type;
 	uint32_t	_local_dir;
 	float		_near;
 	float		_far;
 	float		_ratio;
 	float		_speed;
+	float		_last_x;
+	float		_last_y;
 	glm::vec3	_velocity;
 	glm::vec3	_world_up_vector;
 	glm::mat4	_view;
@@ -58,12 +61,15 @@ protected:
 	uint32_t	_u_proj;
 
 public:
-	Camera() :	_cam_type(0),
+	Camera() :	_first_mouse(true),
+				_cam_type(0),
 				_local_dir(0),
 				_near(CAMERA_NEAR),
 				_far(CAMERA_FAR),
 				_ratio(CAMERA_RATIO),
 				_speed(CAMERA_SPEED),
+				_last_x(0.f),
+				_last_y(0.f),
 				_velocity(glm::vec3(0.f)),
 				_world_up_vector(WORLD_UP),
 				_view(glm::mat4(1.0f)), 
@@ -107,7 +113,7 @@ public:
 	virtual void	UpdateProjectionMatrix() = 0;
 	virtual void	UpdateAspectRatio(float aspect) = 0;
 	virtual void	UpdateLookVectors() = 0;
-	virtual void	UpdateMouseRotation(double x_pos, double y_pos) = 0;
+	virtual void	UpdateMouseRotation() = 0;
 	virtual void	Move(float speed, glm::vec3 velocity) = 0;
 };
 

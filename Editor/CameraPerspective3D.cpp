@@ -1,8 +1,8 @@
 #include "CameraPerspective3D.h"
 
-CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, float far, float fov, float ratio, float speed, float yaw, float pitch, glm::vec2 look_sensitivity, glm::vec3 position, SpringArm spring_arm)
+CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, float far, float fov, float ratio, float speed, float look_sensitivity_x, float look_sensitivity_y, glm::vec3 position, SpringArm spring_arm)
 {
-	_active = true;
+	_active = false;
 	_dynamic = true;
 	_type = A_CAMERA;
 	_name = "Perspective_cam";
@@ -12,17 +12,17 @@ CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, fl
 	_fov = fov;
 	_ratio = ratio;
 	_speed = speed;
-	_yaw = yaw;
-	_pitch = pitch;
-	_look_sensitivity = look_sensitivity;
+	_pitch = .0f;
+	_yaw = .0f;
+	_look_sensitivity_x = look_sensitivity_x;
+	_look_sensitivity_y = look_sensitivity_y;
 	_trans.p = position;
 	_spring_arm = spring_arm;
 	_front = WORLD_FRONT;
 	_up = WORLD_UP;
 	_right = WORLD_RIGHT;
 	_world_up_vector = _up;
-
-	UpdateMouseRotation(.0f, .0f);
+	
 	UpdateViewMatrix();
 	UpdateProjectionMatrix();
 
@@ -43,9 +43,8 @@ CameraPerspective3D::CameraPerspective3D(const CameraPerspective3D& x)
 	_fov = x._fov;
 	_ratio = x._ratio;
 	_speed = x._speed;
-	_yaw = x._yaw;
-	_pitch = x._pitch;
-	_look_sensitivity = x._look_sensitivity;
+	_look_sensitivity_x = x._look_sensitivity_x;
+	_look_sensitivity_y = x._look_sensitivity_y;
 	_trans.p = x._trans.p;
 	_spring_arm = x._spring_arm;
 	_front = x._front;
@@ -53,7 +52,6 @@ CameraPerspective3D::CameraPerspective3D(const CameraPerspective3D& x)
 	_right = x._right;
 	_world_up_vector = x._world_up_vector;
 
-	UpdateMouseRotation(.0f, .0f);
 	UpdateViewMatrix();
 	UpdateProjectionMatrix();
 
@@ -63,15 +61,65 @@ CameraPerspective3D::CameraPerspective3D(const CameraPerspective3D& x)
 
 void CameraPerspective3D::Update()
 {
-	ExCore::KeyInput::GetKeyState(GLFW_KEY_W) ? _local_dir |= LOOK_DIR_FRONT : _local_dir &= ~LOOK_DIR_FRONT;
+	ExCore::KeyInput::GetKeyState(GLFW_KEY_W) ? _local_dir |= LOOK_DIR_FRONT :	_local_dir &= ~LOOK_DIR_FRONT;
+	ExCore::KeyInput::GetKeyState(GLFW_KEY_S) ? _local_dir |= LOOK_DIR_BACK :	_local_dir &= ~LOOK_DIR_BACK;
+	ExCore::KeyInput::GetKeyState(GLFW_KEY_A) ? _local_dir |= LOOK_DIR_LEFT :	_local_dir &= ~LOOK_DIR_LEFT;
+	ExCore::KeyInput::GetKeyState(GLFW_KEY_D) ? _local_dir |= LOOK_DIR_RIGHT :	_local_dir &= ~LOOK_DIR_RIGHT;
 
-	UpdateViewMatrix(); // TEMP
+	// TEMP --------------------------------------------------
+	if ((_local_dir & LOOK_DIR_FRONT) & LOOK_DIR_FRONT) Move(_speed, _front);
+	if ((_local_dir & LOOK_DIR_BACK) & LOOK_DIR_BACK) Move(_speed, -_front);
+	if ((_local_dir & LOOK_DIR_LEFT) & LOOK_DIR_LEFT) Move(_speed, -_right);
+	if ((_local_dir & LOOK_DIR_RIGHT) & LOOK_DIR_RIGHT) Move(_speed, _right);
+	// -------------------------------------------------------
+
+	UpdateViewMatrix();
 }
 
 void CameraPerspective3D::Render()
 {
 	glUniformMatrix4fv(_u_proj, 1, GL_FALSE, value_ptr(_projection));
 	glUniformMatrix4fv(_u_view, 1, GL_FALSE, value_ptr(_view));
+}
+
+float& CameraPerspective3D::GetFov()
+{
+	return _fov;
+}
+
+float& CameraPerspective3D::GetYaw()
+{
+	return _yaw;
+}
+
+float& CameraPerspective3D::GetPitch()
+{
+	return _pitch;
+}
+
+float& CameraPerspective3D::GetLookSensitivityX()
+{
+	return _look_sensitivity_x;
+}
+
+float& CameraPerspective3D::GetLookSensitivityY()
+{
+	return _look_sensitivity_y;
+}
+
+glm::vec3& CameraPerspective3D::GetFrontVector()
+{
+	return _front;
+}
+
+glm::vec3& CameraPerspective3D::GetRightVector()
+{
+	return _right;
+}
+
+glm::vec3& CameraPerspective3D::GetUpVector()
+{
+	return _up;
 }
 
 void CameraPerspective3D::UpdateViewMatrix()
@@ -96,13 +144,13 @@ void CameraPerspective3D::UpdateAspectRatio(float aspect)
 
 void CameraPerspective3D::UpdateLookVectors()
 {
-	glm::vec3 calc_front;
+	glm::vec3 front;
+	
+	front.x = cos(ExToRadians(_yaw - 90.f)) * cos(ExToRadians(_pitch));
+	front.y = sin(ExToRadians(_pitch));
+	front.z = sin(ExToRadians(_yaw - 90.f)) * cos(ExToRadians(_pitch));
 
-	calc_front.x = cos(glm::radians(_yaw - 90.0f)) * cos(glm::radians(_pitch));
-	calc_front.y = sin(glm::radians(_pitch));
-	calc_front.z = sin(glm::radians(_yaw - 90.0f)) * cos(glm::radians(_pitch));
-
-	_front = glm::normalize(calc_front);
+	_front = glm::normalize(front);
 	_right = glm::normalize(glm::cross(_front, _world_up_vector));
 	_up = glm::normalize(glm::cross(_right, _front));
 }
@@ -115,13 +163,27 @@ void CameraPerspective3D::Move(float speed, glm::vec3 velocity)
 	_trans.p += (speed * glm::normalize(velocity));
 }
 
-void CameraPerspective3D::UpdateMouseRotation(double x_pos, double y_pos)
+void CameraPerspective3D::UpdateMouseRotation()
 {
-	x_pos *= _look_sensitivity.x;
-	y_pos *= _look_sensitivity.y;
+	if (_first_mouse)
+	{
+		_last_x = STATIC_CAST(float, ExGetMouseX());
+		_last_y = STATIC_CAST(float, ExGetMouseY());
 
-	_yaw += static_cast<float>(x_pos);
-	_pitch += static_cast<float>(y_pos);
+		_first_mouse = false;
+	}
+
+	float xoffset = STATIC_CAST(float, ExGetMouseX()) - _last_x;
+	float yoffset = _last_y - STATIC_CAST(float, ExGetMouseY());
+
+	_last_x = STATIC_CAST(float, ExGetMouseX());
+	_last_y = STATIC_CAST(float, ExGetMouseY());
+
+	xoffset *= _look_sensitivity_x;
+	yoffset *= _look_sensitivity_y;
+
+	_yaw += xoffset;
+	_pitch += yoffset;
 
 	if (_yaw > 360.0f)	_yaw = 0.0f;
 	if (_yaw < 0.0f)	_yaw = 360.0f;
