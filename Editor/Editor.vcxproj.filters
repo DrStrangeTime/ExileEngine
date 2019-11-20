@@ -256,6 +256,9 @@
     <ClCompile Include="CameraPerspective3D.cpp">
       <Filter>Core\OpenGL\Objects\Actors\Cameras</Filter>
     </ClCompile>
+    <ClCompile Include="UniformBufferObject.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vertex.h">
@@ -407,6 +410,9 @@
     </ClInclude>
     <ClInclude Include="CameraPerspective3D.h">
       <Filter>Core\OpenGL\Objects\Actors\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformBufferObject.h">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

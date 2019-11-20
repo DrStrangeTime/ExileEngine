@@ -10,9 +10,9 @@
 class Buffer
 {
 protected:
+	size_t			_buffer_size;
 	uint32_t		_buffer_type;
 	uint32_t		_buffer_object;
-	size_t			_buffer_size;
 
 public:
 	Buffer() : _buffer_type(0), _buffer_object(0), _buffer_size(0) {}
