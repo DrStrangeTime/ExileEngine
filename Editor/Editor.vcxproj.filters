@@ -414,5 +414,8 @@
     <ClInclude Include="UniformBufferObject.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
+    <ClInclude Include="UniformBlockElement.h">
+      <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

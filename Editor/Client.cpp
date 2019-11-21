@@ -27,8 +27,6 @@ Client::~Client()
 
 void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen, bool showCursor)
 {
-	ExCoreInit();	// Init ExCore.dll
-
 	width = w;
 	height = h;
 	title = t;

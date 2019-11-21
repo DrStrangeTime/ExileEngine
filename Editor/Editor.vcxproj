@@ -220,6 +220,7 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="OpaqueFM.h" />
     <ClInclude Include="Plane.h" />
+    <ClInclude Include="UniformBlockElement.h" />
     <ClInclude Include="UniformBufferObject.h" />
     <ClInclude Include="WavefrontLoader.h" />
     <ClInclude Include="World.h" />
