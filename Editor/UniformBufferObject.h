@@ -21,6 +21,7 @@ public:
 
 	void								SetUniformData(uint32_t element_index, float* data);
 	void								BufferSubData(uint32_t element_index);
+	void								BufferData();
 
 	virtual void						Create() override;
 	virtual void						Destroy() override;

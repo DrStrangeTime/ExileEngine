@@ -49,13 +49,7 @@ void UniformBufferObject::Create()
 	glBindBuffer(GL_UNIFORM_BUFFER, _buffer_object);
 
 	for (auto i = 0; i < _uniform_block_data.size(); ++i)
-	{
-		glBufferSubData(GL_UNIFORM_BUFFER,	_uniform_block_data[i].offset,
-											_uniform_block_data[i].size_in_bytes,
-											_uniform_block_data[i].data);
-
-		ExLogInfo(std::to_string(_uniform_block_data[i].comp_size) + " " + std::to_string(_uniform_block_data[i].offset) + " " + std::to_string(_uniform_block_data[i].size_in_bytes));
-	}
+		BufferSubData(i);
 
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 }
@@ -75,10 +69,15 @@ void UniformBufferObject::SetUniformData(uint32_t element_index, float* data)
 	_uniform_block_data[element_index].data = data;
 }
 
+void UniformBufferObject::BufferData()
+{
+	for (auto i = 0; i < _uniform_block_data.size(); ++i)
+		BufferSubData(i);
+}
+
 void UniformBufferObject::BufferSubData(uint32_t element_index)
 {
-
-	glBufferSubData(GL_UNIFORM_BUFFER, _uniform_block_data[element_index].offset,
-		_uniform_block_data[element_index].size_in_bytes,
-		_uniform_block_data[element_index].data);
+	glBufferSubData(GL_UNIFORM_BUFFER,	_uniform_block_data[element_index].offset,
+										_uniform_block_data[element_index].size_in_bytes,
+										_uniform_block_data[element_index].data);
 }

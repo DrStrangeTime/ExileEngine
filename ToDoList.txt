@@ -1,2 +1,2 @@
 Editor
-- Design uniform block class
+- Design wavefront loader
