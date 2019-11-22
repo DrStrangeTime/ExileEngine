@@ -179,8 +179,6 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 
 	// Compile dynamic actors
 	LogicManager::CompileDynamics();
-
-
 }
 
 void Client::Destroy()

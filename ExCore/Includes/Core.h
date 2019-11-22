@@ -31,4 +31,6 @@
 #define REINTERPRET_CAST(cast_to, obj)	reinterpret_cast<cast_to>(obj)
 #define CONST_CAST(cast_to, obj)		const_cast<cast_to>(obj)
 
+#define TO_STRING(x)					std::to_string(x)
+
 #endif

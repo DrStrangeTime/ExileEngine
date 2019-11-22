@@ -78,7 +78,7 @@ VertexElement VertexOptimiser::PackTangents(std::vector<uint32_t>& indices, Vert
 	return tangents;
 }
 
-VertexData VertexOptimiser::MakeVertexDataUnique(std::vector<uint32_t> indices, VertexData vertex_data)
+VertexData VertexOptimiser::IndexVertexData(std::vector<uint32_t> indices, VertexData vertex_data)
 {
 	VertexData vd;
 	return vd;
