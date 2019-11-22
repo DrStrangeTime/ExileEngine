@@ -16,6 +16,7 @@ protected:
 
 public:
 	Buffer() : _buffer_type(0), _buffer_object(0), _buffer_size(0) {}
+	virtual ~Buffer() {}
 
 	uint32_t&		GetBufferType();
 	uint32_t&		GetBufferObject();

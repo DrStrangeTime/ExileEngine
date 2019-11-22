@@ -9,7 +9,7 @@ Plane::Plane(uint32_t& shader_program, float x, float y, float z, uint16_t direc
 
 	_type = A_STATIC_MESH;
 
-	_vertex_data = VertexData(6, { VertexElement(3,		{	w / 2.f,  h / 2.f, 0.0f,		// VERTEX POSITIONS
+	_vertex_data = VertexData(5, { VertexElement(3,		{	w / 2.f,  h / 2.f, 0.0f,		// VERTEX POSITIONS
 															w / 2.f, -h / 2.f, 0.0f,
 														   -w / 2.f, -h / 2.f, 0.0f,
 														   -w / 2.f,  h / 2.f, 0.0f }),
@@ -17,12 +17,7 @@ Plane::Plane(uint32_t& shader_program, float x, float y, float z, uint16_t direc
 									VertexElement(2,	{   1.0f, 1.0f,						// VERTEX TEXCOORDS
 															1.0f, 0.0f,
 															0.0f, 0.0f,
-															0.0f, 1.0f }),
-
-									VertexElement(1,	{   STATIC_CAST(float, mat_id),		// MATERIAL IDS
-															STATIC_CAST(float, mat_id),
-															STATIC_CAST(float, mat_id),
-															STATIC_CAST(float, mat_id) }) });
+															0.0f, 1.0f }) });
 
 	std::vector<uint32_t> indices =						{	3, 2, 1,						// INDEX DATA
 															3, 1, 0 };

@@ -4,7 +4,7 @@
 // BSPs
 #include "Plane.h"
 // Textures
-#include "AlbedoT.h"
+#include "Texture.h"
 // Materials
 #include "OpaqueFM.h"
 
@@ -27,8 +27,8 @@
 class ContentManager
 {
 public:
+	static std::vector<Texture>							textures;
 	static std::shared_ptr<BinarySpacePartition>		bsps[4];
-	static std::vector<std::shared_ptr<AlbedoT>>		albedo_textures;
 	static std::vector<std::shared_ptr<Material>>		materials;
 	//static std::vector<std::shared_ptr<StaticMesh>>	staticMeshes;
 

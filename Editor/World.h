@@ -6,7 +6,7 @@
 class World
 {
 public:
-	static std::unique_ptr<Map>	map;
+	static std::shared_ptr<Map>	map;
 	//static std::unique_ptr<GUI> gui;
 	//static std::unique_ptr<GameMode> gameMode;
 

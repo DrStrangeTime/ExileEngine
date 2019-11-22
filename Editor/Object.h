@@ -12,7 +12,7 @@ protected:
 
 public:
 	Object();
-	~Object() {}
+	virtual ~Object() {}
 
 	
 	std::string&	GetName();

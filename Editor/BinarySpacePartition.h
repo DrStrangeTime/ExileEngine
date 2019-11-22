@@ -25,9 +25,9 @@ protected:
 
 	VertexData							_vertex_data;
 
-	std::shared_ptr<VertexArrayObject>	_vertex_array_object;
-	std::shared_ptr<VertexBufferObject>	_vertex_buffer_object;
-	std::shared_ptr<IndexBufferObject>	_index_buffer_object;
+	std::shared_ptr<VertexArrayObject>					_vertex_array_object;
+	std::shared_ptr<VertexBufferObject>					_vertex_buffer_object;
+	std::shared_ptr<IndexBufferObject>					_index_buffer_object;
 
 	void								Inverse();
 

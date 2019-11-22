@@ -1,6 +1,6 @@
 #include "OpaqueFM.h"
 
-OpaqueFM::OpaqueFM(uint32_t program, std::string name, bool masked, std::vector<std::shared_ptr<Texture>> textures)
+OpaqueFM::OpaqueFM(uint32_t& program, const char* name, bool masked, std::vector<Texture>& textures)
 {
 	_name = name;
 	_masked = masked;
@@ -15,5 +15,5 @@ void OpaqueFM::Bind()
 	// Bind global material uniforms here...
 
 	for (auto i = 0; i < _textures.size(); ++i)
-		_textures[i]->Bind();
+		_textures[i].Bind();
 }

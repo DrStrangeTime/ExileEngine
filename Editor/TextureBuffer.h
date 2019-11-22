@@ -7,6 +7,7 @@
 class TextureBuffer : public Buffer
 {
 public:
+	TextureBuffer() = default;
 	TextureBuffer(uint32_t tex_id);
 	~TextureBuffer();
 

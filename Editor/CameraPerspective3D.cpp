@@ -23,11 +23,15 @@ CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, fl
 	_right = WORLD_RIGHT;
 	_world_up_vector = _up;
 	
+	UpdateLookVectors();
 	UpdateViewMatrix();
 	UpdateProjectionMatrix();
 
-	_u_view = glGetUniformLocation(shader_program, "view");
-	_u_proj = glGetUniformLocation(shader_program, "proj");
+	UniformBlockIndex ubi = UniformBlockIndex(shader_program, "Camera", 0);
+	std::vector<UniformBlockElement> ube = {	UniformBlockElement(glm::value_ptr(_proj), 16),
+												UniformBlockElement(glm::value_ptr(_view), 16)	};
+
+	_ubo = std::make_unique<UniformBufferObject>(0, ube, GL_DYNAMIC_DRAW);
 }
 
 /* Copy constructor */
@@ -52,6 +56,7 @@ CameraPerspective3D::CameraPerspective3D(const CameraPerspective3D& x)
 	_right = x._right;
 	_world_up_vector = x._world_up_vector;
 
+	UpdateLookVectors();
 	UpdateViewMatrix();
 	UpdateProjectionMatrix();
 
@@ -61,25 +66,30 @@ CameraPerspective3D::CameraPerspective3D(const CameraPerspective3D& x)
 
 void CameraPerspective3D::Update()
 {
-	ExCore::KeyInput::GetKeyState(GLFW_KEY_W) ? _local_dir |= LOOK_DIR_FRONT :	_local_dir &= ~LOOK_DIR_FRONT;
-	ExCore::KeyInput::GetKeyState(GLFW_KEY_S) ? _local_dir |= LOOK_DIR_BACK :	_local_dir &= ~LOOK_DIR_BACK;
-	ExCore::KeyInput::GetKeyState(GLFW_KEY_A) ? _local_dir |= LOOK_DIR_LEFT :	_local_dir &= ~LOOK_DIR_LEFT;
-	ExCore::KeyInput::GetKeyState(GLFW_KEY_D) ? _local_dir |= LOOK_DIR_RIGHT :	_local_dir &= ~LOOK_DIR_RIGHT;
+	if (ExCore::KeyInput::GetKeyState(GLFW_KEY_W)) Move(_speed, _front);
+	if (ExCore::KeyInput::GetKeyState(GLFW_KEY_S)) Move(_speed, -_front);
+	if (ExCore::KeyInput::GetKeyState(GLFW_KEY_A)) Move(_speed, -_right);
+	if (ExCore::KeyInput::GetKeyState(GLFW_KEY_D)) Move(_speed, _right);
 
-	// TEMP --------------------------------------------------
-	if ((_local_dir & LOOK_DIR_FRONT) & LOOK_DIR_FRONT) Move(_speed, _front);
-	if ((_local_dir & LOOK_DIR_BACK) & LOOK_DIR_BACK) Move(_speed, -_front);
-	if ((_local_dir & LOOK_DIR_LEFT) & LOOK_DIR_LEFT) Move(_speed, -_right);
-	if ((_local_dir & LOOK_DIR_RIGHT) & LOOK_DIR_RIGHT) Move(_speed, _right);
-	// -------------------------------------------------------
+	//ExCore::KeyInput::GetKeyState(GLFW_KEY_W) ? _local_dir |= LOOK_DIR_FRONT :	_local_dir &= ~LOOK_DIR_FRONT;
+	//ExCore::KeyInput::GetKeyState(GLFW_KEY_S) ? _local_dir |= LOOK_DIR_BACK :	_local_dir &= ~LOOK_DIR_BACK;
+	//ExCore::KeyInput::GetKeyState(GLFW_KEY_A) ? _local_dir |= LOOK_DIR_LEFT :	_local_dir &= ~LOOK_DIR_LEFT;
+	//ExCore::KeyInput::GetKeyState(GLFW_KEY_D) ? _local_dir |= LOOK_DIR_RIGHT :	_local_dir &= ~LOOK_DIR_RIGHT;
+
+	//// TEMP --------------------------------------------------
+	//if ((_local_dir & LOOK_DIR_FRONT) & LOOK_DIR_FRONT) Move(_speed, _front);
+	//if ((_local_dir & LOOK_DIR_BACK) & LOOK_DIR_BACK) Move(_speed, -_front);
+	//if ((_local_dir & LOOK_DIR_LEFT) & LOOK_DIR_LEFT) Move(_speed, -_right);
+	//if ((_local_dir & LOOK_DIR_RIGHT) & LOOK_DIR_RIGHT) Move(_speed, _right);
+	//// -------------------------------------------------------
 
 	UpdateViewMatrix();
 }
 
 void CameraPerspective3D::Render()
 {
-	glUniformMatrix4fv(_u_proj, 1, GL_FALSE, value_ptr(_projection));
-	glUniformMatrix4fv(_u_view, 1, GL_FALSE, value_ptr(_view));
+	_ubo->Bind();
+	_ubo->BufferSubData(1);		// Buffer view matrix
 }
 
 float& CameraPerspective3D::GetFov()
@@ -133,7 +143,7 @@ void CameraPerspective3D::UpdateViewMatrix()
 
 void CameraPerspective3D::UpdateProjectionMatrix()
 {
-	_projection = glm::perspective(_fov, _ratio, _near, _far);
+	_proj = glm::perspective(_fov, _ratio, _near, _far);
 }
 
 void CameraPerspective3D::UpdateAspectRatio(float aspect)

@@ -69,8 +69,6 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 		exit(EXIT_FAILURE);
 	}
 
-	
-
 	// Initialise cursor
 	ExCore::Cursor::Initialise(GLFW_ARROW_CURSOR);
 
@@ -149,14 +147,14 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	// BSP data
 	ContentManager::bsps[0] = std::make_shared<Plane>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(), .0f, .0f, -5.f, PLANE_DIR_Z, 1.f, 1.f, 0);
 	// Texture data
-	ContentManager::albedo_textures.emplace_back(std::make_shared<AlbedoT>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
+	ContentManager::textures.emplace_back(Texture(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
 		"textures/default_a.tga",
 		"default_albedo",
+		TEXTURE_ALBEDO,
 		GL_REPEAT,
-		GL_LINEAR,
-		0)); // Mat ID
+		GL_LINEAR)); // Mat ID
 	// Material data
-	std::vector<std::shared_ptr<Texture>> textures = { ContentManager::albedo_textures[0] };
+	std::vector<Texture> textures = { ContentManager::textures[0] };
 	ContentManager::materials.emplace_back(std::make_shared<OpaqueFM>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
 		"default_mat",
 		false,
@@ -170,8 +168,8 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 		45.f,				// Fov
 		STATIC_CAST(float, width) / STATIC_CAST(float, height),		// Ratio
 		.1f,				// Speed
-		.22f,				// Sensitivity X
-		.22f,				// Sensitivity Y
+		(.22f * (STATIC_CAST(float, height) / STATIC_CAST(float, width))),				// Sensitivity X
+		.22f,	// Sensitivity Y
 		glm::vec3(.0f),		// Position
 		SpringArm(85.f, glm::vec3(.0f))));
 
@@ -223,7 +221,7 @@ void Client::Update()
 void Client::Render(double &delta)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	
 	RenderMaster::Render(delta);
 
 	Swap();

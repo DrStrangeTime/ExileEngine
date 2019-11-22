@@ -2,7 +2,7 @@
 
 void World::Initialise()
 {
-	map = std::make_unique<Map>("Untitled");
+	map = std::make_shared<Map>("Untitled");
 }
 
-std::unique_ptr<Map>	World::map;
+std::shared_ptr<Map>	World::map;

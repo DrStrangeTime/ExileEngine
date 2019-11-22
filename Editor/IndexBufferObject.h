@@ -10,6 +10,7 @@ private:
 	std::vector<uint32_t>	_index_data;
 
 public:
+	IndexBufferObject() : _index_size(0) {}
 	IndexBufferObject(std::vector<uint32_t> index_data);
 	~IndexBufferObject();
 

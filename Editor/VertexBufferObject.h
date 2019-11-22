@@ -25,8 +25,6 @@ public:
 	virtual void Destroy() override;
 	virtual void Bind() override;
 
-	
-
 	VertexData& GetVertexData();
 	std::vector<float>& GetPackedVertexData();
 };

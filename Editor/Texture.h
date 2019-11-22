@@ -27,16 +27,16 @@ protected:
 
 	std::string						_name;
 
-	std::unique_ptr<TextureBuffer>	_texture_buffer;
+	std::shared_ptr<TextureBuffer>	_texture_buffer;
 
 public:
-	Texture() : _uniform(0), _wrap(GL_REPEAT), _filter(GL_LINEAR), _texture_index(0), _texture_type(0) {}
+	Texture(uint32_t program, const char* file, std::string name, uint32_t tex_index, uint32_t wrap, uint32_t filter);
 
-	uint32_t&						GetWrap();
-	uint32_t&						GetFilter();
-	uint16_t&						GetTextureIndex();
-	uint16_t&						GetTextureType();
-	std::unique_ptr<TextureBuffer>& GetTextureBuffer();
+	uint32_t&							GetWrap();
+	uint32_t&							GetFilter();
+	uint16_t&							GetTextureIndex();
+	uint16_t&							GetTextureType();
+	std::shared_ptr<TextureBuffer>&		GetTextureBuffer();
 
 	virtual void					Bind();
 };

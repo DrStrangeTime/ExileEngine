@@ -34,6 +34,6 @@ void ContentManager::Import(uint32_t import_type, const char* file, std::string 
 	}
 }
 
+std::vector<Texture>						ContentManager::textures;
 std::shared_ptr<BinarySpacePartition>		ContentManager::bsps[4];
-std::vector<std::shared_ptr<AlbedoT>>		ContentManager::albedo_textures;
 std::vector<std::shared_ptr<Material>>		ContentManager::materials;

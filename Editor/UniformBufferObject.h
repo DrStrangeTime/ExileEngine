@@ -7,19 +7,24 @@
 class UniformBufferObject : public Buffer
 {
 private:
-	uint32_t							_stride;
 	GLenum								_usage;
+	uint32_t							_uniform_bind_index;
+	std::vector<uint32_t>				_offset_data;
 	std::vector<UniformBlockElement>	_uniform_block_data;
 
 public:
-	UniformBufferObject(std::vector<UniformBlockElement> uniform_block_data, uint32_t stride, GLenum usage);
+	UniformBufferObject(uint32_t uniform_bind_index, std::vector<UniformBlockElement>& uniform_block_data, GLenum usage);
 	~UniformBufferObject();
 
-	std::vector<UniformBlockElement>&	GetUniformData();
+	uint32_t&							GetUniformBindIndex();
+	std::vector<UniformBlockElement>&	GetUniformBlockData();
 
-	virtual void						Create();
-	virtual void						Destroy();
-	virtual void						Bind();
+	void								SetUniformData(uint32_t element_index, float* data);
+	void								BufferSubData(uint32_t element_index);
+
+	virtual void						Create() override;
+	virtual void						Destroy() override;
+	virtual void						Bind() override;
 };
 
 #endif

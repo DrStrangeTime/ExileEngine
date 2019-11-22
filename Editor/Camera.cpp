@@ -12,7 +12,7 @@ Camera::Camera(const Camera& x)
 	_velocity = x._velocity;
 	_world_up_vector = x._world_up_vector;
 	_view = x._view;
-	_projection = x._projection;
+	_proj = x._proj;
 	_u_view = x._u_view;
 	_u_proj = x._u_proj;
 }
@@ -64,5 +64,5 @@ glm::mat4& Camera::GetViewMatrix()
 
 glm::mat4& Camera::GetProjectionMatrix()
 {
-	return _projection;
+	return _proj;
 }

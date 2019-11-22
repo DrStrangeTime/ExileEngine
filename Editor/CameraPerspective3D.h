@@ -47,6 +47,7 @@ public:
 							_yaw(CAMERA_YAW),
 							_pitch(CAMERA_PITCH),
 							_look_sensitivity_x(CAMERA_LOOK_SENSITIVITY),
+							_look_sensitivity_y(CAMERA_LOOK_SENSITIVITY),
 							_front(glm::vec3(.0f)), 
 							_up(glm::vec3(.0f)), 
 							_right(glm::vec3(.0f)), 

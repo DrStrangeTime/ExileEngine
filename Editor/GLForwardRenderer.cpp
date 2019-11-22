@@ -44,6 +44,7 @@ void GLForwardRenderer::Render(double& delta)
 	_shaders[SHADER_DIFFUSE_FORWARD]->Bind();
 	//World::map->BindPlayerController();
 	World::map->BindAllData();
+	
 
 	// 1: PARTICLE SYSTEM PASS
 

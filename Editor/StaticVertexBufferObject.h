@@ -6,7 +6,7 @@
 class StaticVertexBufferObject : public VertexBufferObject
 {
 public:
-	StaticVertexBufferObject(VertexData vertex_data);
+	StaticVertexBufferObject(VertexData& vertex_data);
 
 	virtual void Create() override;
 	virtual void Destroy() {}

@@ -148,7 +148,6 @@
     <ClCompile Include="ActionMapKeyboardEvent.cpp" />
     <ClCompile Include="ActionMapMouseEvent.cpp" />
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="AlbedoT.cpp" />
     <ClCompile Include="AudioMaster.cpp" />
     <ClCompile Include="BinarySpacePartition.cpp" />
     <ClCompile Include="Buffer.cpp" />
@@ -202,7 +201,6 @@
     <ClInclude Include="ActionMapKeyboardEvent.h" />
     <ClInclude Include="ActionMapMouseEvent.h" />
     <ClInclude Include="Actor.h" />
-    <ClInclude Include="AlbedoT.h" />
     <ClInclude Include="AudioMaster.h" />
     <ClInclude Include="BinarySpacePartition.h" />
     <ClInclude Include="Buffer.h" />
@@ -221,6 +219,7 @@
     <ClInclude Include="OpaqueFM.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="UniformBlockElement.h" />
+    <ClInclude Include="UniformBlockIndex.h" />
     <ClInclude Include="UniformBufferObject.h" />
     <ClInclude Include="WavefrontLoader.h" />
     <ClInclude Include="World.h" />

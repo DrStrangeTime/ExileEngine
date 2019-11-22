@@ -3,8 +3,10 @@
 
 int main(int argc, char** argv)
 {
-	ExCoreInit();	// Init ExCore.dll
+	/* Initialise submodules */
+	ExCoreInit();
 
+	/* Initialise client */
 	try {
 		std::unique_ptr<Client>app = std::make_unique<Client>();
 		app->Run();

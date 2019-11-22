@@ -7,11 +7,12 @@
 struct UniformBlockElement
 {
 	float*		data;
-	uint32_t	comp_size;
 	uint32_t	offset;
+	uint32_t	comp_size;
+	uint32_t	size_in_bytes;
 
-	UniformBlockElement() : data(nullptr), comp_size(0), offset(0) {}
-	UniformBlockElement(float* d = nullptr, uint32_t cs = 0) : data(d), comp_size(cs), offset(0)
+	UniformBlockElement() = default;
+	UniformBlockElement(float* d, uint32_t cs) : data(nullptr), offset(0), comp_size(0), size_in_bytes(0)
 	{
 		if (!d)
 		{
@@ -35,7 +36,7 @@ struct UniformBlockElement
 	{
 		data = d;
 		comp_size = cs;
-		offset = comp_size * sizeof(float);
+		size_in_bytes = comp_size * sizeof(float);
 	}
 };
 

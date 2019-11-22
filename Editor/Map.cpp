@@ -21,7 +21,7 @@ std::shared_ptr<Camera> Map::GetCameraObject()
 	return std::dynamic_pointer_cast<Camera>(_actors[0]);
 }
 
-std::shared_ptr<CameraPerspective3D> Map::GetCameraPerspectiveObject()
+std::shared_ptr<CameraPerspective3D> Map::GetCameraPerspective3DObject()
 {
 	return std::dynamic_pointer_cast<CameraPerspective3D>(_actors[0]);
 }

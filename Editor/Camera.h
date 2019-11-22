@@ -2,6 +2,8 @@
 #define __CAMERA_H__
 
 #include "Actor.h"
+#include "UniformBlockIndex.h"
+#include "UniformBufferObject.h"
 
 #undef near
 #undef far
@@ -54,11 +56,13 @@ protected:
 	glm::vec3	_velocity;
 	glm::vec3	_world_up_vector;
 	glm::mat4	_view;
-	glm::mat4	_projection;
+	glm::mat4	_proj;
 
 	/* Uniform data */ 
-	uint32_t	_u_view;
-	uint32_t	_u_proj;
+	uint32_t			_u_view;
+	uint32_t			_u_proj;
+
+	std::unique_ptr<UniformBufferObject>	_ubo;
 
 public:
 	Camera() :	_first_mouse(true),
@@ -73,7 +77,7 @@ public:
 				_velocity(glm::vec3(0.f)),
 				_world_up_vector(WORLD_UP),
 				_view(glm::mat4(1.0f)), 
-				_projection(glm::mat4(1.0f)),
+				_proj(glm::mat4(1.0f)),
 				_u_view(0),
 				_u_proj(0) {}
 
@@ -107,7 +111,7 @@ public:
 	inline void		SetVelocity(glm::vec3 value) { _velocity = value; }
 	inline void		SetWorldUpVector(glm::vec3 value) { _world_up_vector = value; }
 	inline void		SetViewMatrix(glm::mat4 value) { _view = value; }
-	inline void		SetProjectionMatrix(glm::mat4 value) { _projection = value; }
+	inline void		SetProjectionMatrix(glm::mat4 value) { _proj = value; }
 
 	virtual void	UpdateViewMatrix() = 0;
 	virtual void	UpdateProjectionMatrix() = 0;
