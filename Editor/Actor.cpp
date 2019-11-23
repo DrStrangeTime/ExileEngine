@@ -111,7 +111,8 @@ void Actor::MakeModel()
 
 void Actor::AddComponent(std::shared_ptr<Actor> x)
 {
-	_components.push_back(x);
+	_components.reserve(1);
+	_components.emplace_back(x);
 }
 
 void Actor::RemoveComponentByName(std::string x)

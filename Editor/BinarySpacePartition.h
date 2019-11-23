@@ -10,6 +10,7 @@
 #define BSP_SUBTRACTION		0x1
 
 #include "Actor.h"
+#include "MeshData.h"
 #include "VertexArrayObject.h"
 #include "StaticVertexBufferObject.h"
 
@@ -17,28 +18,25 @@
 class BinarySpacePartition : public Actor
 {
 protected:
-	uint16_t							_cull_mode;
-	uint16_t							_arbitrary_type;
+	uint16_t								_cull_mode;
+	uint16_t								_arbitrary_type;
 
-	uint32_t							_mat_id;
-	uint32_t							_u_model;
+	uint32_t								_u_model;
+	
+	MeshData								_mesh_data;
 
-	VertexData							_vertex_data;
-
-	std::shared_ptr<VertexArrayObject>					_vertex_array_object;
-	std::shared_ptr<VertexBufferObject>					_vertex_buffer_object;
-	std::shared_ptr<IndexBufferObject>					_index_buffer_object;
+	std::shared_ptr<VertexArrayObject>		_vertex_array_object;
+	std::shared_ptr<VertexBufferObject>		_vertex_buffer_object;
+	std::shared_ptr<IndexBufferObject>		_index_buffer_object;
 
 	void								Inverse();
 
 public:
-	BinarySpacePartition() : _mat_id(0), _u_model(0), _cull_mode(0), _arbitrary_type(0) {}
+	BinarySpacePartition() : _mesh_data(MeshData()), _u_model(0), _cull_mode(0), _arbitrary_type(0) {}
 
 	virtual ~BinarySpacePartition() {}
 
-	VertexData&							GetVertexData();
-
-	void								SetMatID(uint32_t value);
+	MeshData&							GetMeshData();
 
 	virtual void						EventKey(int key, int scancode, int mods) = 0;
 	virtual void						EventMouseButton(int button, int action, int mods) = 0;

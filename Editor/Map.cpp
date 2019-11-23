@@ -147,9 +147,9 @@ void Map::AddActor(std::shared_ptr<Actor> value)
 			{
 				current_type = _actors[i]->GetType();
 
-				type_list.push_back(current_type);
-				begin_list.push_back(end_list[offset_index]);
-				end_list.push_back(end_list[offset_index] + 1);
+				type_list.emplace_back(current_type);
+				begin_list.emplace_back(end_list[offset_index]);
+				end_list.emplace_back(end_list[offset_index] + 1);
 
 				offset_index++;
 			}

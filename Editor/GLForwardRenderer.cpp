@@ -21,7 +21,7 @@ void GLForwardRenderer::LoadShaders(std::vector<uint16_t> shader_indices)
 		switch (shader_indices[i])
 		{
 		case SHADER_DIFFUSE_FORWARD:
-			_shaders.push_back(std::make_shared<DiffuseSF>());
+			_shaders.emplace_back(std::make_shared<DiffuseSF>());
 			break;
 		}
 	}

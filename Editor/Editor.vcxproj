@@ -216,6 +216,7 @@
     <ClInclude Include="GLForwardRenderer.h" />
     <ClInclude Include="GLRenderMode.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="MeshData.h" />
     <ClInclude Include="OpaqueFM.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="UniformBlockElement.h" />

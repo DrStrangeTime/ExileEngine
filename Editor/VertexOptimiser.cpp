@@ -19,7 +19,8 @@ std::vector<float> VertexOptimiser::PackSingleVertex(VertexData& vertex_data)
 		for (auto i = 0; i < comp_size; ++i) // Iterate through each vertex component
 		{
 			auto id = i + (vertex_index * comp_size);
-			opt_vertex_data.push_back(vertex_data.vertexElements[attrib_index].data[id]);
+			opt_vertex_data.reserve(1);
+			opt_vertex_data.emplace_back(vertex_data.vertexElements[attrib_index].data[id]);
 		}
 
 		// Go to next attrib

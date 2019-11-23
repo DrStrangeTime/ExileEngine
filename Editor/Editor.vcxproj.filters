@@ -110,14 +110,14 @@
     <Filter Include="Core\OpenGL\DataManagement">
       <UniqueIdentifier>{ef77f966-389a-4287-80a5-c1df6b1c4374}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\OpenGL\Utils">
-      <UniqueIdentifier>{dc419bdb-ef61-45e3-92e7-01d01001b49a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\OpenGL\Materials\Forward">
       <UniqueIdentifier>{94d76407-0aa2-4f70-950c-d5bf52598309}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\OpenGL\Materials\Deferred">
       <UniqueIdentifier>{dd3bc579-d75d-4362-85b8-604530bf8b4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Objects\Actors\Meshes">
+      <UniqueIdentifier>{61e14e10-66b5-4198-bf99-02b3c6826742}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -235,9 +235,6 @@
     <ClCompile Include="ContentManager.cpp">
       <Filter>Core\OpenGL\DataManagement</Filter>
     </ClCompile>
-    <ClCompile Include="WavefrontLoader.cpp">
-      <Filter>Core\OpenGL\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="OpaqueFM.cpp">
       <Filter>Core\OpenGL\Materials\Forward</Filter>
     </ClCompile>
@@ -255,6 +252,9 @@
     </ClCompile>
     <ClCompile Include="UniformBufferObject.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="WavefrontLoader.cpp">
+      <Filter>Core\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -387,9 +387,6 @@
     <ClInclude Include="ContentManager.h">
       <Filter>Core\OpenGL\DataManagement</Filter>
     </ClInclude>
-    <ClInclude Include="WavefrontLoader.h">
-      <Filter>Core\OpenGL\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="OpaqueFM.h">
       <Filter>Core\OpenGL\Materials\Forward</Filter>
     </ClInclude>
@@ -413,6 +410,12 @@
     </ClInclude>
     <ClInclude Include="UniformBlockIndex.h">
       <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="WavefrontLoader.h">
+      <Filter>Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshData.h">
+      <Filter>Core\Structs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

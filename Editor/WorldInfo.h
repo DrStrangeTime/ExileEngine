@@ -29,7 +29,7 @@ public:
 	static inline double&									GetFramesPerSecond() { return _framesPerSecond; }
 	static inline double&									GetRealtimeSpeed() { return _realtimeSpeed; }
 
-	static inline void										AddActionMap(std::shared_ptr<ActionMap> value) { _actionMaps.push_back(value); }
+	static inline void										AddActionMap(std::shared_ptr<ActionMap> value) { _actionMaps.emplace_back(value); }
 	static inline void										SetFramesPerSecond(double value) { _framesPerSecond = value; }
 	static inline void										SetRealtimeSpeed(double value) { _realtimeSpeed = value; }
 };
