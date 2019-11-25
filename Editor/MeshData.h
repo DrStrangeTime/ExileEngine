@@ -4,35 +4,38 @@
 #include "Vertex.h"
 #include "OffsetData.h"
 
-#define MAX_LODS			STATIC_CAST(uint32_t, 24)
-#define MAX_MESH_GROUPS		STATIC_CAST(uint32_t, 16)
-
-/* Data struct used for multiple material assignment */
-struct MeshGroup {
+/* Data struct that represnts a MeshElement's division in chunks using index offset values */
+struct MeshChunk {
 	uint32_t	mat_id;
-	OffsetData	offset;
+	OffsetData	index_offset;
 
-	MeshGroup() : mat_id(0), offset(OffsetData()) {}
-	MeshGroup(uint32_t m, OffsetData o) {
+	MeshChunk() : mat_id(0), index_offset(OffsetData()) {}
+	MeshChunk(uint32_t m, OffsetData o) {
 		mat_id = m;
-		offset = o;
+		index_offset = o;
 	}
 };
 
-/* Contains all information about a mesh structure */
-struct MeshData
-{
-	uint32_t				num_lods;
-	VertexData				vertex_data;
-	std::vector<uint32_t>	index_data;
-	std::vector<MeshGroup>	elements;
+/* Data struct that represnts a unique mesh */
+struct MeshElement {
+	VertexData					vertex_data;
+	std::vector<uint32_t>		index_data;
+	std::vector<MeshChunk>		chunks;
 
-	MeshData() : num_lods(0), vertex_data(VertexData()) {}
-	MeshData(uint32_t lods, VertexData& v, std::vector<uint32_t>& i, std::vector<MeshGroup>& g)
-	{
-		num_lods = lods;
+	MeshElement() = default;
+	MeshElement(VertexData& v, std::vector<uint32_t>& i, std::vector<MeshChunk>& c) {
 		vertex_data = v;
 		index_data = i;
+		chunks = c;
+	}
+};
+
+/* Contains a list of unique mesh objects */
+struct MeshData {
+	std::vector<MeshElement>	elements;
+
+	MeshData() = default;
+	MeshData(std::vector<MeshElement>& g) {
 		elements = g;
 	}
 };
