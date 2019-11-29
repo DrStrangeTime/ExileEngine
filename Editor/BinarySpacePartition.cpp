@@ -5,7 +5,7 @@ void BinarySpacePartition::Inverse()
 	// Inverse vertex data here... (x = -x)
 }
 
-MeshData& BinarySpacePartition::GetMeshData()
+MeshData& BinarySpacePartition::GetMeshData() const
 {
 	return _mesh_data;
 }

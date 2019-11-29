@@ -2,13 +2,7 @@ Editor
 - Wavefront Loader
 
 Target::
- - Support for triangle geometry ONLY
- - Pack vertex positions, normals and texcoords
- - Support for multiple groups, subelements and mat ids
- - Pack index data with an option to seperate multiple group objects into seperate buffers
- - Sort vertex data in index order
- - Analyse data (check triangle count ect..)
  - Optimise, clean and return data
 
 Conversion Pipeline::
- - FWObjectStruct -> MeshDataStruct -> SingleArray -> OpenGL
+ - WFObjectStruct -> MeshDataStruct -> SingleArray -> OpenGL

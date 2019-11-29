@@ -15,15 +15,6 @@ void BatchVertexBufferObject::Create()
 		ExCore::Logger::PrintErr("Vertex element list is empty!");
 		return;
 	}
-
-	for (const VertexElement& ve : _vertex_data.vertexElements)
-	{
-		if (ve.data.empty())
-		{
-			ExCore::Logger::PrintErr("Vertex element contains NULL data!");
-			return;
-		}
-	}
 #endif
 
 //	_packed_vertex_data = VertexOptimiser::PackSingleVertex(_vertex_data);	// Store vertex array sets into one vertex array

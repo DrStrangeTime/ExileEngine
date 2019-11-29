@@ -20,6 +20,7 @@ Texture::Texture(uint32_t program, const char* file, std::string name, uint32_t 
 		ExLogErr("Failed to recognise texture index!");
 		return;
 #endif
+		break;
 	}
 }
 

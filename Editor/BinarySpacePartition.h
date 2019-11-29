@@ -18,16 +18,16 @@
 class BinarySpacePartition : public Actor
 {
 protected:
-	uint16_t								_cull_mode;
-	uint16_t								_arbitrary_type;
+	uint16_t									_cull_mode;
+	uint16_t									_arbitrary_type;
 
-	uint32_t								_u_model;
+	uint32_t									_u_model;
 	
-	MeshData								_mesh_data;
+	mutable MeshData							_mesh_data;
 
-	std::shared_ptr<VertexArrayObject>		_vertex_array_object;
-	std::shared_ptr<VertexBufferObject>		_vertex_buffer_object;
-	std::shared_ptr<IndexBufferObject>		_index_buffer_object;
+	std::shared_ptr<VertexArrayObject>			_vertex_array_object;
+	std::shared_ptr<VertexBufferObject>			_vertex_buffer_object;
+	std::shared_ptr<IndexBufferObject>			_index_buffer_object;
 
 	void								Inverse();
 
@@ -36,7 +36,7 @@ public:
 
 	virtual ~BinarySpacePartition() {}
 
-	MeshData&							GetMeshData();
+	MeshData&							GetMeshData() const;
 
 	virtual void						EventKey(int key, int scancode, int mods) = 0;
 	virtual void						EventMouseButton(int button, int action, int mods) = 0;

@@ -16,27 +16,17 @@ struct MeshChunk {
 	}
 };
 
-/* Data struct that represnts a unique mesh */
-struct MeshElement {
+/* Data struct that represnts a unique mesh object */
+struct MeshData {
 	VertexData					vertex_data;
 	std::vector<uint32_t>		index_data;
 	std::vector<MeshChunk>		chunks;
 
-	MeshElement() = default;
-	MeshElement(VertexData& v, std::vector<uint32_t>& i, std::vector<MeshChunk>& c) {
+	MeshData() = default;
+	MeshData(VertexData& v, std::vector<uint32_t>& i, std::vector<MeshChunk>& c) {
 		vertex_data = v;
 		index_data = i;
 		chunks = c;
-	}
-};
-
-/* Contains a list of unique mesh objects */
-struct MeshData {
-	std::vector<MeshElement>	elements;
-
-	MeshData() = default;
-	MeshData(std::vector<MeshElement>& g) {
-		elements = g;
 	}
 };
 

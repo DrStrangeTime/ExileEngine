@@ -1,7 +1,6 @@
 #include "Client.h"
 #include "stb_image.h"
 
-
 void Client::FramebufferSize(GLFWwindow* window, int w, int h)
 {
 	width = w;
@@ -18,6 +17,7 @@ bool Client::isRunning()
 Client::Client()
 {
 	Create(1920, 1080, "Exile Engine", false, true, false);
+	MeshData test = Wavefront::LoadDataFromFile("models/TwoV2.obj", true);
 }
 
 Client::~Client()

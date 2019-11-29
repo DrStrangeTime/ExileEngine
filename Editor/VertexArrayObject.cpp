@@ -1,11 +1,13 @@
 #include "VertexArrayObject.h"
 
-VertexArrayObject::VertexArrayObject(std::vector< std::shared_ptr<VertexBufferObject>>& vertex_buffer_objects, std::shared_ptr<IndexBufferObject>& index_buffer_object)
+VertexArrayObject::VertexArrayObject(std::vector<std::shared_ptr<VertexBufferObject>>& vertex_buffer_objects, std::shared_ptr<IndexBufferObject>& index_buffer_object)
 {
 	_buffer_type = GL_VERTEX_ARRAY;
 	_buffer_size = sizeof(vertex_buffer_objects) + sizeof(_ibo);
 	_vbos = vertex_buffer_objects;
 	_ibo = index_buffer_object;
+
+	Create();
 }
 
 VertexArrayObject::~VertexArrayObject()

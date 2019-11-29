@@ -4,8 +4,8 @@
 #include "Headers.h"
 
 struct VertexElement {
-	uint16_t				componentSize;
-	std::vector<float>		data;
+	uint16_t			componentSize;
+	std::vector<float>	data;
 
 	VertexElement() : componentSize(0) {}
 	VertexElement(uint16_t comp_size, std::vector<float> vertex_data)
@@ -16,11 +16,13 @@ struct VertexElement {
 };
 
 struct VertexData {
+	uint32_t					size;
 	uint16_t					stride;
 	std::vector<VertexElement>	vertexElements;
 
 	inline VertexData() { stride = 0; }
-	inline VertexData(uint16_t _stride, std::vector<VertexElement> _vertex_elements) {
+	inline VertexData(uint32_t _size, uint16_t _stride, std::vector<VertexElement> _vertex_elements) {
+		size = _size;
 		stride = _stride;
 		vertexElements = _vertex_elements;
 	}

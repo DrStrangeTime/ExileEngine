@@ -2,7 +2,7 @@
 
 #include "RenderMaster.h"
 #include "LogicManager.h"
-
+#include "WavefrontLoader.h"
 
 /* Editor derives from the Exile::Core application interface. */
 class Client : public ExCore::Application
