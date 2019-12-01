@@ -44,7 +44,7 @@ Wavefront::WFObject Wavefront::PackFWData(const std::vector<std::string>& line_d
 	{
 		switch ((line_data[i])[0])
 		{
-		char c[128];
+			char c[128];
 		case 'g':	// GROUP
 			sscanf_s((&line_data[i])[0].c_str(), "g %s", c, 128);
 			if (strcmp(c, "default") != 0)
@@ -52,7 +52,7 @@ Wavefront::WFObject Wavefront::PackFWData(const std::vector<std::string>& line_d
 				++current_group;
 				data.g.emplace_back(Wavefront::WFGroup());
 			}
-			
+
 			current_element = -1;
 
 			break;
@@ -100,7 +100,7 @@ Wavefront::WFObject Wavefront::PackFWData(const std::vector<std::string>& line_d
 				mat_id_names.emplace_back(c_str);
 				data.g[current_group].e[current_element].m = STATIC_CAST(uint32_t, (mat_id_names.size() - 1));
 				mat_name_exists = false;
-			}	
+			}
 
 			break;
 
@@ -126,11 +126,11 @@ MeshData Wavefront::ConvertToMeshData(Wavefront::WFObject& in_data)
 	uint32_t	i_offset(0);
 	uint32_t	i_size(0);
 
-	for (unsigned i = 0; i < in_data.g.size(); ++i)	// Object (Collapse all fw groups)
+	for (unsigned i = 0; i < in_data.g.size(); ++i)		// Object (Collapse all fw groups)
 	{
 		current_element = 0;
 
-		data.vertex_data.vertexElements.reserve(3);
+		data.vertex_data.vertexElements.reserve(VERTICES_PER_FACE);
 
 		data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
 		data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
@@ -150,60 +150,26 @@ MeshData Wavefront::ConvertToMeshData(Wavefront::WFObject& in_data)
 				data.vertex_data.vertexElements[1].data.reserve(INDICES_PER_FACE);
 				data.vertex_data.vertexElements[2].data.reserve(INDICES_PER_FACE);
 
-				// Positions
-				data.vertex_data.vertexElements[0].data.insert(data.vertex_data.vertexElements[0].data.begin(), {	in_data.v[in_data.g[i].e[j].f[k].i[0] - 1].x,
-																													in_data.v[in_data.g[i].e[j].f[k].i[0] - 1].y,
-																													in_data.v[in_data.g[i].e[j].f[k].i[0] - 1].z,
-					
-																													in_data.v[in_data.g[i].e[j].f[k].i[3] - 1].x,
-																													in_data.v[in_data.g[i].e[j].f[k].i[3] - 1].y,
-																													in_data.v[in_data.g[i].e[j].f[k].i[3] - 1].z,
-					
-																													in_data.v[in_data.g[i].e[j].f[k].i[6] - 1].x,
-																													in_data.v[in_data.g[i].e[j].f[k].i[6] - 1].y,
-																													in_data.v[in_data.g[i].e[j].f[k].i[6] - 1].z});
+				// Transfer vertex data
+				for (unsigned n = VERTICES_PER_FACE; n < INDICES_PER_FACE; n += VERTICES_PER_FACE)
+				{
+					data.vertex_data.vertexElements[0].data.emplace_back(in_data.v[in_data.g[i].e[j].f[k].i[n - 3] - 1].x);
+					data.vertex_data.vertexElements[0].data.emplace_back(in_data.v[in_data.g[i].e[j].f[k].i[n - 3] - 1].y);
+					data.vertex_data.vertexElements[0].data.emplace_back(in_data.v[in_data.g[i].e[j].f[k].i[n - 3] - 1].z);
+					data.vertex_data.vertexElements[1].data.emplace_back(in_data.vt[in_data.g[i].e[j].f[k].i[n - 2] - 1].x);
+					data.vertex_data.vertexElements[1].data.emplace_back(in_data.vt[in_data.g[i].e[j].f[k].i[n - 2] - 1].y);
+					data.vertex_data.vertexElements[1].data.emplace_back(in_data.vt[in_data.g[i].e[j].f[k].i[n - 2] - 1].z);
+					data.vertex_data.vertexElements[2].data.emplace_back(in_data.vn[in_data.g[i].e[j].f[k].i[n - 1] - 1].x);
+					data.vertex_data.vertexElements[2].data.emplace_back(in_data.vn[in_data.g[i].e[j].f[k].i[n - 1] - 1].y);
+					data.vertex_data.vertexElements[2].data.emplace_back(in_data.vn[in_data.g[i].e[j].f[k].i[n - 1] - 1].z);
+				}
 
-				// TexCoords
-				data.vertex_data.vertexElements[1].data.insert(data.vertex_data.vertexElements[1].data.begin(), {	in_data.vt[in_data.g[i].e[j].f[k].i[1] - 1].x,
-																													in_data.vt[in_data.g[i].e[j].f[k].i[1] - 1].y,
-																													in_data.vt[in_data.g[i].e[j].f[k].i[1] - 1].z,
-
-																													in_data.vt[in_data.g[i].e[j].f[k].i[4] - 1].x,
-																													in_data.vt[in_data.g[i].e[j].f[k].i[4] - 1].y,
-																													in_data.vt[in_data.g[i].e[j].f[k].i[4] - 1].z,
-
-																													in_data.vt[in_data.g[i].e[j].f[k].i[7] - 1].x,
-																													in_data.vt[in_data.g[i].e[j].f[k].i[7] - 1].y,
-																													in_data.vt[in_data.g[i].e[j].f[k].i[7] - 1].z });
-
-				// Normals
-				data.vertex_data.vertexElements[2].data.insert(data.vertex_data.vertexElements[2].data.begin(), {	in_data.vn[in_data.g[i].e[j].f[k].i[2] - 1].x,
-																													in_data.vn[in_data.g[i].e[j].f[k].i[2] - 1].y,
-																													in_data.vn[in_data.g[i].e[j].f[k].i[2] - 1].z,
-
-																													in_data.vn[in_data.g[i].e[j].f[k].i[5] - 1].x,
-																													in_data.vn[in_data.g[i].e[j].f[k].i[5] - 1].y,
-																													in_data.vn[in_data.g[i].e[j].f[k].i[5] - 1].z,
-
-																													in_data.vn[in_data.g[i].e[j].f[k].i[8] - 1].x,
-																													in_data.vn[in_data.g[i].e[j].f[k].i[8] - 1].y,
-																													in_data.vn[in_data.g[i].e[j].f[k].i[8] - 1].z });
-
-
-				/* Transfer index data from FWObject to MeshData */
-				data.index_data.emplace_back(9);
-				data.index_data.insert(data.index_data.begin(), {	in_data.g[i].e[j].f[k].i[0],
-																	in_data.g[i].e[j].f[k].i[1], 
-																	in_data.g[i].e[j].f[k].i[2], 
-																	
-																	in_data.g[i].e[j].f[k].i[3], 
-																	in_data.g[i].e[j].f[k].i[4], 
-																	in_data.g[i].e[j].f[k].i[5], 
-																	
-																	in_data.g[i].e[j].f[k].i[6], 
-																	in_data.g[i].e[j].f[k].i[7], 
-																	in_data.g[i].e[j].f[k].i[8] });
+				/* Transfer index data */
+				data.index_data.reserve(INDICES_PER_FACE);
+				for (unsigned n = 0; n < INDICES_PER_FACE; ++n)
+					data.index_data.emplace_back(in_data.g[i].e[j].f[k].i[n]);
 			}
+
 			/* Assign chunk data */
 			i_offset = i_size;
 			data.chunks[current_chunk].index_offset.begin = i_offset;
@@ -233,8 +199,6 @@ MeshData Wavefront::LoadDataFromFile(const char* file_uri)
 
 	/* Sort, convert and optimise data */
 	data = ConvertToMeshData(obj_data);
-
-	ExLogArr(&data.index_data[0], data.index_data.size(), "Hello");
 
 	return data;
 }

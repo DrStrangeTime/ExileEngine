@@ -11,6 +11,7 @@
 /* Wavefront header */
 namespace Wavefront
 {
+
 #pragma region STRUCTS
 	struct WFFace {
 		uint32_t				i[INDICES_PER_FACE];		// Indices
