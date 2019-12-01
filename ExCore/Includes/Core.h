@@ -13,7 +13,7 @@
 #define ExLogInfo(...)					ExCore::Logger::PrintInfo(__VA_ARGS__)
 #define ExLogWar(...)					ExCore::Logger::PrintWar(__VA_ARGS__)
 #define ExLogErr(...)					ExCore::Logger::PrintErr(__VA_ARGS__)
-#define ExLogArr(...)					ExCore::Logger::PrintArr(__VA_ARGS__)
+#define ExLogArr(...)					ExCore::Logger::PrintArray(__VA_ARGS__)
 
 /* Input definitions */
 #define ExGetMouseX()					ExCore::MouseInput::GetMouseX()

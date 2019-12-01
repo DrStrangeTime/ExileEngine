@@ -8,6 +8,10 @@ struct VertexElement {
 	std::vector<float>	data;
 
 	VertexElement() : componentSize(0) {}
+	VertexElement(uint16_t comp_size)
+	{
+		componentSize = comp_size;
+	}
 	VertexElement(uint16_t comp_size, std::vector<float> vertex_data)
 	{
 		componentSize = comp_size;

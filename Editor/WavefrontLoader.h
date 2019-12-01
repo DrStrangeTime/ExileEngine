@@ -1,7 +1,7 @@
 #ifndef _WAVEFRONT_LOADER_H__
 #define _WAVEFRONT_LOADER_H__
 
-#define VERTEX_OFFSET		STATIC_CAST(unsigned, 3)
+#define VERTICES_PER_FACE	STATIC_CAST(unsigned, 3)
 #define INDICES_PER_FACE	STATIC_CAST(unsigned, 9)
 
 #include "MeshData.h"
@@ -17,9 +17,10 @@ namespace Wavefront
 	};
 
 	struct WFElement {
-		OffsetData				o;							// Offset
-		std::string				m;							// Mat ID
+		uint32_t				m;							// Mat ID
 		std::vector<WFFace>		f;							// Faces
+
+		WFElement() : m(0) {}
 	};
 
 	struct WFGroup {
@@ -39,10 +40,9 @@ namespace Wavefront
 #pragma region FUNCTIONS
 	std::vector<std::string>	GetLineDataFromFile(const char* file_uri);
 	Wavefront::WFObject			PackFWData(const std::vector<std::string>& line_data);
-	Wavefront::WFObject			SortFWData(Wavefront::WFObject& unsorted_data);
-	MeshData					ConvertToMeshData(Wavefront::WFObject& in_data, const bool unify_groups);
+	MeshData					ConvertToMeshData(Wavefront::WFObject& in_data);
 
-	MeshData					LoadDataFromFile(const char* file_uri, const bool unify_groups);
+	MeshData					LoadDataFromFile(const char* file_uri);
 #pragma endregion
 }
 

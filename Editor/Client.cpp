@@ -17,7 +17,7 @@ bool Client::isRunning()
 Client::Client()
 {
 	Create(1920, 1080, "Exile Engine", false, true, false);
-	MeshData test = Wavefront::LoadDataFromFile("models/TwoV2.obj", true);
+	MeshData test = Wavefront::LoadDataFromFile("models/TwoV2.obj");
 }
 
 Client::~Client()

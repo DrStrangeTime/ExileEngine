@@ -17,10 +17,7 @@ std::vector<std::string> Wavefront::GetLineDataFromFile(const char* file_uri)
 	char						temp_data[256];
 	std::vector<std::string>	data;
 	while (file.getline(temp_data, 256))
-	{
-		data.reserve(1);
 		data.emplace_back(temp_data);
-	}
 
 	return data;
 }
@@ -38,7 +35,10 @@ Wavefront::WFObject Wavefront::PackFWData(const std::vector<std::string>& line_d
 
 	int							current_group(-1);
 	int							current_element(-1);
+	bool						mat_name_exists(false);
+	std::string					c_str("");
 	Wavefront::WFObject			data;
+	std::vector<std::string>	mat_id_names;
 
 	for (auto i = 0; i < line_data.size(); ++i)
 	{
@@ -85,8 +85,23 @@ Wavefront::WFObject Wavefront::PackFWData(const std::vector<std::string>& line_d
 
 			/* Assign material to current element */
 			sscanf_s((&line_data[i])[0].c_str(), "usemtl %s", c, 128);
-			data.g[current_group].e[current_element].m = c;
-			
+			c_str = c;
+			for (auto j = 0; j < mat_id_names.size(); ++j)
+			{
+				if (c_str == mat_id_names[j])
+				{
+					data.g[current_group].e[current_element].m = j;
+					mat_name_exists = true;
+					break;
+				}
+			}
+			if (!mat_name_exists)
+			{
+				mat_id_names.emplace_back(c_str);
+				data.g[current_group].e[current_element].m = STATIC_CAST(uint32_t, (mat_id_names.size() - 1));
+				mat_name_exists = false;
+			}	
+
 			break;
 
 		case 'f':	// FACE
@@ -102,79 +117,113 @@ Wavefront::WFObject Wavefront::PackFWData(const std::vector<std::string>& line_d
 	return data;
 }
 
-/* Sort vertex data in index order to construct triangles */
-Wavefront::WFObject Wavefront::SortFWData(Wavefront::WFObject& unsorted_data)
+/* Convert WFData to a MeshData object */
+MeshData Wavefront::ConvertToMeshData(Wavefront::WFObject& in_data)
 {
-	Wavefront::WFObject		data;
-	uint32_t				i_offset(0);
-	uint32_t				i_size(0);
+	MeshData	data;
+	uint32_t	current_element(0);
+	uint32_t	current_chunk(0);
+	uint32_t	i_offset(0);
+	uint32_t	i_size(0);
 
-	for (unsigned i = 0; i < unsorted_data.g.size(); ++i)	// Groups
+	for (unsigned i = 0; i < in_data.g.size(); ++i)	// Object (Collapse all fw groups)
 	{
-		data.g.emplace_back(Wavefront::WFGroup());
-		for (unsigned j = 0; j < unsorted_data.g[i].e.size(); ++j)	// Element
+		current_element = 0;
+
+		data.vertex_data.vertexElements.reserve(3);
+
+		data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
+		data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
+		data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
+
+		data.chunks.emplace_back();
+
+		for (unsigned j = 0; j < in_data.g[i].e.size(); ++j)	// Chunk
 		{
+			if (current_element != 0)
+				data.chunks.emplace_back();
 
-			data.g[i].e.emplace_back(Wavefront::WFElement());
-			for (unsigned k = 0; k < unsorted_data.g[i].e[j].f.size(); ++k)		// Face
+			for (unsigned k = 0; k < in_data.g[i].e[j].f.size(); ++k)		// Triangle
 			{
-				data.g[i].e[j].f.emplace_back(Wavefront::WFFace());
+				/* Transfer vertex data from FWObject to MeshData */
+				data.vertex_data.vertexElements[0].data.reserve(INDICES_PER_FACE);
+				data.vertex_data.vertexElements[1].data.reserve(INDICES_PER_FACE);
+				data.vertex_data.vertexElements[2].data.reserve(INDICES_PER_FACE);
 
-				/* Assign vertices in index order */
-				data.v.emplace_back(unsorted_data.v[unsorted_data.g[i].e[j].f[k].i[0] - 1]);
-				data.vt.emplace_back(unsorted_data.vt[unsorted_data.g[i].e[j].f[k].i[1] - 1]);
-				data.vn.emplace_back(unsorted_data.vn[unsorted_data.g[i].e[j].f[k].i[2] - 1]);
+				// Positions
+				data.vertex_data.vertexElements[0].data.insert(data.vertex_data.vertexElements[0].data.begin(), {	in_data.v[in_data.g[i].e[j].f[k].i[0] - 1].x,
+																													in_data.v[in_data.g[i].e[j].f[k].i[0] - 1].y,
+																													in_data.v[in_data.g[i].e[j].f[k].i[0] - 1].z,
+					
+																													in_data.v[in_data.g[i].e[j].f[k].i[3] - 1].x,
+																													in_data.v[in_data.g[i].e[j].f[k].i[3] - 1].y,
+																													in_data.v[in_data.g[i].e[j].f[k].i[3] - 1].z,
+					
+																													in_data.v[in_data.g[i].e[j].f[k].i[6] - 1].x,
+																													in_data.v[in_data.g[i].e[j].f[k].i[6] - 1].y,
+																													in_data.v[in_data.g[i].e[j].f[k].i[6] - 1].z});
 
-				data.v.emplace_back(unsorted_data.v[unsorted_data.g[i].e[j].f[k].i[3] - 1]);
-				data.vt.emplace_back(unsorted_data.vt[unsorted_data.g[i].e[j].f[k].i[4] - 1]);
-				data.vn.emplace_back(unsorted_data.vn[unsorted_data.g[i].e[j].f[k].i[5] - 1]);
+				// TexCoords
+				data.vertex_data.vertexElements[1].data.insert(data.vertex_data.vertexElements[1].data.begin(), {	in_data.vt[in_data.g[i].e[j].f[k].i[1] - 1].x,
+																													in_data.vt[in_data.g[i].e[j].f[k].i[1] - 1].y,
+																													in_data.vt[in_data.g[i].e[j].f[k].i[1] - 1].z,
 
-				data.v.emplace_back(unsorted_data.v[unsorted_data.g[i].e[j].f[k].i[6] - 1]);
-				data.vt.emplace_back(unsorted_data.vt[unsorted_data.g[i].e[j].f[k].i[7] - 1]);
-				data.vn.emplace_back(unsorted_data.vn[unsorted_data.g[i].e[j].f[k].i[8] - 1]);
+																													in_data.vt[in_data.g[i].e[j].f[k].i[4] - 1].x,
+																													in_data.vt[in_data.g[i].e[j].f[k].i[4] - 1].y,
+																													in_data.vt[in_data.g[i].e[j].f[k].i[4] - 1].z,
 
-				/* Assign index data */
-				data.g[i].e[j].f[k].i[0] = unsorted_data.g[i].e[j].f[k].i[0];
-				data.g[i].e[j].f[k].i[1] = unsorted_data.g[i].e[j].f[k].i[1];
-				data.g[i].e[j].f[k].i[2] = unsorted_data.g[i].e[j].f[k].i[2];
+																													in_data.vt[in_data.g[i].e[j].f[k].i[7] - 1].x,
+																													in_data.vt[in_data.g[i].e[j].f[k].i[7] - 1].y,
+																													in_data.vt[in_data.g[i].e[j].f[k].i[7] - 1].z });
 
-				data.g[i].e[j].f[k].i[3] = unsorted_data.g[i].e[j].f[k].i[3];
-				data.g[i].e[j].f[k].i[4] = unsorted_data.g[i].e[j].f[k].i[4];
-				data.g[i].e[j].f[k].i[5] = unsorted_data.g[i].e[j].f[k].i[5];
+				// Normals
+				data.vertex_data.vertexElements[2].data.insert(data.vertex_data.vertexElements[2].data.begin(), {	in_data.vn[in_data.g[i].e[j].f[k].i[2] - 1].x,
+																													in_data.vn[in_data.g[i].e[j].f[k].i[2] - 1].y,
+																													in_data.vn[in_data.g[i].e[j].f[k].i[2] - 1].z,
 
-				data.g[i].e[j].f[k].i[6] = unsorted_data.g[i].e[j].f[k].i[6];
-				data.g[i].e[j].f[k].i[7] = unsorted_data.g[i].e[j].f[k].i[7];
-				data.g[i].e[j].f[k].i[8] = unsorted_data.g[i].e[j].f[k].i[8];
+																													in_data.vn[in_data.g[i].e[j].f[k].i[5] - 1].x,
+																													in_data.vn[in_data.g[i].e[j].f[k].i[5] - 1].y,
+																													in_data.vn[in_data.g[i].e[j].f[k].i[5] - 1].z,
+
+																													in_data.vn[in_data.g[i].e[j].f[k].i[8] - 1].x,
+																													in_data.vn[in_data.g[i].e[j].f[k].i[8] - 1].y,
+																													in_data.vn[in_data.g[i].e[j].f[k].i[8] - 1].z });
+
+
+				/* Transfer index data from FWObject to MeshData */
+				data.index_data.emplace_back(9);
+				data.index_data.insert(data.index_data.begin(), {	in_data.g[i].e[j].f[k].i[0],
+																	in_data.g[i].e[j].f[k].i[1], 
+																	in_data.g[i].e[j].f[k].i[2], 
+																	
+																	in_data.g[i].e[j].f[k].i[3], 
+																	in_data.g[i].e[j].f[k].i[4], 
+																	in_data.g[i].e[j].f[k].i[5], 
+																	
+																	in_data.g[i].e[j].f[k].i[6], 
+																	in_data.g[i].e[j].f[k].i[7], 
+																	in_data.g[i].e[j].f[k].i[8] });
 			}
-
-			/* Assign material data */
-			data.g[i].e[j].m = unsorted_data.g[i].e[j].m;
-
-			/* Assign offset data */
+			/* Assign chunk data */
 			i_offset = i_size;
-			data.g[i].e[j].o.begin = i_offset;
-			i_size += (STATIC_CAST(uint32_t, unsorted_data.g[i].e[j].f.size()) * 9);
-			data.g[i].e[j].o.end = i_size;
-		}
+			data.chunks[current_chunk].index_offset.begin = i_offset;
+			i_size += (STATIC_CAST(uint32_t, in_data.g[i].e[j].f.size()) * 9);
+			data.chunks[current_chunk].index_offset.end = i_size;
+			data.chunks[current_chunk].mat_id = in_data.g[i].e[j].m;
 
-		/* Reset offset data */
-		i_offset = 0;
-		i_size = 0;
+			++current_chunk;
+			++current_element;
+		}
 	}
+
+	data.vertex_data.size = (STATIC_CAST(uint32_t, data.vertex_data.vertexElements[0].data.size()) / data.vertex_data.vertexElements[0].componentSize);
+	data.vertex_data.stride = INDICES_PER_FACE;
 
 	return data;
 }
 
-/* Convert WFData to a MeshData object */
-MeshData Wavefront::ConvertToMeshData(Wavefront::WFObject& in_data, const bool unify_groups)
-{
-	// Convert data here...
-
-	return MeshData();
-}
-
 /* The main function that loads a Wavefront file and returns a MeshData object */
-MeshData Wavefront::LoadDataFromFile(const char* file_uri, const bool unify_groups)
+MeshData Wavefront::LoadDataFromFile(const char* file_uri)
 {
 	MeshData					data;
 
@@ -182,9 +231,10 @@ MeshData Wavefront::LoadDataFromFile(const char* file_uri, const bool unify_grou
 	std::vector<std::string>	file_line_data = GetLineDataFromFile(file_uri);
 	Wavefront::WFObject			obj_data = PackFWData(file_line_data);
 
-	/* Sort and convert FWData to MeshData */
-	Wavefront::WFObject		obj_data_sorted = SortFWData(obj_data);
-	//data = ConvertToMeshData(obj_data_sorted, unify_groups);
+	/* Sort, convert and optimise data */
+	data = ConvertToMeshData(obj_data);
+
+	ExLogArr(&data.index_data[0], data.index_data.size(), "Hello");
 
 	return data;
 }
