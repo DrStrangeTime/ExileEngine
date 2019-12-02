@@ -1,4 +1,6 @@
-- Index count needs adjusting (needs to be equivilant to indices.size() / 3)
-- Chunk system needs adjusting with new index data
-- Vertex data needs a clean-up (check for duplicates)
+- Vertex and index needs optimising (remove duplicates)
 - General clean-up in the Wavefront OBJ loader class
+
+Ideas for vertex clean-up::
+- After sorting index data, check if the next vertex is unique.
+- Otherwise, set the next index to the current and remove duplicate vertex

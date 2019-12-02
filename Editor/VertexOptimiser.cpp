@@ -84,3 +84,8 @@ VertexData VertexOptimiser::IndexVertexData(std::vector<uint32_t> indices, Verte
 	VertexData vd;
 	return vd;
 }
+
+void VertexOptimiser::OptimiseVertexData(VertexData& v, std::vector<uint32_t>& i)
+{
+
+}

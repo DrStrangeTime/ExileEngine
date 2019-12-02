@@ -10,6 +10,7 @@ public:
 	static std::vector<float>		PackSingleVertex(VertexData& vertex_data);
 	static VertexElement			PackTangents(std::vector<uint32_t>& indices, VertexElement& uvs);
 	static VertexData				IndexVertexData(std::vector<uint32_t> indices, VertexData vertex_data);
+	static void						OptimiseVertexData(VertexData& v, std::vector<uint32_t>& i);
 };
 
 #endif

@@ -125,6 +125,7 @@ MeshData Wavefront::ConvertToMeshData(Wavefront::WFObject& in_data)
 	uint32_t	current_chunk(0);
 	uint32_t	i_offset(0);
 	uint32_t	i_size(0);
+	uint32_t	index_capacity(0);
 
 	data.vertex_data.vertexElements.reserve(VERTICES_PER_FACE);
 
@@ -166,16 +167,13 @@ MeshData Wavefront::ConvertToMeshData(Wavefront::WFObject& in_data)
 					data.vertex_data.vertexElements[2].data.emplace_back(in_data.vn[in_data.g[i].e[j].f[k].i[n + 2] - 1].z);
 				}
 
-				/* Transfer index data */
-				data.index_data.reserve(INDICES_PER_FACE);
-				for (unsigned n = 0; n < INDICES_PER_FACE; ++n)
-					data.index_data.emplace_back(in_data.g[i].e[j].f[k].i[n]);
+				index_capacity += 3;
 			}
 
 			/* Assign chunk data */
 			i_offset = i_size;
 			data.chunks[current_chunk].index_offset.begin = i_offset;
-			i_size += (STATIC_CAST(uint32_t, in_data.g[i].e[j].f.size()) * 9);
+			i_size += (STATIC_CAST(uint32_t, in_data.g[i].e[j].f.size()) * VERTICES_PER_FACE);
 			data.chunks[current_chunk].index_offset.end = i_size;
 			data.chunks[current_chunk].mat_id = in_data.g[i].e[j].m;
 
@@ -186,7 +184,9 @@ MeshData Wavefront::ConvertToMeshData(Wavefront::WFObject& in_data)
 
 	data.vertex_data.size = (STATIC_CAST(uint32_t, data.vertex_data.vertexElements[0].data.size()) / data.vertex_data.vertexElements[0].componentSize);
 	data.vertex_data.stride = INDICES_PER_FACE;
-	
+
+	/* Assign sorted index data */
+	data.index_data.assign(index_capacity, 0);
 	for (auto i = 0; i < data.index_data.size(); ++i)
 		data.index_data[i] = i;
 
@@ -202,8 +202,13 @@ MeshData Wavefront::LoadDataFromFile(const char* file_uri)
 	std::vector<std::string>	file_line_data = GetLineDataFromFile(file_uri);
 	Wavefront::WFObject			obj_data = PackFWData(file_line_data);
 
-	/* Sort, convert and optimise data */
+	/* Sort and convert data */
 	data = ConvertToMeshData(obj_data);
+	
+	/* Optimise data */
+	VertexOptimiser::OptimiseVertexData(data.vertex_data, data.index_data);
+
+	ExLogArr(&data.index_data[0], data.index_data.size(), "INDICES::");
 
 	return data;
 }

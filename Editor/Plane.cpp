@@ -59,6 +59,6 @@ void Plane::Render()
 	{
 		//ContentManager::materials[_mesh_data.chunks[i].mat_id]->Bind();
 		ContentManager::materials[0]->Bind();
-		glDrawElements(GL_TRIANGLES, _mesh_data.chunks[i].index_offset.end, GL_UNSIGNED_INT, BUFFER_OFFSET(_mesh_data.chunks[i].index_offset.begin));
+		glDrawElements(GL_TRIANGLES, _mesh_data.chunks[i].index_offset.end, GL_UNSIGNED_INT, (void*)(_mesh_data.chunks[i].index_offset.begin * sizeof(GLuint)));
 	}
 }
