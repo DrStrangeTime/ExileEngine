@@ -126,15 +126,15 @@ MeshData Wavefront::ConvertToMeshData(Wavefront::WFObject& in_data)
 	uint32_t	i_offset(0);
 	uint32_t	i_size(0);
 
+	data.vertex_data.vertexElements.reserve(VERTICES_PER_FACE);
+
+	data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
+	data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
+	data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
+
 	for (unsigned i = 0; i < in_data.g.size(); ++i)		// Object (Collapse all fw groups)
 	{
 		current_element = 0;
-
-		data.vertex_data.vertexElements.reserve(VERTICES_PER_FACE);
-
-		data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
-		data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
-		data.vertex_data.vertexElements.emplace_back(VERTICES_PER_FACE);
 
 		data.chunks.emplace_back();
 
@@ -151,17 +151,19 @@ MeshData Wavefront::ConvertToMeshData(Wavefront::WFObject& in_data)
 				data.vertex_data.vertexElements[2].data.reserve(INDICES_PER_FACE);
 
 				// Transfer vertex data
-				for (unsigned n = VERTICES_PER_FACE; n < INDICES_PER_FACE; n += VERTICES_PER_FACE)
+				for (unsigned n = 0; n < INDICES_PER_FACE; n += VERTICES_PER_FACE)
 				{
-					data.vertex_data.vertexElements[0].data.emplace_back(in_data.v[in_data.g[i].e[j].f[k].i[n - 3] - 1].x);
-					data.vertex_data.vertexElements[0].data.emplace_back(in_data.v[in_data.g[i].e[j].f[k].i[n - 3] - 1].y);
-					data.vertex_data.vertexElements[0].data.emplace_back(in_data.v[in_data.g[i].e[j].f[k].i[n - 3] - 1].z);
-					data.vertex_data.vertexElements[1].data.emplace_back(in_data.vt[in_data.g[i].e[j].f[k].i[n - 2] - 1].x);
-					data.vertex_data.vertexElements[1].data.emplace_back(in_data.vt[in_data.g[i].e[j].f[k].i[n - 2] - 1].y);
-					data.vertex_data.vertexElements[1].data.emplace_back(in_data.vt[in_data.g[i].e[j].f[k].i[n - 2] - 1].z);
-					data.vertex_data.vertexElements[2].data.emplace_back(in_data.vn[in_data.g[i].e[j].f[k].i[n - 1] - 1].x);
-					data.vertex_data.vertexElements[2].data.emplace_back(in_data.vn[in_data.g[i].e[j].f[k].i[n - 1] - 1].y);
-					data.vertex_data.vertexElements[2].data.emplace_back(in_data.vn[in_data.g[i].e[j].f[k].i[n - 1] - 1].z);
+					data.vertex_data.vertexElements[0].data.emplace_back(in_data.v[in_data.g[i].e[j].f[k].i[n + 0] - 1].x);
+					data.vertex_data.vertexElements[0].data.emplace_back(in_data.v[in_data.g[i].e[j].f[k].i[n + 0] - 1].y);
+					data.vertex_data.vertexElements[0].data.emplace_back(in_data.v[in_data.g[i].e[j].f[k].i[n + 0] - 1].z);
+
+					data.vertex_data.vertexElements[1].data.emplace_back(in_data.vt[in_data.g[i].e[j].f[k].i[n + 1] - 1].x);
+					data.vertex_data.vertexElements[1].data.emplace_back(in_data.vt[in_data.g[i].e[j].f[k].i[n + 1] - 1].y);
+					data.vertex_data.vertexElements[1].data.emplace_back(in_data.vt[in_data.g[i].e[j].f[k].i[n + 1] - 1].z);
+
+					data.vertex_data.vertexElements[2].data.emplace_back(in_data.vn[in_data.g[i].e[j].f[k].i[n + 2] - 1].x);
+					data.vertex_data.vertexElements[2].data.emplace_back(in_data.vn[in_data.g[i].e[j].f[k].i[n + 2] - 1].y);
+					data.vertex_data.vertexElements[2].data.emplace_back(in_data.vn[in_data.g[i].e[j].f[k].i[n + 2] - 1].z);
 				}
 
 				/* Transfer index data */
@@ -184,6 +186,9 @@ MeshData Wavefront::ConvertToMeshData(Wavefront::WFObject& in_data)
 
 	data.vertex_data.size = (STATIC_CAST(uint32_t, data.vertex_data.vertexElements[0].data.size()) / data.vertex_data.vertexElements[0].componentSize);
 	data.vertex_data.stride = INDICES_PER_FACE;
+	
+	for (auto i = 0; i < data.index_data.size(); ++i)
+		data.index_data[i] = i;
 
 	return data;
 }

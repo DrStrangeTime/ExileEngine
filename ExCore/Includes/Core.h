@@ -30,7 +30,7 @@
 #define DYNAMIC_CAST(cast_to, obj)		dynamic_cast<cast_to>(obj)
 #define REINTERPRET_CAST(cast_to, obj)	reinterpret_cast<cast_to>(obj)
 #define CONST_CAST(cast_to, obj)		const_cast<cast_to>(obj)
-
+#define BUFFER_OFFSET(i)				((char*)(i))
 #define TO_STRING(x)					std::to_string(x)
 
 #endif

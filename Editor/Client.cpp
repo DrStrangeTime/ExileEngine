@@ -17,7 +17,6 @@ bool Client::isRunning()
 Client::Client()
 {
 	Create(1920, 1080, "Exile Engine", false, true, false);
-	MeshData test = Wavefront::LoadDataFromFile("models/TwoV2.obj");
 }
 
 Client::~Client()
@@ -121,6 +120,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	//glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.075f, 0.075f, 0.075f, 1.0f);
 	glViewport(0, 0, width, height);
 

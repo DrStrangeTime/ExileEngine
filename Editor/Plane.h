@@ -2,6 +2,7 @@
 #define __PLANE_H__
 
 #include "BinarySpacePartition.h"
+#include "WavefrontLoader.h"
 
 #define PLANE_DIR_X		0x0
 #define PLANE_DIR_Y		0x1
