@@ -1,8 +1,4 @@
-Editor
-- Wavefront Loader
-
-Target::
- - Optimise, clean and return data
-
-Conversion Pipeline::
- - WFObjectStruct -> MeshDataStruct -> SingleArray -> OpenGL
+- Index count needs adjusting (needs to be equivilant to indices.size() / 3)
+- Chunk system needs adjusting with new index data
+- Vertex data needs a clean-up (check for duplicates)
+- General clean-up in the Wavefront OBJ loader class
