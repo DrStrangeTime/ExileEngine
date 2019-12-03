@@ -16,7 +16,7 @@ bool Client::isRunning()
 
 Client::Client()
 {
-	Create(1920, 1080, "Exile Engine", false, true, false);
+	Create(1920, 1080, "Exile Engine", true, false, true);
 }
 
 Client::~Client()
@@ -77,8 +77,10 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	glfwSetMouseButtonCallback(window, MouseButtonEvent);
 	glfwSetCursorPosCallback(window, MousePositionEvent);
 	glfwSetScrollCallback(window, MouseScrollEvent);
-	(!showCursor ? glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED) : glfwSetCursor(window, ExCore::Cursor::GetCursor()));
 	// ----------------------------------------------------------------------------
+
+	// Assign cursor settings
+	(!showCursor ? glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED) : glfwSetCursor(window, ExCore::Cursor::GetCursor()));
 	
 	// Load app icon
 	GLFWimage icon;
@@ -86,10 +88,9 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	glfwSetWindowIcon(window, 1, &icon);
 	stbi_image_free(icon.pixels);
 
-	// Set rendering context
+	// Set rendering properties
 	glfwMakeContextCurrent(window);
 	glfwGetFramebufferSize(window, &width, &height);
-
 
 	// Initialise GLEW
 	glewExperimental = GL_TRUE;
@@ -106,7 +107,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 
 	// Enable v-sync
 	glfwSwapInterval(1);
-
+	
 	// Get hardware information
 	rdp.Assign(glGetString(GL_VENDOR), glGetString(GL_RENDERER), glGetString(GL_VERSION));	// Store hardware properties
 

@@ -79,13 +79,72 @@ VertexElement VertexOptimiser::PackTangents(std::vector<uint32_t>& indices, Vert
 	return tangents;
 }
 
-VertexData VertexOptimiser::IndexVertexData(std::vector<uint32_t> indices, VertexData vertex_data)
+void VertexOptimiser::OptimiseVertexMeshData(MeshData& m)
 {
-	VertexData vd;
-	return vd;
-}
+	VertexData								out_vertex_data;
+	std::vector<uint32_t>					out_indices;
 
-void VertexOptimiser::OptimiseVertexData(VertexData& v, std::vector<uint32_t>& i)
-{
+	std::vector<glm::vec3>					temp_positions;
+	std::vector<glm::vec3>					temp_texcoords;
+	std::vector<glm::vec3>					temp_normals;
 
+	std::map<PackedVertex, unsigned int>	vertex_it;
+
+
+	/* Pack temp data from vertex data */
+	for (auto i = 0; i < m.vertex_data.vertexElements.size(); i += 3)
+	{
+		for (auto j = 0; j < m.vertex_data.vertexElements[i].data.size(); j += 3)
+		{
+			temp_positions.emplace_back(glm::vec3(m.vertex_data.vertexElements[i + 0].data[j + 0],
+				m.vertex_data.vertexElements[i + 0].data[j + 1],
+				m.vertex_data.vertexElements[i + 0].data[j + 2]));
+
+			temp_texcoords.emplace_back(glm::vec3(m.vertex_data.vertexElements[i + 1].data[j + 0],
+				m.vertex_data.vertexElements[i + 1].data[j + 1],
+				m.vertex_data.vertexElements[i + 1].data[j + 2]));
+
+			temp_normals.emplace_back(glm::vec3(m.vertex_data.vertexElements[i + 2].data[j + 0],
+				m.vertex_data.vertexElements[i + 2].data[j + 1],
+				m.vertex_data.vertexElements[i + 2].data[j + 2]));
+		}
+	}
+
+	out_vertex_data.vertexElements.reserve(3);
+	out_vertex_data.vertexElements.assign(3, VertexElement(3));
+
+	/* Check for duplicates and assign new data */
+	uint32_t num_vertices(0);
+	for (unsigned i = 0; i < temp_positions.size(); ++i)
+	{
+		PackedVertex	packed = { temp_positions[i], temp_texcoords[i], temp_normals[i] };
+		unsigned int	index(0);
+
+		std::map<PackedVertex, unsigned int>::iterator it = vertex_it.find(packed);
+
+		if (it != vertex_it.end())
+		{
+			index = it->second;
+			out_indices.emplace_back(index);
+		}
+		else
+		{
+			out_vertex_data.vertexElements[0].data.emplace_back(temp_positions[i].x); out_vertex_data.vertexElements[0].data.emplace_back(temp_positions[i].y); out_vertex_data.vertexElements[0].data.emplace_back(temp_positions[i].z);
+			out_vertex_data.vertexElements[1].data.emplace_back(temp_texcoords[i].x); out_vertex_data.vertexElements[1].data.emplace_back(temp_texcoords[i].y); out_vertex_data.vertexElements[1].data.emplace_back(temp_texcoords[i].z);
+			out_vertex_data.vertexElements[2].data.emplace_back(temp_normals[i].x); out_vertex_data.vertexElements[2].data.emplace_back(temp_normals[i].y); out_vertex_data.vertexElements[2].data.emplace_back(temp_normals[i].z);
+
+			uint32_t new_index = num_vertices;
+			out_indices.emplace_back(new_index);
+			
+			vertex_it[packed] = new_index;
+
+			++num_vertices;
+		}
+	}
+
+	/* Assign final data */
+	m.vertex_data = out_vertex_data;
+	m.index_data = out_indices;
+	m.vertex_data.size = num_vertices;
+	m.vertex_data.stride = 9;
 }
