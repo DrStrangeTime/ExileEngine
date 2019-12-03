@@ -1,0 +1,1 @@
+- Remove the WFFace struct inside WavefrontLoader.h to reduce log(n) time complexity by 1.
