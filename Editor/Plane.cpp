@@ -24,7 +24,7 @@ Plane::Plane(uint32_t& shader_program, float x, float y, float z, uint16_t direc
 	//std::vector<MeshChunk> c = { MeshChunk(mat_id, OffsetData(0, 6)) };						// MESH CHUNK
 
 	//_mesh_data = MeshData(v, i, c);															// MESH DATA
-	_mesh_data = Wavefront::LoadDataFromFile("models/TwoV2.obj");
+	_mesh_data = Wavefront::LoadDataFromFile("models/Torus.obj");
 
 	//_vertex_data.vertexElements.reserve(1);
 	//_vertex_data.vertexElements.emplace_back(VertexElement(3, {}));		// Create empty container for tangents

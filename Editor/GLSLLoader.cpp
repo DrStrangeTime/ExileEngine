@@ -58,7 +58,7 @@ uint32_t GLSLLoader::LoadVertFrag(const GLchar* vertexPath, const GLchar* fragme
 	if (!success)
 	{
 		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-		ExCore::Logger::PrintErr("Vertex shader compilation failed!");
+		ExCore::Logger::PrintErr(infoLog);
 	}
 #endif
 
@@ -73,7 +73,7 @@ uint32_t GLSLLoader::LoadVertFrag(const GLchar* vertexPath, const GLchar* fragme
 	if (!success)
 	{
 		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-		ExCore::Logger::PrintErr("Fragment shader compilation failed!");
+		ExCore::Logger::PrintErr(infoLog);
 	}
 #endif
 
@@ -89,7 +89,7 @@ uint32_t GLSLLoader::LoadVertFrag(const GLchar* vertexPath, const GLchar* fragme
 	if (!success)
 	{
 		glGetProgramInfoLog(_program, 512, NULL, infoLog);
-		ExCore::Logger::PrintErr("Failed to link shader program!");
+		ExCore::Logger::PrintErr(infoLog);
 	}
 #endif
 

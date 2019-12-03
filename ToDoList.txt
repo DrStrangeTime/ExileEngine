@@ -1,3 +1,0 @@
-- Adjust the ConvertToMeshData() function by encapsulating the data as a list of 
-  PackedVertices instead of a VertexData object to save log(n^2) time complexity for
-  when going through the vertex optimisation stage.

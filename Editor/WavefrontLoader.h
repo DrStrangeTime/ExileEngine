@@ -7,7 +7,6 @@
 #include "MeshData.h"
 #include "VertexOptimiser.h"
 
-
 /* Wavefront header */
 namespace Wavefront
 {
@@ -22,6 +21,7 @@ namespace Wavefront
 		std::vector<WFFace>		f;							// Faces
 
 		WFElement() : m(0) {}
+		WFElement(uint32_t m_id) : m(m_id) {}
 	};
 
 	struct WFGroup {
@@ -40,9 +40,8 @@ namespace Wavefront
 
 #pragma region FUNCTIONS
 	std::vector<std::string>	GetLineDataFromFile(const char* file_uri);
-	Wavefront::WFObject			PackFWData(const std::vector<std::string>& line_data);
-	MeshData					ConvertToMeshData(Wavefront::WFObject& in_data);
-
+	Wavefront::WFObject			GetFWData(const std::vector<std::string>& line_data);
+	std::vector<PackedVertex>	IndexVertexData(Wavefront::WFObject& in_data, std::vector<MeshChunk>& in_chunk_data);
 	MeshData					LoadDataFromFile(const char* file_uri);
 #pragma endregion
 }

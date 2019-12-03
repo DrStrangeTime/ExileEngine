@@ -79,45 +79,20 @@ VertexElement VertexOptimiser::PackTangents(std::vector<uint32_t>& indices, Vert
 	return tangents;
 }
 
-void VertexOptimiser::OptimiseVertexMeshData(MeshData& m)
+void VertexOptimiser::OptimiseVertexMeshData(MeshData& m, std::vector<PackedVertex>& pv)
 {
 	VertexData								out_vertex_data;
 	std::vector<uint32_t>					out_indices;
-
-	std::vector<glm::vec3>					temp_positions;
-	std::vector<glm::vec3>					temp_texcoords;
-	std::vector<glm::vec3>					temp_normals;
-
 	std::map<PackedVertex, unsigned int>	vertex_it;
-
-
-	/* Pack temp data from vertex data */
-	for (auto i = 0; i < m.vertex_data.vertexElements.size(); i += 3)
-	{
-		for (auto j = 0; j < m.vertex_data.vertexElements[i].data.size(); j += 3)
-		{
-			temp_positions.emplace_back(glm::vec3(m.vertex_data.vertexElements[i + 0].data[j + 0],
-				m.vertex_data.vertexElements[i + 0].data[j + 1],
-				m.vertex_data.vertexElements[i + 0].data[j + 2]));
-
-			temp_texcoords.emplace_back(glm::vec3(m.vertex_data.vertexElements[i + 1].data[j + 0],
-				m.vertex_data.vertexElements[i + 1].data[j + 1],
-				m.vertex_data.vertexElements[i + 1].data[j + 2]));
-
-			temp_normals.emplace_back(glm::vec3(m.vertex_data.vertexElements[i + 2].data[j + 0],
-				m.vertex_data.vertexElements[i + 2].data[j + 1],
-				m.vertex_data.vertexElements[i + 2].data[j + 2]));
-		}
-	}
 
 	out_vertex_data.vertexElements.reserve(3);
 	out_vertex_data.vertexElements.assign(3, VertexElement(3));
 
 	/* Check for duplicates and assign new data */
 	uint32_t num_vertices(0);
-	for (unsigned i = 0; i < temp_positions.size(); ++i)
+	for (unsigned i = 0; i < pv.size(); ++i)
 	{
-		PackedVertex	packed = { temp_positions[i], temp_texcoords[i], temp_normals[i] };
+		PackedVertex	packed = { pv[i].position, pv[i].texcoord, pv[i].normal };
 		unsigned int	index(0);
 
 		std::map<PackedVertex, unsigned int>::iterator it = vertex_it.find(packed);
@@ -129,13 +104,13 @@ void VertexOptimiser::OptimiseVertexMeshData(MeshData& m)
 		}
 		else
 		{
-			out_vertex_data.vertexElements[0].data.emplace_back(temp_positions[i].x); out_vertex_data.vertexElements[0].data.emplace_back(temp_positions[i].y); out_vertex_data.vertexElements[0].data.emplace_back(temp_positions[i].z);
-			out_vertex_data.vertexElements[1].data.emplace_back(temp_texcoords[i].x); out_vertex_data.vertexElements[1].data.emplace_back(temp_texcoords[i].y); out_vertex_data.vertexElements[1].data.emplace_back(temp_texcoords[i].z);
-			out_vertex_data.vertexElements[2].data.emplace_back(temp_normals[i].x); out_vertex_data.vertexElements[2].data.emplace_back(temp_normals[i].y); out_vertex_data.vertexElements[2].data.emplace_back(temp_normals[i].z);
+			out_vertex_data.vertexElements[0].data.emplace_back(pv[i].position.x); out_vertex_data.vertexElements[0].data.emplace_back(pv[i].position.y); out_vertex_data.vertexElements[0].data.emplace_back(pv[i].position.z);
+			out_vertex_data.vertexElements[1].data.emplace_back(pv[i].texcoord.x); out_vertex_data.vertexElements[1].data.emplace_back(pv[i].texcoord.y); out_vertex_data.vertexElements[1].data.emplace_back(pv[i].texcoord.z);
+			out_vertex_data.vertexElements[2].data.emplace_back(pv[i].normal.x); out_vertex_data.vertexElements[2].data.emplace_back(pv[i].normal.y); out_vertex_data.vertexElements[2].data.emplace_back(pv[i].normal.z);
 
 			uint32_t new_index = num_vertices;
 			out_indices.emplace_back(new_index);
-			
+
 			vertex_it[packed] = new_index;
 
 			++num_vertices;

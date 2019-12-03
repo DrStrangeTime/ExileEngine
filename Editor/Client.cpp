@@ -16,7 +16,7 @@ bool Client::isRunning()
 
 Client::Client()
 {
-	Create(1920, 1080, "Exile Engine", true, false, true);
+	Create(1920, 1080, "Exile Engine", false, true, false);
 }
 
 Client::~Client()
@@ -146,7 +146,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	std::vector<std::shared_ptr<Shader>> gl_shaders = std::dynamic_pointer_cast<GLRenderMode>(RenderMaster::GetRenderPipeline()->GetRenderObject())->GetShaders();
 	
 	// BSP data
-	ContentManager::bsps[0] = std::make_shared<Plane>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(), .0f, .0f, -5.f, PLANE_DIR_Z, 1.f, 1.f, 0);
+	ContentManager::bsps[0] = std::make_shared<Plane>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(), .0f, .0f, .0f, PLANE_DIR_Z, 1.f, 1.f, 0);
 	// Texture data
 	ContentManager::textures.emplace_back(Texture(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
 		"textures/default_a.tga",
@@ -168,7 +168,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 		1000.f,				// Far
 		45.f,				// Fov
 		STATIC_CAST(float, width) / STATIC_CAST(float, height),		// Ratio
-		.1f,				// Speed
+		.05f,				// Speed
 		.22f,				// Sensitivity X
 		(.22f * (STATIC_CAST(float, height) / STATIC_CAST(float, width))),	// Sensitivity Y
 		glm::vec3(.0f),		// Position
