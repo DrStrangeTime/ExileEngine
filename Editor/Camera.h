@@ -37,12 +37,16 @@ constexpr glm::vec3	WORLD_RIGHT = glm::vec3(1.f, 0.f, 0.f);
 /* Camera default properties */
 #define CAMERA_NEAR				STATIC_CAST(float, .1f)
 #define CAMERA_FAR				STATIC_CAST(float, 1000.f)
-#define CAMERA_SPEED			STATIC_CAST(float, 10.f)
-#define CAMERA_RATIO			STATIC_CAST(float, 0.562)
+#define CAMERA_SPEED			STATIC_CAST(float, .1f)
+#define CAMERA_RATIO			STATIC_CAST(float, .562f)
+#define CAMERA_ACCELERATION		STATIC_CAST(float, .01f)
 
 /* Base abstract class containing the main interface for each unique camera type */
 class Camera : public Actor
 {
+private:
+	
+
 protected:
 	bool		_first_mouse;
 	uint16_t	_cam_type;
@@ -50,12 +54,16 @@ protected:
 	float		_near;
 	float		_far;
 	float		_ratio;
+	float		_acceleration_step;
+	float		_acceleration;
 	float		_speed;
+	float		_max_speed;
+	float		_smooth_speed;
 	float		_last_x;
 	float		_last_y;
 	glm::vec3	_velocity;
 	glm::vec3	_world_up_vector;
-	glm::mat4	_view;
+	glm::fmat4	_view;
 	glm::mat4	_proj;
 
 	/* Uniform data */ 
@@ -71,7 +79,11 @@ public:
 				_near(CAMERA_NEAR),
 				_far(CAMERA_FAR),
 				_ratio(CAMERA_RATIO),
-				_speed(CAMERA_SPEED),
+				_acceleration_step(CAMERA_ACCELERATION),
+				_acceleration(.0f),
+				_speed(0.f),
+				_max_speed(CAMERA_SPEED),
+				_smooth_speed(.0f),
 				_last_x(0.f),
 				_last_y(0.f),
 				_velocity(glm::vec3(0.f)),
@@ -90,7 +102,9 @@ public:
 	virtual void	EventMouseScroll(double xoffset, double yoffset) = 0;
 	virtual void	Update() = 0;
 	virtual void	Render() = 0;
-
+	
+	bool			IsMoving();
+	bool			IsKeyActive();
 	uint16_t&		GetCameraType();
 	uint32_t&		GetLocalDirection();
 	float&			GetNear();
@@ -118,7 +132,7 @@ public:
 	virtual void	UpdateAspectRatio(float aspect) = 0;
 	virtual void	UpdateLookVectors() = 0;
 	virtual void	UpdateMouseRotation() = 0;
-	virtual void	Move(float speed, glm::vec3 velocity) = 0;
+	virtual void	Move(float& speed, glm::vec3& velocity) = 0;
 };
 
 #endif

@@ -17,6 +17,19 @@ Camera::Camera(const Camera& x)
 	_u_proj = x._u_proj;
 }
 
+bool Camera::IsMoving()
+{
+	return (_speed > .0f);
+}
+
+bool Camera::IsKeyActive()
+{
+	return (	ExKeyState(GLFW_KEY_W) || 
+				ExKeyState(GLFW_KEY_S) ||
+				ExKeyState(GLFW_KEY_A) ||
+				ExKeyState(GLFW_KEY_D) );
+}
+
 uint16_t& Camera::GetCameraType()
 {
 	return _cam_type;

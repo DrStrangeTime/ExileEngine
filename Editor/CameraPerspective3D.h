@@ -39,6 +39,7 @@ private:
 	glm::vec3	_front;
 	glm::vec3	_right;
 	glm::vec3	_up;
+	glm::vec3	_current_look;
 
 	SpringArm	_spring_arm;
 	
@@ -51,15 +52,16 @@ public:
 							_front(glm::vec3(.0f)), 
 							_up(glm::vec3(.0f)), 
 							_right(glm::vec3(.0f)), 
+							_current_look(glm::vec3(.0f)),
 							_spring_arm(SpringArm()) {}
 
-	CameraPerspective3D(const CameraPerspective3D& x);	// Copy constructor
-	CameraPerspective3D(	uint32_t shader_program, 
-							float near, 
-							float far, 
-							float fov, 
-							float ratio, 
-							float speed, 
+	CameraPerspective3D(	uint32_t shader_program,
+							float near,
+							float far,
+							float fov,
+							float ratio,
+							float speed,
+							float smooth_speed,
 							float look_sensitivity_x,
 							float look_sensitivity_y,
 							glm::vec3 position, 
@@ -97,7 +99,7 @@ public:
 	virtual void	UpdateAspectRatio(float aspect) override;
 	virtual void	UpdateLookVectors() override;
 	virtual void	UpdateMouseRotation() override;
-	virtual void	Move(float speed, glm::vec3 velocity) override;
+	virtual void	Move(float& speed, glm::vec3& velocity) override;
 };
 
 #endif

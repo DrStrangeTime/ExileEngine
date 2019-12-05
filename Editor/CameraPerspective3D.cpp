@@ -1,6 +1,6 @@
 #include "CameraPerspective3D.h"
 
-CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, float far, float fov, float ratio, float speed, float look_sensitivity_x, float look_sensitivity_y, glm::vec3 position, SpringArm spring_arm)
+CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, float far, float fov, float ratio, float speed, float smooth_speed, float look_sensitivity_x, float look_sensitivity_y, glm::vec3 position, SpringArm spring_arm)
 {
 	_active = false;
 	_dynamic = true;
@@ -11,7 +11,8 @@ CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, fl
 	_far = far;
 	_fov = fov;
 	_ratio = ratio;
-	_speed = speed;
+	_max_speed = speed;
+	_smooth_speed = smooth_speed;
 	_pitch = .0f;
 	_yaw = .0f;
 	_look_sensitivity_x = look_sensitivity_x;
@@ -34,44 +35,98 @@ CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, fl
 	_ubo = std::make_unique<UniformBufferObject>(0, ube, GL_DYNAMIC_DRAW);
 }
 
-/* Copy constructor */
-CameraPerspective3D::CameraPerspective3D(const CameraPerspective3D& x)
-{
-	_active = x._active;
-	_dynamic = x._dynamic;
-	_type = x._type;
-	_name = x._name;
-
-	_near = x._near;
-	_far = x._far;
-	_fov = x._fov;
-	_ratio = x._ratio;
-	_speed = x._speed;
-	_look_sensitivity_x = x._look_sensitivity_x;
-	_look_sensitivity_y = x._look_sensitivity_y;
-	_trans.p = x._trans.p;
-	_spring_arm = x._spring_arm;
-	_front = x._front;
-	_up = x._up;
-	_right = x._right;
-	_world_up_vector = x._world_up_vector;
-
-	UpdateLookVectors();
-	UpdateViewMatrix();
-	UpdateProjectionMatrix();
-
-	_u_view = x._u_view;
-	_u_proj = x._u_proj;
-}
-
 void CameraPerspective3D::Update()
 {
-	if (ExCore::KeyInput::GetKeyState(GLFW_KEY_W)) Move(_speed, _front);
-	if (ExCore::KeyInput::GetKeyState(GLFW_KEY_S)) Move(_speed, -_front);
-	if (ExCore::KeyInput::GetKeyState(GLFW_KEY_A)) Move(_speed, -_right);
-	if (ExCore::KeyInput::GetKeyState(GLFW_KEY_D)) Move(_speed, _right);
+	/* Handle look vector states */
+	if (ExKeyState(GLFW_KEY_W))
+	{
+		_local_dir |= LOOK_DIR_FRONT;
+		_local_dir &= ~LOOK_DIR_BACK;
 
-	//ExCore::KeyInput::GetKeyState(GLFW_KEY_W) ? _local_dir |= LOOK_DIR_FRONT :	_local_dir &= ~LOOK_DIR_FRONT;
+		if (ExKeyState(GLFW_KEY_W) && ExKeyState(GLFW_KEY_A))
+		{
+			_local_dir |= LOOK_DIR_RIGHT;
+			_local_dir &= ~LOOK_DIR_LEFT;
+
+			_current_look = (_front - _right);
+		}
+		else if (ExKeyState(GLFW_KEY_W) && ExKeyState(GLFW_KEY_D))
+		{
+			_local_dir |= LOOK_DIR_LEFT;
+			_local_dir &= ~LOOK_DIR_RIGHT;
+
+			_current_look = (_front + _right);
+		}
+		else
+			_current_look = _front;
+	}
+	else if (ExKeyState(GLFW_KEY_S))
+	{
+		_local_dir |= LOOK_DIR_BACK;
+		_local_dir &= ~LOOK_DIR_FRONT;
+
+		if (ExKeyState(GLFW_KEY_S) && ExKeyState(GLFW_KEY_A))
+		{
+			_local_dir |= LOOK_DIR_LEFT;
+			_local_dir &= ~LOOK_DIR_RIGHT;
+
+			_current_look = -_front - _right;
+		}
+		else if (ExKeyState(GLFW_KEY_S) && ExKeyState(GLFW_KEY_D))
+		{
+			_local_dir |= LOOK_DIR_RIGHT;
+			_local_dir &= ~LOOK_DIR_LEFT;
+
+			_current_look = -_front + _right;
+		}
+		else
+			_current_look = -_front;
+	}
+	else 
+	{
+		if (ExKeyState(GLFW_KEY_A))
+		{
+			_local_dir |= LOOK_DIR_LEFT;
+			_local_dir &= ~LOOK_DIR_RIGHT;
+
+			_current_look = -_right;
+		}
+		else if (ExKeyState(GLFW_KEY_D))
+		{
+			_local_dir |= LOOK_DIR_RIGHT;
+			_local_dir &= ~LOOK_DIR_LEFT;
+
+			_current_look = _right;
+		}
+
+		_local_dir &= ~LOOK_DIR_BACK;
+		_local_dir &= ~LOOK_DIR_FRONT;
+	}
+	
+
+
+	/* Handle movement */
+	if (IsKeyActive())
+	{
+		if (_speed >= _max_speed)
+			_speed = _max_speed;
+		else
+			_speed += _smooth_speed;
+
+		Move(_speed, _current_look);
+	}
+	else
+	{
+		if (IsMoving())
+		{
+			_speed -= _smooth_speed;
+			Move(_speed, _current_look);
+		}
+		else
+			_speed = .0f;
+	}
+
+	//ExCore::KeyInput::GetKeyState(GLFW_KEY_W) ?  :	;
 	//ExCore::KeyInput::GetKeyState(GLFW_KEY_S) ? _local_dir |= LOOK_DIR_BACK :	_local_dir &= ~LOOK_DIR_BACK;
 	//ExCore::KeyInput::GetKeyState(GLFW_KEY_A) ? _local_dir |= LOOK_DIR_LEFT :	_local_dir &= ~LOOK_DIR_LEFT;
 	//ExCore::KeyInput::GetKeyState(GLFW_KEY_D) ? _local_dir |= LOOK_DIR_RIGHT :	_local_dir &= ~LOOK_DIR_RIGHT;
@@ -133,6 +188,12 @@ glm::vec3& CameraPerspective3D::GetUpVector()
 	return _up;
 }
 
+void CameraPerspective3D::Move(float& speed, glm::vec3& velocity)
+{
+	_velocity = velocity;
+	_trans.p += (glm::normalize(velocity)) * speed;
+}
+
 void CameraPerspective3D::UpdateViewMatrix()
 {
 	_view = glm::lookAt(_trans.p, _trans.p + _front, _up);
@@ -164,14 +225,6 @@ void CameraPerspective3D::UpdateLookVectors()
 	_front = glm::normalize(front);
 	_right = glm::normalize(glm::cross(_front, _world_up_vector));
 	_up = glm::normalize(glm::cross(_right, _front));
-}
-
-void CameraPerspective3D::Move(float speed, glm::vec3 velocity)
-{
-	_speed = speed;
-	_velocity = velocity;
-
-	_trans.p += (speed * glm::normalize(velocity));
 }
 
 void CameraPerspective3D::UpdateMouseRotation()

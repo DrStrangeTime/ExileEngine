@@ -1,1 +1,1 @@
-- Camera acceleration and decceleration.
+- Assign the higher precision variables inside Camera class for view matrix.

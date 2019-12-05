@@ -44,16 +44,15 @@ uint32_t GLSLLoader::LoadVertFrag(const GLchar* vertexPath, const GLchar* fragme
 
 	// 2. Compile shaders
 	GLuint vertex, fragment;
-	GLint success;
-	GLchar infoLog[512];
-
+	
 	// Vertex Shader
 	vertex = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertex, 1, &vShaderCode, NULL);
 	glCompileShader(vertex);
 
 #ifdef _DEBUG
-	// Print compile errors if any
+	GLint success(0);
+	GLchar infoLog[512];
 	glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
 	if (!success)
 	{

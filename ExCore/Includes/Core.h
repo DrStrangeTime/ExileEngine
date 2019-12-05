@@ -16,6 +16,7 @@
 #define ExLogArr(...)					ExCore::Logger::PrintArray(__VA_ARGS__)
 
 /* Input definitions */
+#define ExKeyState(...)					ExCore::KeyInput::GetKeyState(__VA_ARGS__)
 #define ExGetMouseX()					ExCore::MouseInput::GetMouseX()
 #define ExGetMouseY()					ExCore::MouseInput::GetMouseY()
 #define ExGetMouseXNormalised(...)		ExCore::MouseInput::GetMouseXNormalised(__VA_ARGS__)
