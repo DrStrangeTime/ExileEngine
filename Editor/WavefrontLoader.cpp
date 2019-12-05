@@ -36,6 +36,7 @@ Wavefront::WFObject Wavefront::GetFWData(const std::vector<std::string>& line_da
 	int							current_group(-1);
 	int							current_element(-1);
 	bool						mat_name_exists(false);
+	uint32_t					num_mats(0);
 	std::string					c_str("");
 	Wavefront::WFObject			data;
 	std::vector<std::string>	mat_id_names;
@@ -95,12 +96,15 @@ Wavefront::WFObject Wavefront::GetFWData(const std::vector<std::string>& line_da
 					break;
 				}
 			}
+			
 			if (!mat_name_exists)
 			{
 				mat_id_names.emplace_back(c_str);
-				data.g[current_group].e[current_element].m = STATIC_CAST(uint32_t, (mat_id_names.size() - 1));
+				data.g[current_group].e[current_element].m = STATIC_CAST(uint32_t, mat_id_names.size() - 1);
 				mat_name_exists = false;
 			}
+
+			mat_name_exists = false;
 
 			break;
 
@@ -166,9 +170,11 @@ std::vector<PackedVertex> Wavefront::IndexVertexData(Wavefront::WFObject& in_dat
 			}
 
 			/* Assign chunk data */
+
+			
 			i_offset = i_size;
 			in_chunk_data[current_chunk].index_offset.begin = i_offset;
-			i_size += (STATIC_CAST(uint32_t, in_data.g[i].e[j].i.size()));
+			i_size += (STATIC_CAST(uint32_t, in_data.g[i].e[j].i.size()) / VERTEX_ATTRIBS_PER_FACE);
 			in_chunk_data[current_chunk].index_offset.end = i_size - i_offset;
 			in_chunk_data[current_chunk].mat_id = in_data.g[i].e[j].m;
 
@@ -197,6 +203,8 @@ MeshData Wavefront::LoadDataFromFile(const char* file_uri)
 
 
 	// --------------------------- DEBUG ---------------------------
+	//ExLogInfo("Index size: " + TO_STRING(mesh_data.index_data.size()));
+
 	//ExLogArr(&mesh_data.index_data[0], mesh_data.index_data.size(), "INDICES");
 	/*for (unsigned int i = 0; i < mesh_data.chunks.size(); ++i)
 	{

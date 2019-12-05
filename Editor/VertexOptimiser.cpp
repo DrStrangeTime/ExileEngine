@@ -86,7 +86,7 @@ void VertexOptimiser::OptimiseVertexMeshData(MeshData& m, std::vector<PackedVert
 	std::map<PackedVertex, unsigned int>	vertex_it;
 
 	out_vertex_data.vertexElements.reserve(3);
-	out_vertex_data.vertexElements.assign(3, VertexElement(3));
+	out_vertex_data.vertexElements.assign(3, VertexElement(3, 0));
 
 	/* Check for duplicates and assign new data */
 	uint32_t num_vertices(0);

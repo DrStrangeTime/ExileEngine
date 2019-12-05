@@ -1,8 +1,8 @@
 #ifndef _WAVEFRONT_LOADER_H__
 #define _WAVEFRONT_LOADER_H__
 
-#define VERTICES_PER_FACE	STATIC_CAST(unsigned, 3)
-#define INDICES_PER_FACE	STATIC_CAST(unsigned, 9)
+#define VERTEX_ATTRIBS_PER_FACE		STATIC_CAST(unsigned, 3)
+#define INDICES_PER_FACE			STATIC_CAST(unsigned, 9)
 
 #include "MeshData.h"
 #include "VertexOptimiser.h"

@@ -160,6 +160,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="FrameBufferTarget.cpp" />
     <ClCompile Include="GLDeferredRenderer.cpp" />
     <ClCompile Include="GLForwardRenderer.cpp" />
     <ClCompile Include="GLRenderMode.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="BatchVertexBufferObject.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="EventManager.h" />
+    <ClInclude Include="FrameBufferTarget.h" />
     <ClInclude Include="GLDeferredRenderer.h" />
     <ClInclude Include="GLForwardRenderer.h" />
     <ClInclude Include="GLRenderMode.h" />

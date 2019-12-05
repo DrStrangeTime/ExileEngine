@@ -4,17 +4,20 @@
 #include "Headers.h"
 
 struct VertexElement {
+	uint16_t			genericRate;
 	uint16_t			componentSize;
 	std::vector<float>	data;
 
 	VertexElement() : componentSize(0) {}
-	VertexElement(uint16_t comp_size)
+	VertexElement(uint16_t comp_size, uint16_t rate)
 	{
 		componentSize = comp_size;
+		genericRate = rate;
 	}
-	VertexElement(uint16_t comp_size, std::vector<float> vertex_data)
+	VertexElement(uint16_t comp_size, uint16_t rate, std::vector<float> vertex_data)
 	{
 		componentSize = comp_size;
+		genericRate = rate;
 		data = vertex_data;
 	}
 };

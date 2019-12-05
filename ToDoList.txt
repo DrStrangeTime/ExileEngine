@@ -1,1 +1,2 @@
-- Assign the higher precision variables inside Camera class for view matrix.
+- Research into geometry shaders.
+- Reasearch into Shader Storage Buffer Objects.

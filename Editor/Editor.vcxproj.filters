@@ -256,6 +256,7 @@
     <ClCompile Include="WavefrontLoader.cpp">
       <Filter>Core\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="FrameBufferTarget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vertex.h">
@@ -417,5 +418,6 @@
     <ClInclude Include="MeshData.h">
       <Filter>Core\Structs</Filter>
     </ClInclude>
+    <ClInclude Include="FrameBufferTarget.h" />
   </ItemGroup>
 </Project>
