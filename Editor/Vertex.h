@@ -37,7 +37,10 @@ struct PackedVertex {
 	glm::vec3	texcoord;
 	glm::vec3	normal;
 
-	bool operator<(const PackedVertex that) const { return memcmp((void*)this, (void*)&that, sizeof(PackedVertex)) > 0; };
+	bool operator<(const PackedVertex that) const
+	{
+		return memcmp((void*)this, (void*)&that, sizeof(PackedVertex)) > 0;
+	};
 };
 
 #endif

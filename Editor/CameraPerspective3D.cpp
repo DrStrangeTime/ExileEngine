@@ -89,6 +89,7 @@ void CameraPerspective3D::Update()
 void CameraPerspective3D::Render()
 {
 	_ubo->Bind();
+	_ubo->BufferSubData(0);		// Buffer view matrix
 	_ubo->BufferSubData(1);		// Buffer view matrix
 }
 

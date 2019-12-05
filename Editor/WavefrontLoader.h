@@ -12,13 +12,9 @@ namespace Wavefront
 {
 
 #pragma region STRUCTS
-	struct WFFace {
-		uint32_t				i[INDICES_PER_FACE];		// Indices
-	};
-
 	struct WFElement {
 		uint32_t				m;							// Mat ID
-		std::vector<WFFace>		f;							// Faces
+		std::vector<uint32_t>	i;							// Indices
 
 		WFElement() : m(0) {}
 		WFElement(uint32_t m_id) : m(m_id) {}

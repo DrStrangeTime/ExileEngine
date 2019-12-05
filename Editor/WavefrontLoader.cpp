@@ -115,7 +115,15 @@ Wavefront::WFObject Wavefront::GetFWData(const std::vector<std::string>& line_da
 				data.g[current_group].e.emplace_back(WFElement(0));
 			}
 
-			data.g[current_group].e[current_element].f.push_back({ vi[0], vi[1], vi[2], vi[3], vi[4], vi[5], vi[6], vi[7], vi[8] });
+			data.g[current_group].e[current_element].i.emplace_back( vi[0]);
+			data.g[current_group].e[current_element].i.emplace_back( vi[1]);
+			data.g[current_group].e[current_element].i.emplace_back( vi[2]);
+			data.g[current_group].e[current_element].i.emplace_back( vi[3]);
+			data.g[current_group].e[current_element].i.emplace_back( vi[4]);
+			data.g[current_group].e[current_element].i.emplace_back( vi[5]);
+			data.g[current_group].e[current_element].i.emplace_back( vi[6]);
+			data.g[current_group].e[current_element].i.emplace_back( vi[7]);
+			data.g[current_group].e[current_element].i.emplace_back( vi[8]);
 
 			break;
 		}
@@ -148,21 +156,26 @@ std::vector<PackedVertex> Wavefront::IndexVertexData(Wavefront::WFObject& in_dat
 			if (current_element != 0)
 				in_chunk_data.emplace_back();
 
-			for (unsigned k = 0; k < in_data.g[i].e[j].f.size(); ++k)		// Face
-			{
 				// Transfer vertex data
-				for (unsigned n = 0; n < INDICES_PER_FACE; n += VERTICES_PER_FACE)
-				{
-					data.emplace_back(PackedVertex({	glm::vec3(in_data.v[in_data.g[i].e[j].f[k].i[n + 0] - 1]),
-														glm::vec3(in_data.vt[in_data.g[i].e[j].f[k].i[n + 1] - 1]),
-														glm::vec3(in_data.vn[in_data.g[i].e[j].f[k].i[n + 2] - 1]) }));
-				}
+			for (unsigned n = 0; n < in_data.g[i].e[current_element].i.size(); n += INDICES_PER_FACE)
+			{
+				data.emplace_back(PackedVertex({	glm::vec3(in_data.v[in_data.g[i].e[j].i[n + 0] - 1]),
+													glm::vec3(in_data.vt[in_data.g[i].e[j].i[n + 1] - 1]),
+													glm::vec3(in_data.vn[in_data.g[i].e[j].i[n + 2] - 1]) }));
+
+				data.emplace_back(PackedVertex({	glm::vec3(in_data.v[in_data.g[i].e[j].i[n + 3] - 1]),
+													glm::vec3(in_data.vt[in_data.g[i].e[j].i[n + 4] - 1]),
+													glm::vec3(in_data.vn[in_data.g[i].e[j].i[n + 5] - 1]) }));
+
+				data.emplace_back(PackedVertex({	glm::vec3(in_data.v[in_data.g[i].e[j].i[n + 6] - 1]),
+													glm::vec3(in_data.vt[in_data.g[i].e[j].i[n + 7] - 1]),
+													glm::vec3(in_data.vn[in_data.g[i].e[j].i[n + 8] - 1]) }));
 			}
 
 			/* Assign chunk data */
 			i_offset = i_size;
 			in_chunk_data[current_chunk].index_offset.begin = i_offset;
-			i_size += (STATIC_CAST(uint32_t, in_data.g[i].e[j].f.size()) * VERTICES_PER_FACE);
+			i_size += (STATIC_CAST(uint32_t, in_data.g[i].e[j].i.size()));
 			in_chunk_data[current_chunk].index_offset.end = i_size - i_offset;
 			in_chunk_data[current_chunk].mat_id = in_data.g[i].e[j].m;
 
@@ -191,8 +204,8 @@ MeshData Wavefront::LoadDataFromFile(const char* file_uri)
 
 
 	// --------------------------- DEBUG ---------------------------
-	/*ExLogArr(&mesh_data.index_data[0], mesh_data.index_data.size(), "INDICES");
-	for (unsigned int i = 0; i < mesh_data.chunks.size(); ++i)
+	//ExLogArr(&mesh_data.index_data[0], mesh_data.index_data.size(), "INDICES");
+	/*for (unsigned int i = 0; i < mesh_data.chunks.size(); ++i)
 	{
 		ExLogWar("Element 0 Chunk begin " + TO_STRING(i) + ": " +TO_STRING(mesh_data.chunks[i].index_offset.begin));
 		ExLogWar("Element 0 Chunk end " + TO_STRING(i) + ": " + TO_STRING(mesh_data.chunks[i].index_offset.end));

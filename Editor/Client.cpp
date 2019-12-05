@@ -168,7 +168,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 		1000.f,				// Far
 		45.f,				// Fov
 		STATIC_CAST(float, width) / STATIC_CAST(float, height),		// Ratio
-		.05f,				// Speed
+		.1f,				// Speed
 		.22f,				// Sensitivity X
 		(.22f * (STATIC_CAST(float, height) / STATIC_CAST(float, width))),	// Sensitivity Y
 		glm::vec3(.0f),		// Position
@@ -239,6 +239,8 @@ void Client::Run()
 	// Main loop
 	while (isRunning())
 	{
+		glfwPollEvents();
+
 		_f_time_step.CalcLastElapsed();
 		while (_f_time_step.timeElapsed())
 		{
@@ -248,8 +250,6 @@ void Client::Run()
 		_f_time_step.Lock();
 
 		Render(delta);
-
-		glfwPollEvents();
 	}
 }
 
