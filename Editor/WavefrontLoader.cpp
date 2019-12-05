@@ -115,15 +115,8 @@ Wavefront::WFObject Wavefront::GetFWData(const std::vector<std::string>& line_da
 				data.g[current_group].e.emplace_back(WFElement(0));
 			}
 
-			data.g[current_group].e[current_element].i.emplace_back( vi[0]);
-			data.g[current_group].e[current_element].i.emplace_back( vi[1]);
-			data.g[current_group].e[current_element].i.emplace_back( vi[2]);
-			data.g[current_group].e[current_element].i.emplace_back( vi[3]);
-			data.g[current_group].e[current_element].i.emplace_back( vi[4]);
-			data.g[current_group].e[current_element].i.emplace_back( vi[5]);
-			data.g[current_group].e[current_element].i.emplace_back( vi[6]);
-			data.g[current_group].e[current_element].i.emplace_back( vi[7]);
-			data.g[current_group].e[current_element].i.emplace_back( vi[8]);
+			for (auto j = 0; j < INDICES_PER_FACE; ++j)
+				data.g[current_group].e[current_element].i.emplace_back( vi[j]);
 
 			break;
 		}
