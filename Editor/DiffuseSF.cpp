@@ -9,7 +9,8 @@ DiffuseSF::DiffuseSF()
 
 void DiffuseSF::Initialise()
 {
-	_shader_buffer = std::make_shared<ShaderBuffer>(SHADER_TYPE_VERTEX, GLSLLoader::LoadVertFrag("shaders/forward/diffuse.vs", "shaders/forward/diffuse.fs"));
+	std::map<uint32_t, const GLchar*> shader_stages{ { GL_VERTEX_SHADER, "shaders/forward/diffuse.vs" }, { GL_FRAGMENT_SHADER, "shaders/forward/diffuse.fs" } };
+	_shader_buffer = std::make_shared<ShaderBuffer>(GLSLLoader::CreateShader(shader_stages));
 }
 
 void DiffuseSF::Bind()

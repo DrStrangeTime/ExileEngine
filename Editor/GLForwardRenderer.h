@@ -4,6 +4,10 @@
 #include "GLRenderMode.h"
 #include "DiffuseSF.h"
 
+#ifdef _DEBUG
+	#include "NormalVisualisationS.h"
+#endif
+
 
 class GLForwardRenderer : public GLRenderMode
 {

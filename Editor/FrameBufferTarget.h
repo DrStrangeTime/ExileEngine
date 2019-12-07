@@ -26,7 +26,7 @@ protected:
 public:
 	virtual void	Create() = 0;
 	virtual void	Destroy() override;
-	virtual void	Bind() override;
+	virtual void	Bind() = 0;
 };
 
 #endif

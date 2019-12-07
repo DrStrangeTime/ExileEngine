@@ -28,7 +28,6 @@ CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, fl
 	UpdateViewMatrix();
 	UpdateProjectionMatrix();
 
-	UniformBlockIndex ubi = UniformBlockIndex(shader_program, "Camera", 0);
 	std::vector<UniformBlockElement> ube = {	UniformBlockElement(glm::value_ptr(_proj), 16),
 												UniformBlockElement(glm::value_ptr(_view), 16)	};
 

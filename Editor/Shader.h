@@ -4,7 +4,10 @@
 #include "ShaderBuffer.h"
 #include "GLSLLoader.h"
 
+// Forward macros
 #define SHADER_DIFFUSE_FORWARD	0x0
+
+// Deferred macros
 
 
 class Shader

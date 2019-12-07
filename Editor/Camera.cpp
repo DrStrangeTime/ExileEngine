@@ -13,8 +13,6 @@ Camera::Camera(const Camera& x)
 	_world_up_vector = x._world_up_vector;
 	_view = x._view;
 	_proj = x._proj;
-	_u_view = x._u_view;
-	_u_proj = x._u_proj;
 }
 
 bool Camera::IsMoving()

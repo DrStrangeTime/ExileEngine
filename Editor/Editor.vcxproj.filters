@@ -119,6 +119,12 @@
     <Filter Include="Core\OpenGL\Objects\Actors\Meshes">
       <UniqueIdentifier>{61e14e10-66b5-4198-bf99-02b3c6826742}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\OpenGL\Shaders\Debug">
+      <UniqueIdentifier>{50e3f4d8-70f7-48e0-891a-c124db18e954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ExRenderer %28TBM%29\OpenGL\Buffers\FrameBufferTargets">
+      <UniqueIdentifier>{1a86aa09-9ce3-4624-ad89-636a1149354a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Buffer.cpp">
@@ -256,7 +262,12 @@
     <ClCompile Include="WavefrontLoader.cpp">
       <Filter>Core\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="FrameBufferTarget.cpp" />
+    <ClCompile Include="FrameBufferTarget.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\FrameBufferTargets</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalVisualisationS.cpp">
+      <Filter>Core\OpenGL\Shaders\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vertex.h">
@@ -418,6 +429,11 @@
     <ClInclude Include="MeshData.h">
       <Filter>Core\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="FrameBufferTarget.h" />
+    <ClInclude Include="FrameBufferTarget.h">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\FrameBufferTargets</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalVisualisationS.h">
+      <Filter>Core\OpenGL\Shaders\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

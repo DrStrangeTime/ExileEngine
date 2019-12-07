@@ -18,10 +18,11 @@
 class BinarySpacePartition : public Actor
 {
 protected:
+	uint32_t									_u_model;	// TEMP
 	uint16_t									_cull_mode;
 	uint16_t									_arbitrary_type;
 
-	uint32_t									_u_model;
+	
 	
 	mutable MeshData							_mesh_data;
 

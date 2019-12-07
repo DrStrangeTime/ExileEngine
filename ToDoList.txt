@@ -1,2 +1,3 @@
-- Research into geometry shaders.
-- Reasearch into Shader Storage Buffer Objects.
+- Remove ActionMap system.
+- Assign uniform model matrix into a uniform buffer object.
+- Tesselation shader research.

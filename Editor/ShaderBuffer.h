@@ -11,14 +11,9 @@
 
 class ShaderBuffer : public Buffer
 {
-private:
-	uint16_t _type;
-
 public:
-	ShaderBuffer(uint16_t type, uint32_t program);
+	ShaderBuffer(uint32_t program);
 	~ShaderBuffer();
-
-	uint16_t& GetType();
 
 	void Create() override;
 	void Destroy() override;

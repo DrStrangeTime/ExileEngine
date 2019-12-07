@@ -1,89 +1,78 @@
 #include "GLSLLoader.h"
 
 
-uint32_t GLSLLoader::LoadVertFrag(const GLchar* vertexPath, const GLchar* fragmentPath)
+uint32_t GLSLLoader::CreateShader(std::map<uint32_t, const GLchar*>& shader_stages)
 {
-	uint32_t _program;	// The returning program
+	uint32_t _program = glCreateProgram();	// The returning program
 
 	// 1. Retrieve the vertex/fragment source code from filePath
-	std::string		vertexCode;
-	std::string		fragmentCode;
-	std::ifstream	vShaderFile;
-	std::ifstream	fShaderFile;
+	std::ifstream				shader_file;
+	std::vector<GLuint>			shader_buffers;
+	std::vector<uint32_t>		stage_types;
+	std::vector<const GLchar*>	shader_uris;
 
-	// ensures ifstream objects can throw exceptions:
-	vShaderFile.exceptions(std::ifstream::badbit);
-	fShaderFile.exceptions(std::ifstream::badbit);
-	try
+	for (std::map<uint32_t, const GLchar*>::iterator it = shader_stages.begin(); it != shader_stages.end(); ++it)
 	{
-		// Open files
-		vShaderFile.open(vertexPath);
-		fShaderFile.open(fragmentPath);
-		std::stringstream vShaderStream, fShaderStream;
-
-		// Read file's buffer contents into streams
-		vShaderStream << vShaderFile.rdbuf();
-		fShaderStream << fShaderFile.rdbuf();
-
-		// close file handlers
-		vShaderFile.close();
-		fShaderFile.close();
-
-		// Convert stream into string
-		vertexCode = vShaderStream.str();
-		fragmentCode = fShaderStream.str();
+		stage_types.emplace_back(it->first);
+		shader_uris.emplace_back(it->second);
 	}
-	catch (std::ifstream::failure e)
+
+	for (unsigned i = 0; i < stage_types.size(); ++i)
 	{
+		std::string glsl_code;
+
+		// ensures ifstream objects can throw exceptions:
+		shader_file.exceptions(std::ifstream::badbit);
+		try
+		{
+			// Open files
+
+			shader_file.open(shader_uris[i]);
+			std::stringstream shader_stream;
+
+			// Read file's buffer contents into streams
+			shader_stream << shader_file.rdbuf();
+
+			// close file handlers
+			shader_file.close();
+
+			// Convert stream into string
+			glsl_code = shader_stream.str();
+		}
+		catch (std::ifstream::failure e)
+		{
 #ifdef _DEBUG
-		ExCore::Logger::PrintErr("Failed to read shader file!");
+			ExCore::Logger::PrintErr("Failed to read shader file!");
 #endif
-	}
-	const GLchar* vShaderCode = vertexCode.c_str();
-	const GLchar* fShaderCode = fragmentCode.c_str();
+		}
 
-	// 2. Compile shaders
-	GLuint vertex, fragment;
-	
-	// Vertex Shader
-	vertex = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertex, 1, &vShaderCode, NULL);
-	glCompileShader(vertex);
+		const GLchar* code_c = glsl_code.c_str();
 
-#ifdef _DEBUG
-	GLint success(0);
-	GLchar infoLog[512];
-	glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-		ExCore::Logger::PrintErr(infoLog);
-	}
-#endif
-
-	// Fragment Shader
-	fragment = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragment, 1, &fShaderCode, NULL);
-	glCompileShader(fragment);
+		// Vertex Shader
+		shader_buffers.emplace_back(glCreateShader(stage_types[i]));
+		glShaderSource(shader_buffers[i], 1, &code_c, NULL);
+		glCompileShader(shader_buffers[i]);
 
 #ifdef _DEBUG
-	// Print compile errors if any
-	glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-		ExCore::Logger::PrintErr(infoLog);
-	}
+		GLint success(0);
+		GLchar infoLog[512];
+		glGetShaderiv(shader_buffers[i], GL_COMPILE_STATUS, &success);
+		if (!success)
+		{
+			glGetShaderInfoLog(shader_buffers[i], 512, NULL, infoLog);
+			ExCore::Logger::PrintErr(infoLog);
+		}
 #endif
 
-	// Shader Program
-	_program = glCreateProgram();
-	glAttachShader(_program, vertex);
-	glAttachShader(_program, fragment);
+		glAttachShader(_program, shader_buffers[i]);
+	}
+
 	glLinkProgram(_program);
 
 #ifdef _DEBUG
 	// Print linking errors if any
+	GLint success(0);
+	GLchar infoLog[512];
 	glGetProgramiv(_program, GL_LINK_STATUS, &success);
 	if (!success)
 	{
@@ -93,8 +82,9 @@ uint32_t GLSLLoader::LoadVertFrag(const GLchar* vertexPath, const GLchar* fragme
 #endif
 
 	// Delete the shaders as they're linked into our program now and no longer necessery
-	glDeleteShader(vertex);
-	glDeleteShader(fragment);
+
+	for (unsigned i = 0; i < stage_types.size(); ++i)
+		glDeleteShader(shader_buffers[i]);
 
 	return _program;
 }

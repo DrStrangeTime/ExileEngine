@@ -1,9 +1,8 @@
 #include "ShaderBuffer.h"
 
 
-ShaderBuffer::ShaderBuffer(uint16_t type, uint32_t program)
+ShaderBuffer::ShaderBuffer(uint32_t program)
 {
-	_type = type;
 	_buffer_object = program;
 	
 	Create();
@@ -12,11 +11,6 @@ ShaderBuffer::ShaderBuffer(uint16_t type, uint32_t program)
 ShaderBuffer::~ShaderBuffer()
 {
 	Destroy();
-}
-
-uint16_t& ShaderBuffer::GetType()
-{
-	return _type;
 }
 
 void ShaderBuffer::Create()

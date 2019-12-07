@@ -115,6 +115,8 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	ExCore::Logger::PrintInfo(rdp.vendor);
 	ExCore::Logger::PrintInfo(rdp.model);
 	ExCore::Logger::PrintInfo(rdp.gl_version);
+
+	glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 #endif
 
 	// OpenGL properties
@@ -124,7 +126,6 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.075f, 0.075f, 0.075f, 1.0f);
 	glViewport(0, 0, width, height);
-
 
 	// Initialise world information
 	WorldInfo::SetFramesPerSecond(6.f);

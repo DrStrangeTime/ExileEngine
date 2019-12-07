@@ -5,11 +5,10 @@
 
 #include "Headers.h"
 
-
 class GLSLLoader
 {
 public:
-	static uint32_t LoadVertFrag(const GLchar* vertexPath, const GLchar* fragmentPath);
+	static uint32_t CreateShader(std::map<uint32_t, const GLchar*>& shader_stages);
 };
 
 #endif

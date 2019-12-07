@@ -66,10 +66,6 @@ protected:
 	glm::fmat4	_view;
 	glm::mat4	_proj;
 
-	/* Uniform data */ 
-	uint32_t			_u_view;
-	uint32_t			_u_proj;
-
 	std::unique_ptr<UniformBufferObject>	_ubo;
 
 public:
@@ -89,9 +85,7 @@ public:
 				_velocity(glm::vec3(0.f)),
 				_world_up_vector(WORLD_UP),
 				_view(glm::mat4(1.0f)), 
-				_proj(glm::mat4(1.0f)),
-				_u_view(0),
-				_u_proj(0) {}
+				_proj(glm::mat4(1.0f)) {}
 
 	Camera(const Camera& x);	// Copy constructor
 

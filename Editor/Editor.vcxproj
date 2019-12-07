@@ -165,6 +165,7 @@
     <ClCompile Include="GLForwardRenderer.cpp" />
     <ClCompile Include="GLRenderMode.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="NormalVisualisationS.cpp" />
     <ClCompile Include="OpaqueFM.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="UniformBufferObject.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="GLRenderMode.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="MeshData.h" />
+    <ClInclude Include="NormalVisualisationS.h" />
     <ClInclude Include="OpaqueFM.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="UniformBlockElement.h" />
