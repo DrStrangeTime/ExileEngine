@@ -11,6 +11,7 @@ public:
 	virtual void Create() override;
 	virtual void Destroy() {}
 	virtual void Bind() override;
+
 };
 
 #endif

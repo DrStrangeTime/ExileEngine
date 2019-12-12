@@ -27,13 +27,16 @@ void StaticVertexBufferObject::Create()
 	uintptr_t offset = 0;
 	for (const VertexElement& ve : _vertex_data.vertexElements)
 	{
+		/*glVertexAttribFormat(it, ve.componentSize, GL_FLOAT, GL_FALSE, (void*)(offset));
+		glVertexAttribBinding(it, 0);*/
+
 		glVertexAttribPointer(it, ve.componentSize, GL_FLOAT, GL_FALSE, _vertex_data.stride * SIZE_OF_FLOAT, (void*)(offset));
 		glEnableVertexAttribArray(it);
+
 		glVertexAttribDivisor(it, ve.genericRate);
 
 		offset += (ve.componentSize * SIZE_OF_FLOAT);	// Calculate for the next array offset
 		++it;	// Increment current attrib index
-		
 	}
 
 	_buffer_size = offset;	// Assign buffer size

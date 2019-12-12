@@ -1,3 +1,17 @@
+OpenGL Optimisations in ExileEngine::
+- Look into VAB and edit VBO class
+- Add a uint32_t stream index value in VertexElement struct
+- Optimise mesh chunks by sorting materials and cache data (std::partition)
+
+OpenGL Experiments::
+- Experiment with glMultiDrawElements()
+
+Engine Clean-up::
 - Remove ActionMap system.
-- Assign uniform model matrix into a uniform buffer object.
+
+General Research::
+- Ssbo research.
 - Tesselation shader research.
+
+C++ Challenge::
+- Make a profiling system in ExCore.dll
