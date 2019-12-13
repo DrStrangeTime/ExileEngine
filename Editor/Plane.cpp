@@ -24,18 +24,23 @@ Plane::Plane(uint32_t& shader_program, float x, float y, float z, uint16_t direc
 	//std::vector<MeshChunk> c = { MeshChunk(mat_id, OffsetData(0, 6)) };						// MESH CHUNK
 
 	//_mesh_data = MeshData(v, i, c);															// MESH DATA
+
 	_mesh_data = Wavefront::LoadDataFromFile("models/TwoCubes.obj");
 
 	//_vertex_data.vertexElements.reserve(1);
 	//_vertex_data.vertexElements.emplace_back(VertexElement(3, {}));		// Create empty container for tangents
 	//_vertex_data.vertexElements[3] = VertexOptimiser::PackTangents(indices, _vertex_data.vertexElements[2]);
 
-	_vertex_buffer_object = std::make_shared<StaticVertexBufferObject>(_mesh_data.vertex_data);
+	// Main buffer
+	_vertex_buffer_objects.emplace_back(std::make_shared<FloatVertexBufferObject>(_mesh_data.vertex_data, 0));
+	
+	// Texture buffer
+	std::vector<GLuint64> tex_handles(48, ContentManager::textures[0].GetTextureHandle());
+	_vertex_buffer_objects.emplace_back(std::make_shared<Uint64VertexBufferObject>(tex_handles, 3));
+
 	_index_buffer_object = std::make_shared<IndexBufferObject>(_mesh_data.index_data);
 
-	std::vector<std::shared_ptr<VertexBufferObject>> vbos = { _vertex_buffer_object };
-
-	_vertex_array_object = std::make_shared<VertexArrayObject>(vbos, _index_buffer_object);
+	_vertex_array_object = std::make_shared<VertexArrayObject>(_vertex_buffer_objects, _index_buffer_object);
 
 	_trans.p = glm::vec3(x, y, z);
 
@@ -56,9 +61,5 @@ void Plane::Render()
 	_index_buffer_object->Bind();
 
 	for (auto i = 0; i < _mesh_data.chunks.size(); ++i)
-	{
-		//ContentManager::materials[_mesh_data.chunks[i].mat_id]->Bind();
-		ContentManager::materials[0]->Bind();
 		glDrawElements(GL_TRIANGLES, _mesh_data.chunks[i].index_offset.end, GL_UNSIGNED_INT, (void*)(_mesh_data.chunks[i].index_offset.begin * sizeof(GLuint)));
-	}
 }

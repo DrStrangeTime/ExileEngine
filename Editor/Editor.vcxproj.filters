@@ -11,17 +11,11 @@
     <Filter Include="Core\Utils">
       <UniqueIdentifier>{a5baf337-dbb6-4542-8580-bed866b943ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Input">
-      <UniqueIdentifier>{01fe7026-6ded-4ce6-86ac-341a30b99e35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Structs">
       <UniqueIdentifier>{11d15415-3ce3-4d6a-bcc6-7138c6edbda4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Globals">
       <UniqueIdentifier>{a52ed2d9-9aff-40c7-a172-8e64b76bb30f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Input\ActionMaps">
-      <UniqueIdentifier>{b9b115da-e55c-4802-8d49-a00bd26c4784}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\OpenGL">
       <UniqueIdentifier>{fae5f822-dc34-4c74-91f2-54556a403543}</UniqueIdentifier>
@@ -92,9 +86,6 @@
     <Filter Include="Core\OpenGL\Objects\Actors\BinarySpacePartitions">
       <UniqueIdentifier>{b7a6e61b-079c-4feb-a3af-0a9721342541}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\OpenGL\Textures">
-      <UniqueIdentifier>{96f62df7-2c1f-43d6-ab9b-e4d172b8a10e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Interfaces\Object">
       <UniqueIdentifier>{19588d89-d539-4e9e-84c8-6ea60f10d46d}</UniqueIdentifier>
     </Filter>
@@ -104,17 +95,8 @@
     <Filter Include="Core\Vulkan">
       <UniqueIdentifier>{d7b053e7-26d5-4230-928e-d33d87735ca6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\OpenGL\Materials">
-      <UniqueIdentifier>{0336c955-e648-48a3-af98-4d4731df7ec6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\OpenGL\DataManagement">
       <UniqueIdentifier>{ef77f966-389a-4287-80a5-c1df6b1c4374}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\OpenGL\Materials\Forward">
-      <UniqueIdentifier>{94d76407-0aa2-4f70-950c-d5bf52598309}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\OpenGL\Materials\Deferred">
-      <UniqueIdentifier>{dd3bc579-d75d-4362-85b8-604530bf8b4a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\OpenGL\Objects\Actors\Meshes">
       <UniqueIdentifier>{61e14e10-66b5-4198-bf99-02b3c6826742}</UniqueIdentifier>
@@ -124,6 +106,12 @@
     </Filter>
     <Filter Include="Core\ExRenderer %28TBM%29\OpenGL\Buffers\FrameBufferTargets">
       <UniqueIdentifier>{1a86aa09-9ce3-4624-ad89-636a1149354a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Material">
+      <UniqueIdentifier>{0336c955-e648-48a3-af98-4d4731df7ec6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\OpenGL\Texture">
+      <UniqueIdentifier>{96f62df7-2c1f-43d6-ab9b-e4d172b8a10e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,17 +130,8 @@
     <ClCompile Include="WorldInfo.cpp">
       <Filter>Core\Globals</Filter>
     </ClCompile>
-    <ClCompile Include="ActionMap.cpp">
-      <Filter>Core\Input\ActionMaps</Filter>
-    </ClCompile>
     <ClCompile Include="ImageLoader.cpp">
       <Filter>Core\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="ActionMapMouseEvent.cpp">
-      <Filter>Core\Input\ActionMaps</Filter>
-    </ClCompile>
-    <ClCompile Include="ActionMapKeyboardEvent.cpp">
-      <Filter>Core\Input\ActionMaps</Filter>
     </ClCompile>
     <ClCompile Include="GLDeferredRenderer.cpp">
       <Filter>Core\OpenGL\Renderers\Modes</Filter>
@@ -173,9 +152,6 @@
       <Filter>Core\OpenGL\Objects\Actors</Filter>
     </ClCompile>
     <ClCompile Include="ShaderBuffer.cpp">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureBuffer.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
@@ -208,9 +184,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Core\OpenGL\Objects\Actors\Cameras</Filter>
     </ClCompile>
-    <ClCompile Include="StaticVertexBufferObject.cpp">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
-    </ClCompile>
     <ClCompile Include="VertexBufferObject.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClCompile>
@@ -230,25 +203,19 @@
       <Filter>Core\OpenGL\Objects\Actors\BinarySpacePartitions</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Core\OpenGL\Textures</Filter>
+      <Filter>Core\OpenGL\Texture</Filter>
     </ClCompile>
     <ClCompile Include="Plane.cpp">
       <Filter>Core\OpenGL\Objects\Actors\BinarySpacePartitions</Filter>
     </ClCompile>
     <ClCompile Include="Material.cpp">
-      <Filter>Core\OpenGL\Materials</Filter>
+      <Filter>Core\OpenGL\Material</Filter>
     </ClCompile>
     <ClCompile Include="ContentManager.cpp">
       <Filter>Core\OpenGL\DataManagement</Filter>
     </ClCompile>
-    <ClCompile Include="OpaqueFM.cpp">
-      <Filter>Core\OpenGL\Materials\Forward</Filter>
-    </ClCompile>
     <ClCompile Include="Client.cpp">
       <Filter>Core\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="BatchVertexBufferObject.cpp">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClCompile>
     <ClCompile Include="VertexArrayObject.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
@@ -267,6 +234,12 @@
     </ClCompile>
     <ClCompile Include="NormalVisualisationS.cpp">
       <Filter>Core\OpenGL\Shaders\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="FloatVertexBufferObject.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Uint64VertexBufferObject.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -294,23 +267,11 @@
     <ClInclude Include="Headers.h">
       <Filter>Core\Globals</Filter>
     </ClInclude>
-    <ClInclude Include="ActionMap.h">
-      <Filter>Core\Input\ActionMaps</Filter>
-    </ClInclude>
-    <ClInclude Include="ActionDefinitions.h">
-      <Filter>Core\Input\ActionMaps</Filter>
-    </ClInclude>
-    <ClInclude Include="ActionMapKeyboardEvent.h">
-      <Filter>Core\Input\ActionMaps</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Core\Structs</Filter>
     </ClInclude>
     <ClInclude Include="ImageLoader.h">
       <Filter>Core\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="ActionMapMouseEvent.h">
-      <Filter>Core\Input\ActionMaps</Filter>
     </ClInclude>
     <ClInclude Include="OffsetData.h">
       <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
@@ -334,9 +295,6 @@
       <Filter>Core\OpenGL\Objects\Actors</Filter>
     </ClInclude>
     <ClInclude Include="ShaderBuffer.h">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureBuffer.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
@@ -366,9 +324,6 @@
     <ClInclude Include="Camera.h">
       <Filter>Core\OpenGL\Objects\Actors\Cameras</Filter>
     </ClInclude>
-    <ClInclude Include="StaticVertexBufferObject.h">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
-    </ClInclude>
     <ClInclude Include="VertexBufferObject.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClInclude>
@@ -388,25 +343,19 @@
       <Filter>Core\OpenGL\Objects\Actors\BinarySpacePartitions</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Core\OpenGL\Textures</Filter>
+      <Filter>Core\OpenGL\Texture</Filter>
     </ClInclude>
     <ClInclude Include="Plane.h">
       <Filter>Core\OpenGL\Objects\Actors\BinarySpacePartitions</Filter>
     </ClInclude>
     <ClInclude Include="Material.h">
-      <Filter>Core\OpenGL\Materials</Filter>
+      <Filter>Core\OpenGL\Material</Filter>
     </ClInclude>
     <ClInclude Include="ContentManager.h">
       <Filter>Core\OpenGL\DataManagement</Filter>
     </ClInclude>
-    <ClInclude Include="OpaqueFM.h">
-      <Filter>Core\OpenGL\Materials\Forward</Filter>
-    </ClInclude>
     <ClInclude Include="Client.h">
       <Filter>Core\Client</Filter>
-    </ClInclude>
-    <ClInclude Include="BatchVertexBufferObject.h">
-      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClInclude>
     <ClInclude Include="VertexArrayObject.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
@@ -420,9 +369,6 @@
     <ClInclude Include="UniformBlockElement.h">
       <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="UniformBlockIndex.h">
-      <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
-    </ClInclude>
     <ClInclude Include="WavefrontLoader.h">
       <Filter>Core\Utils</Filter>
     </ClInclude>
@@ -434,6 +380,12 @@
     </ClInclude>
     <ClInclude Include="NormalVisualisationS.h">
       <Filter>Core\OpenGL\Shaders\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatVertexBufferObject.h">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Uint64VertexBufferObject.h">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,10 +1,9 @@
 #ifndef __MATERIAL_H__
 #define __MATERIAL_H__
 
-#define MAT_OPAQUE			0x0
-#define MAT_TRANSPARENT		0x1
-#define MAT_ADDITIVE		0x2
-#define MAT_ANIMATION		0x3
+#define MAT_OPAQUE			STATIC_CAST(uint16_t, 0x0)
+#define MAT_TRANSPARENT		STATIC_CAST(uint16_t, 0x1)
+#define MAT_ADDITIVE		STATIC_CAST(uint16_t, 0x2)
 
 #include "Texture.h"
 
@@ -21,20 +20,23 @@ protected:
 	std::vector<Texture>					_textures;
 
 public:
-	Material() :	_s(1.f), 
+	Material() :	_s(1.f),
 					_t(1.f),
+					_material_type(0),
 					_name(""),
-					_two_sided(false),
-					_material_type(0) {}
+					_two_sided(false) {}
+
+	Material(const char* name, uint16_t mat_type, bool two_sided, std::vector<Texture>& textures) :		_s(1.f),
+																										_t(1.f),
+																										_material_type(mat_type),
+																										_name(name),
+																										_two_sided(two_sided) {}
 
 	float& GetS();
 	float& GetT();
 
 	inline void SetS(float value) { _s = value; }
 	inline void SetT(float value) { _t = value; }
-	
-	virtual void Update() = 0;
-	virtual void Bind() = 0;
 };
 
 #endif

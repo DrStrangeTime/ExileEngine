@@ -1,7 +1,6 @@
 #ifndef __TEXTURE_H__
 #define __TEXTURE_H__
 
-#include "TextureBuffer.h"
 #include "TextureLoader.h"
 
 #define TEXTURE_ALBEDO		0x0
@@ -20,25 +19,23 @@ class Texture
 protected:
 	uint32_t						_wrap;
 	uint32_t						_filter;
-	uint32_t						_uniform;
 
-	uint16_t						_texture_index;
 	uint16_t						_texture_type;
+
+	uint32_t						_texture_id;
+	uint64_t						_texture_handle;
 
 	std::string						_name;
 
-	std::shared_ptr<TextureBuffer>	_texture_buffer;
-
 public:
-	Texture(uint32_t program, const char* file, std::string name, uint32_t tex_index, uint32_t wrap, uint32_t filter);
+	Texture(const char* file, std::string name, uint32_t tex_index, uint32_t wrap, uint32_t filter);
+	~Texture();
 
 	uint32_t&							GetWrap();
 	uint32_t&							GetFilter();
-	uint16_t&							GetTextureIndex();
 	uint16_t&							GetTextureType();
-	std::shared_ptr<TextureBuffer>&		GetTextureBuffer();
-
-	virtual void					Bind();
+	uint32_t&							GetTextureID();
+	uint64_t&							GetTextureHandle();
 };
 
 #endif

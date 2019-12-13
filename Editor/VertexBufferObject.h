@@ -12,21 +12,15 @@ class VertexBufferObject : public Buffer
 protected:
 	int 				_draw_type;
 	uint16_t			_num_vertex_elements;
-	VertexData			_vertex_data;
-	std::vector<float>	_packed_vertex_data;
-
-	void				Initialise(VertexData vertex_data);
+	uint32_t			_location_offset;
 
 public:
 	VertexBufferObject() : _draw_type(GL_STATIC_DRAW) ,_num_vertex_elements(0) {}
-	~VertexBufferObject();
+	virtual ~VertexBufferObject();
 
 	virtual void Create() override {}
 	virtual void Destroy() override;
 	virtual void Bind() override;
-
-	VertexData& GetVertexData();
-	std::vector<float>& GetPackedVertexData();
 };
 
 #endif

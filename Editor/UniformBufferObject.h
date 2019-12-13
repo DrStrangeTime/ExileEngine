@@ -20,8 +20,9 @@ public:
 	std::vector<UniformBlockElement>&	GetUniformBlockData();
 
 	void								SetUniformData(uint32_t element_index, float* data);
-	void								BufferSubData(uint32_t element_index);
+	void								BufferSubData(uint32_t element_index);	// Upload data dynamically
 	void								BufferData();
+	static void							BindBufferRange(uint32_t buffer_index, uint32_t buffer_object, uint32_t offset, size_t size); // Binds statically without uploading data
 
 	virtual void						Create() override;
 	virtual void						Destroy() override;

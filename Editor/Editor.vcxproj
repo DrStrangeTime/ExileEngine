@@ -144,9 +144,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ActionMap.cpp" />
-    <ClCompile Include="ActionMapKeyboardEvent.cpp" />
-    <ClCompile Include="ActionMapMouseEvent.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AudioMaster.cpp" />
     <ClCompile Include="BinarySpacePartition.cpp" />
@@ -156,7 +153,6 @@
     <ClCompile Include="ContentManager.cpp" />
     <ClCompile Include="CustomActor.cpp" />
     <ClCompile Include="DiffuseSF.cpp" />
-    <ClCompile Include="BatchVertexBufferObject.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="EventManager.cpp" />
@@ -166,8 +162,8 @@
     <ClCompile Include="GLRenderMode.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="NormalVisualisationS.cpp" />
-    <ClCompile Include="OpaqueFM.cpp" />
     <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Uint64VertexBufferObject.cpp" />
     <ClCompile Include="UniformBufferObject.cpp" />
     <ClCompile Include="WavefrontLoader.cpp" />
     <ClCompile Include="World.cpp" />
@@ -183,9 +179,8 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderBuffer.cpp" />
     <ClCompile Include="GLSLLoader.cpp" />
-    <ClCompile Include="StaticVertexBufferObject.cpp" />
+    <ClCompile Include="FloatVertexBufferObject.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TextureBuffer.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="VertexArrayObject.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
@@ -198,10 +193,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActionMap.h" />
-    <ClInclude Include="ActionDefinitions.h" />
-    <ClInclude Include="ActionMapKeyboardEvent.h" />
-    <ClInclude Include="ActionMapMouseEvent.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AudioMaster.h" />
     <ClInclude Include="BinarySpacePartition.h" />
@@ -211,7 +202,6 @@
     <ClInclude Include="ContentManager.h" />
     <ClInclude Include="CustomActor.h" />
     <ClInclude Include="DiffuseSF.h" />
-    <ClInclude Include="BatchVertexBufferObject.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="FrameBufferTarget.h" />
@@ -221,10 +211,9 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="MeshData.h" />
     <ClInclude Include="NormalVisualisationS.h" />
-    <ClInclude Include="OpaqueFM.h" />
     <ClInclude Include="Plane.h" />
+    <ClInclude Include="Uint64VertexBufferObject.h" />
     <ClInclude Include="UniformBlockElement.h" />
-    <ClInclude Include="UniformBlockIndex.h" />
     <ClInclude Include="UniformBufferObject.h" />
     <ClInclude Include="WavefrontLoader.h" />
     <ClInclude Include="World.h" />
@@ -242,9 +231,8 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderBuffer.h" />
     <ClInclude Include="GLSLLoader.h" />
-    <ClInclude Include="StaticVertexBufferObject.h" />
+    <ClInclude Include="FloatVertexBufferObject.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="TextureBuffer.h" />
     <ClInclude Include="TextureData.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Transform.h" />

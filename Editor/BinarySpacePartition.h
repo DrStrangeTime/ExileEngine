@@ -12,23 +12,23 @@
 #include "Actor.h"
 #include "MeshData.h"
 #include "VertexArrayObject.h"
-#include "StaticVertexBufferObject.h"
+#include "FloatVertexBufferObject.h"
+#include "Uint64VertexBufferObject.h"
 
 /* The base BSP class for arbitrary objects */
 class BinarySpacePartition : public Actor
 {
 protected:
-	uint32_t									_u_model;	// TEMP
-	uint16_t									_cull_mode;
-	uint16_t									_arbitrary_type;
+	uint32_t											_u_model;	// TEMP
+	uint16_t											_cull_mode;
+	uint16_t											_arbitrary_type;
 
 	
 	
-	mutable MeshData							_mesh_data;
-
-	std::shared_ptr<VertexArrayObject>			_vertex_array_object;
-	std::shared_ptr<VertexBufferObject>			_vertex_buffer_object;
-	std::shared_ptr<IndexBufferObject>			_index_buffer_object;
+	mutable MeshData									_mesh_data;
+	std::vector<std::shared_ptr<VertexBufferObject>>	_vertex_buffer_objects;
+	std::shared_ptr<VertexArrayObject>					_vertex_array_object;
+	std::shared_ptr<IndexBufferObject>					_index_buffer_object;
 
 	void								Inverse();
 

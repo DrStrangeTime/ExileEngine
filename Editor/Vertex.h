@@ -6,6 +6,7 @@
 struct VertexElement {
 	uint16_t			genericRate;
 	uint16_t			componentSize;
+	
 	std::vector<float>	data;
 
 	VertexElement() : componentSize(0) {}

@@ -2,7 +2,6 @@
 #define __CAMERA_H__
 
 #include "Actor.h"
-#include "UniformBlockIndex.h"
 #include "UniformBufferObject.h"
 
 #undef near

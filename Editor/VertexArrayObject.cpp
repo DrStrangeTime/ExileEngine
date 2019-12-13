@@ -41,10 +41,6 @@ void VertexArrayObject::Create()
 	// Only create an ibo if object is valid
 	if (_ibo != nullptr)
 		_ibo->Create();
-
-	// Only divise vertex attribs if multiple vbos exist
-	if (_vbos.size() > 1)
-		glVertexAttribDivisor(static_cast<GLuint>(_vbos.size()), 1);
 }
 
 void VertexArrayObject::Destroy()

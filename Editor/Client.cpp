@@ -16,7 +16,7 @@ bool Client::isRunning()
 
 Client::Client()
 {
-	Create(1920, 1080, "Exile Engine", false, true, false);
+	Create(APP_WIDTH, APP_HEIGHT, APP_TITLE, APP_MAXIMISE, APP_FULL_SCREEN, APP_SHOW_CURSOR);
 }
 
 Client::~Client()
@@ -127,13 +127,6 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	glClearColor(0.075f, 0.075f, 0.075f, 1.0f);
 	glViewport(0, 0, width, height);
 
-	// Initialise world information
-	WorldInfo::SetFramesPerSecond(6.f);
-	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveFoward", GLFW_KEY_W, GLFW_PRESS, A_MOVE_FORWARD));
-	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveBackward", GLFW_KEY_S, GLFW_PRESS, A_MOVE_BACKWARD));
-	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveLeft", GLFW_KEY_A, GLFW_PRESS, A_MOVE_LEFT));
-	WorldInfo::AddActionMap(std::make_unique<ActionMapKeyboardEvent>("MoveRight", GLFW_KEY_D, GLFW_PRESS, A_MOVE_RIGHT));
-
 
 	/* -------------------------------- INITIALISE ENGINE PIPELINE -------------------------------- */
 	// Initialise render master
@@ -146,21 +139,11 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	// Get reference to OpenGL shaders from current gl render object
 	std::vector<std::shared_ptr<Shader>> gl_shaders = std::dynamic_pointer_cast<GLRenderMode>(RenderMaster::GetRenderPipeline()->GetRenderObject())->GetShaders();
 	
-	// BSP data
-	ContentManager::bsps[0] = std::make_shared<Plane>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(), .0f, .0f, .0f, PLANE_DIR_Z, 1.f, 1.f, 0);
 	// Texture data
-	ContentManager::textures.emplace_back(Texture(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
-		"textures/default_a.tga",
-		"default_albedo",
-		TEXTURE_ALBEDO,
-		GL_REPEAT,
-		GL_LINEAR)); // Mat ID
+	ContentManager::textures.emplace_back("textures/default_a.tga", "default_albedo", TEXTURE_ALBEDO, GL_REPEAT, GL_LINEAR); // Mat ID
 	// Material data
 	std::vector<Texture> textures = { ContentManager::textures[0] };
-	ContentManager::materials.emplace_back(std::make_shared<OpaqueFM>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
-		"default_mat",
-		false,
-		textures));
+	ContentManager::materials.emplace_back("default_mat", MAT_OPAQUE, false, textures);
 
 	// Add default camera object
 	World::map->AddActor(std::make_shared<CameraPerspective3D>(
@@ -175,6 +158,9 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 		(.22f * (STATIC_CAST(float, height) / STATIC_CAST(float, width))),	// Sensitivity Y
 		glm::vec3(.0f),		// Position
 		SpringArm(85.f, glm::vec3(.0f))));
+
+	// BSP data
+	ContentManager::bsps[0] = std::make_shared<Plane>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(), .0f, .0f, .0f, PLANE_DIR_Z, 1.f, 1.f, 0);
 
 	// -------------------------------- TEMP --------------------------------
 	World::map->AddActor(ContentManager::bsps[BSP_PLANE]);

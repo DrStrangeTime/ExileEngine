@@ -32,8 +32,6 @@ void GLForwardRenderer::LoadShaders(std::vector<uint16_t> shader_indices)
 	// ADD DEBUG SHADERS HERE...
 
 
-	UniformBlockIndex block_index_blind_0 = UniformBlockIndex(_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(), "Camera", 0);
-
 #ifdef _DEBUG
 	ExCore::Logger::PrintInfo("RENDER_INFO::MODE::FORWARD");
 #endif
@@ -49,8 +47,9 @@ void GLForwardRenderer::Render(double& delta)
 	// 0: CAMERA + GEOMETRY + LIGHTING
 	_shaders[SHADER_DIFFUSE_FORWARD]->Bind();
 	//World::map->BindPlayerController();
-	World::map->GetActors()[0]->Render();
 	World::map->GetActors()[1]->Render();
+	World::map->GetActors()[0]->Render();
+
 	
 
 	// 1: PARTICLE SYSTEM PASS

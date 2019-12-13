@@ -6,7 +6,7 @@
 // Textures
 #include "Texture.h"
 // Materials
-#include "OpaqueFM.h"
+#include "Material.h"
 
 //#include "StaticMesh.h"
 //#include "WavefrontLoader.h"
@@ -28,8 +28,8 @@ class ContentManager
 {
 public:
 	static std::vector<Texture>							textures;
+	static std::vector<Material>						materials;
 	static std::shared_ptr<BinarySpacePartition>		bsps[4];
-	static std::vector<std::shared_ptr<Material>>		materials;
 	//static std::vector<std::shared_ptr<StaticMesh>>	staticMeshes;
 
 	static void Import(uint32_t import_type, const char* file, std::string name);

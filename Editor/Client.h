@@ -3,6 +3,15 @@
 #include "RenderMaster.h"
 #include "LogicManager.h"
 
+// Default app values
+constexpr unsigned		APP_WIDTH			= 1920;
+constexpr unsigned		APP_HEIGHT			= 1080;
+constexpr bool			APP_FULL_SCREEN		= true;
+constexpr bool			APP_MAXIMISE		= false;
+constexpr bool			APP_SHOW_CURSOR		= false;
+constexpr const char*	APP_TITLE			= "Exile Engine";
+
+
 /* Editor derives from the Exile::Core application interface. */
 class Client : public ExCore::Application
 {
@@ -31,6 +40,4 @@ public:
 	void Render(double& delta) override;
 	void Run() override;
 	bool isRunning() override;
-
-
 };

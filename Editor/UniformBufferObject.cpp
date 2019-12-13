@@ -43,7 +43,7 @@ void UniformBufferObject::Create()
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 
 	// Define range of the buffer that links to a uniform binding point
-	glBindBufferRange(GL_UNIFORM_BUFFER, _uniform_bind_index, _buffer_object, 0, _buffer_size);
+	BindBufferRange(_uniform_bind_index, _buffer_object, 0, _buffer_size);
 
 	// Buffer subdata for each static element
 	glBindBuffer(GL_UNIFORM_BUFFER, _buffer_object);
@@ -77,7 +77,10 @@ void UniformBufferObject::BufferData()
 
 void UniformBufferObject::BufferSubData(uint32_t element_index)
 {
-	glBufferSubData(GL_UNIFORM_BUFFER,	_uniform_block_data[element_index].offset,
-										_uniform_block_data[element_index].size_in_bytes,
-										_uniform_block_data[element_index].data);
+	glNamedBufferSubDataEXT(_buffer_object, _uniform_block_data[element_index].offset, _uniform_block_data[element_index].size_in_bytes, _uniform_block_data[element_index].data);
+}
+
+void UniformBufferObject::BindBufferRange(uint32_t buffer_index, uint32_t buffer_object, uint32_t offset, size_t size)
+{
+	glBindBufferRange(GL_UNIFORM_BUFFER, buffer_index, buffer_object, offset, size);
 }
