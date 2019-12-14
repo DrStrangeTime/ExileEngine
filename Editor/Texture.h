@@ -17,11 +17,9 @@
 class Texture
 {
 protected:
+	uint16_t						_texture_type;
 	uint32_t						_wrap;
 	uint32_t						_filter;
-
-	uint16_t						_texture_type;
-
 	uint32_t						_texture_id;
 	uint64_t						_texture_handle;
 
@@ -31,9 +29,9 @@ public:
 	Texture(const char* file, std::string name, uint32_t tex_index, uint32_t wrap, uint32_t filter);
 	~Texture();
 
+	uint16_t&							GetTextureType();
 	uint32_t&							GetWrap();
 	uint32_t&							GetFilter();
-	uint16_t&							GetTextureType();
 	uint32_t&							GetTextureID();
 	uint64_t&							GetTextureHandle();
 };

@@ -3,7 +3,3 @@ OpenGL Optimisations in ExileEngine::
 
 OpenGL Experiments::
 - Ssbos (check local source code)
-
-Engine Tests::
-- Render multiple objects with seperate texture assignment
-- Experiment with glMultiDrawElements and using seperate texture assignment

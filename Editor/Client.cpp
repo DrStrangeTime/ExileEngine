@@ -141,6 +141,8 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	
 	// Texture data
 	ContentManager::textures.emplace_back("textures/default_a.tga", "default_albedo", TEXTURE_ALBEDO, GL_REPEAT, GL_LINEAR); // Mat ID
+	//ContentManager::textures.emplace_back("textures/dot_a.tga", "default_albedo", TEXTURE_ALBEDO, GL_REPEAT, GL_LINEAR); // Mat ID
+
 	// Material data
 	std::vector<Texture> textures = { ContentManager::textures[0] };
 	ContentManager::materials.emplace_back("default_mat", MAT_OPAQUE, false, textures);
@@ -160,10 +162,12 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 		SpringArm(85.f, glm::vec3(.0f))));
 
 	// BSP data
-	ContentManager::bsps[0] = std::make_shared<Plane>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(), .0f, .0f, .0f, PLANE_DIR_Z, 1.f, 1.f, 0);
+	ContentManager::bsps[0] = std::make_shared<Plane>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(), ContentManager::textures[0], .0f, .0f, .0f, PLANE_DIR_Z, 1.f, 1.f, 0);
+	//ContentManager::bsps[1] = std::make_shared<Plane>(gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(), ContentManager::textures[1], ContentManager::textures[0], 2.f, .0f, .0f, PLANE_DIR_Z, 1.f, 1.f, 0);
 
 	// -------------------------------- TEMP --------------------------------
 	World::map->AddActor(ContentManager::bsps[BSP_PLANE]);
+	//World::map->AddActor(ContentManager::bsps[1]);
 	// -------------------------------- TEMP --------------------------------
 
 	// Compile dynamic actors
