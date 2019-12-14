@@ -6,3 +6,4 @@ OpenGL Experiments::
 
 Engine Tests::
 - Render multiple objects with seperate texture assignment
+- Experiment with glMultiDrawElements and using seperate texture assignment
