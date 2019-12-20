@@ -1,8 +1,9 @@
 #include "UniformBufferObject.h"
 
-UniformBufferObject::UniformBufferObject(uint32_t uniform_bind_index, std::vector<UniformBlockElement>& uniform_block_data, GLenum usage)
+UniformBufferObject::UniformBufferObject(uint32_t uniform_bind_index, uint32_t binding_point_index, std::vector<UniformBlockElement>& uniform_block_data, GLenum usage)
 {
 	_uniform_bind_index = uniform_bind_index;
+	_binding_point_index = binding_point_index;
 	_uniform_block_data = uniform_block_data;
 	_usage = usage;
 
@@ -43,13 +44,15 @@ void UniformBufferObject::Create()
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 
 	// Define range of the buffer that links to a uniform binding point
-	BindBufferRange(_uniform_bind_index, _buffer_object, 0, _buffer_size);
+	//glBindBufferRange(GL_UNIFORM_BUFFER, _binding_point_index, _buffer_object, 0, _buffer_size);	// Buffer certain range to binding point
+	glBindBufferBase(GL_UNIFORM_BUFFER, _binding_point_index, _buffer_object);	// Bind everything to binding point
 
 	// Buffer subdata for each static element
 	glBindBuffer(GL_UNIFORM_BUFFER, _buffer_object);
 
 	for (auto i = 0; i < _uniform_block_data.size(); ++i)
 		BufferSubData(i);
+
 
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 }
@@ -64,11 +67,6 @@ void UniformBufferObject::Bind()
 	glBindBuffer(GL_UNIFORM_BUFFER, _buffer_object);
 }
 
-void UniformBufferObject::SetUniformData(uint32_t element_index, float* data)
-{
-	_uniform_block_data[element_index].data = data;
-}
-
 void UniformBufferObject::BufferData()
 {
 	for (auto i = 0; i < _uniform_block_data.size(); ++i)
@@ -78,9 +76,4 @@ void UniformBufferObject::BufferData()
 void UniformBufferObject::BufferSubData(uint32_t element_index)
 {
 	glNamedBufferSubDataEXT(_buffer_object, _uniform_block_data[element_index].offset, _uniform_block_data[element_index].size_in_bytes, _uniform_block_data[element_index].data);
-}
-
-void UniformBufferObject::BindBufferRange(uint32_t buffer_index, uint32_t buffer_object, uint32_t offset, size_t size)
-{
-	glBindBufferRange(GL_UNIFORM_BUFFER, buffer_index, buffer_object, offset, size);
 }

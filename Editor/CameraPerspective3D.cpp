@@ -31,7 +31,7 @@ CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, fl
 	std::vector<UniformBlockElement> ube = {	UniformBlockElement(glm::value_ptr(_proj), 16),
 												UniformBlockElement(glm::value_ptr(_view), 16)	};
 
-	_ubo = std::make_unique<UniformBufferObject>(0, ube, GL_DYNAMIC_DRAW);
+	_ubo = std::make_unique<UniformBufferObject>(0, 0, ube, GL_DYNAMIC_DRAW);
 }
 
 void CameraPerspective3D::Update()
@@ -142,7 +142,7 @@ void CameraPerspective3D::Update()
 
 void CameraPerspective3D::Render()
 {
-	_ubo->BufferSubData(1);		// Buffer view matrix
+	_ubo->BufferSubData(1);	// Buffer view matrix
 }
 
 float& CameraPerspective3D::GetFov()

@@ -28,9 +28,6 @@ void GLForwardRenderer::LoadShaders(std::vector<uint16_t> shader_indices)
 
 	std::sort(_shaders.begin(), _shaders.end());
 
-	
-	// ADD DEBUG SHADERS HERE...
-
 
 #ifdef _DEBUG
 	ExCore::Logger::PrintInfo("RENDER_INFO::MODE::FORWARD");
@@ -49,8 +46,6 @@ void GLForwardRenderer::Render(double& delta)
 	//World::map->BindPlayerController();
 	World::map->GetActors()[0]->Render();
 	World::map->BindStaticMeshData();
-
-	
 
 	// 1: PARTICLE SYSTEM PASS
 

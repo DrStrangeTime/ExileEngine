@@ -155,7 +155,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 		45.f,				// Fov
 		STATIC_CAST(float, width) / STATIC_CAST(float, height),		// Ratio
 		.1f,				// Speed
-		.005f,				// Smooth speed
+		.005f,				// Smooth step
 		.22f,				// Sensitivity X
 		(.22f * (STATIC_CAST(float, height) / STATIC_CAST(float, width))),	// Sensitivity Y
 		glm::vec3(.0f),		// Position
