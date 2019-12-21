@@ -1,4 +1,2 @@
 OpenGL Experiments::
-- Ssbos (check local source code)
-
-https://www.geeks3d.com/20140704/tutorial-introduction-to-opengl-4-3-shader-storage-buffers-objects-ssbo-demo/?fbclid=IwAR2SGsc1K9nPyNdSRCR7nVcFBx3mUuGEuIKolNXvMwJfxsUATtVdXd1Do-w
+- Research into compute shaders
