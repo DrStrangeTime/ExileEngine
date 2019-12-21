@@ -55,8 +55,7 @@ public:
 							_current_look(glm::vec3(.0f)),
 							_spring_arm(SpringArm()) {}
 
-	CameraPerspective3D(	uint32_t shader_program,
-							float near,
+	CameraPerspective3D(	float near,
 							float far,
 							float fov,
 							float ratio,

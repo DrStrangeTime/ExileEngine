@@ -1,6 +1,6 @@
 #include "CameraPerspective3D.h"
 
-CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, float far, float fov, float ratio, float speed, float smooth_speed, float look_sensitivity_x, float look_sensitivity_y, glm::vec3 position, SpringArm spring_arm)
+CameraPerspective3D::CameraPerspective3D(float near, float far, float fov, float ratio, float speed, float smooth_speed, float look_sensitivity_x, float look_sensitivity_y, glm::vec3 position, SpringArm spring_arm)
 {
 	_active = false;
 	_dynamic = true;
@@ -28,10 +28,10 @@ CameraPerspective3D::CameraPerspective3D(uint32_t shader_program, float near, fl
 	UpdateViewMatrix();
 	UpdateProjectionMatrix();
 
-	std::vector<UniformBlockElement> ube = {	UniformBlockElement(glm::value_ptr(_proj), 16),
-												UniformBlockElement(glm::value_ptr(_view), 16)	};
+	std::vector<BlockElement> ube = {	BlockElement(glm::value_ptr(_proj), 16),
+										BlockElement(glm::value_ptr(_view), 16)	};
 
-	_ubo = std::make_unique<UniformBufferObject>(0, 0, ube, GL_DYNAMIC_DRAW);
+	_ubo = std::make_unique<UniformBufferObject>(0, ube, GL_DYNAMIC_DRAW);
 }
 
 void CameraPerspective3D::Update()

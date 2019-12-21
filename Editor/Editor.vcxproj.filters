@@ -367,9 +367,6 @@
     <ClInclude Include="UniformBufferObject.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
-    <ClInclude Include="UniformBlockElement.h">
-      <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
-    </ClInclude>
     <ClInclude Include="WavefrontLoader.h">
       <Filter>Core\Utils</Filter>
     </ClInclude>
@@ -389,5 +386,8 @@
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClInclude>
     <ClInclude Include="ShaderStorageBufferObject.h" />
+    <ClInclude Include="BlockElement.h">
+      <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

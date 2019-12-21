@@ -3,6 +3,8 @@
 #include "RenderMaster.h"
 #include "LogicManager.h"
 
+#include "ShaderStorageBufferObject.h"
+
 // Default app values
 constexpr unsigned		APP_WIDTH			= 1920;
 constexpr unsigned		APP_HEIGHT			= 1080;
@@ -16,6 +18,8 @@ constexpr const char*	APP_TITLE			= "Exile Engine";
 class Client : public ExCore::Application
 {
 private:
+	static std::unique_ptr<ShaderStorageBufferObject>	ssbo;
+
 	static int								width;
 	static int								height;
 	static const char*						title;

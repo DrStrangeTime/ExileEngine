@@ -1,10 +1,11 @@
 #include "GLForwardRenderer.h"
 
-
 GLForwardRenderer::GLForwardRenderer()
 {
 	Initialise();
 }
+
+GLForwardRenderer::~GLForwardRenderer() {}
 
 void GLForwardRenderer::LoadShaders(std::vector<uint16_t> shader_indices)
 {
@@ -43,7 +44,7 @@ void GLForwardRenderer::Render(double& delta)
 {
 	// 0: CAMERA + GEOMETRY + LIGHTING
 	_shaders[SHADER_DIFFUSE_FORWARD]->Bind();
-	//World::map->BindPlayerController();
+
 	World::map->GetActors()[0]->Render();
 	World::map->BindStaticMeshData();
 

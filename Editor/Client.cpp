@@ -135,6 +135,23 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	// Initialise world
 	World::Initialise();
 
+
+
+	// SSBO TEST!!!
+	ssbo = std::make_unique<ShaderStorageBufferObject>(1, 2 * sizeof(float));
+	float scale[2] = { 1.f, 1.f };
+	ssbo->WriteData(&scale);
+	float scaleX = 4.f;
+	float scaleY = 8.f;
+	ssbo->WriteDataRange(0, sizeof(float), &scaleX);
+	ssbo->WriteDataRange(sizeof(float), sizeof(float), &scaleY);
+	float s[2] = { 0.f, 0.f };
+	ssbo->ReadData(&s);
+	std::cout << s[0] << std::endl;
+	// SSBO TEST!!!
+
+
+
 	/* ----------------------------- INITIALISE DEFAULT CONTENT (TEMP) PIPELINE ----------------------------- */
 	// Get reference to OpenGL shaders from current gl render object
 	std::vector<std::shared_ptr<Shader>> gl_shaders = std::dynamic_pointer_cast<GLRenderMode>(RenderMaster::GetRenderPipeline()->GetRenderObject())->GetShaders();
@@ -149,7 +166,6 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 
 	// Add default camera object
 	World::map->AddActor(std::make_shared<CameraPerspective3D>(
-		gl_shaders[SHADER_DIFFUSE_FORWARD]->GetProgram(),
 		.1f,				// Near
 		1000.f,				// Far
 		45.f,				// Fov
@@ -169,6 +185,10 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	World::map->AddActor(ContentManager::bsps[BSP_PLANE]);
 	//World::map->AddActor(ContentManager::bsps[1]);
 	// -------------------------------- TEMP --------------------------------
+
+
+	
+
 
 	// Compile dynamic actors
 	LogicManager::CompileDynamics();
@@ -228,6 +248,8 @@ void Client::Run()
 	ExCore::Timestep _f_time_step(WorldInfo::GetFramesPerSecond());
 	double delta = 0;
 
+	bool readData(false);
+
 	// Main loop
 	while (isRunning())
 	{
@@ -244,6 +266,8 @@ void Client::Run()
 		Render(delta);
 	}
 }
+
+std::unique_ptr<ShaderStorageBufferObject>	Client::ssbo;
 
 int									Client::width;
 int									Client::height;

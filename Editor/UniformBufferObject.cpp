@@ -1,9 +1,8 @@
 #include "UniformBufferObject.h"
 
-UniformBufferObject::UniformBufferObject(uint32_t uniform_bind_index, uint32_t binding_point_index, std::vector<UniformBlockElement>& uniform_block_data, GLenum usage)
+UniformBufferObject::UniformBufferObject(uint32_t uniform_bind_index, std::vector<BlockElement>& uniform_block_data, GLenum usage)
 {
 	_uniform_bind_index = uniform_bind_index;
-	_binding_point_index = binding_point_index;
 	_uniform_block_data = uniform_block_data;
 	_usage = usage;
 
@@ -20,7 +19,7 @@ uint32_t& UniformBufferObject::GetUniformBindIndex()
 	return _uniform_bind_index;
 }
 
-std::vector<UniformBlockElement>& UniformBufferObject::GetUniformBlockData()
+std::vector<BlockElement>& UniformBufferObject::GetUniformBlockData()
 {
 	return _uniform_block_data;
 }
@@ -39,20 +38,28 @@ void UniformBufferObject::Create()
 
 	/* Generate and allocate buffer */
 	glGenBuffers(1, &_buffer_object);
+
+#ifdef _DEBUG
+	if (!_buffer_object)
+	{
+		ExLogErr("Uniform buffer object failed to initialise!");
+		return;
+	}
+#endif
+
 	glBindBuffer(GL_UNIFORM_BUFFER, _buffer_object);
 	glBufferData(GL_UNIFORM_BUFFER, _buffer_size, NULL, _usage);
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 
 	// Define range of the buffer that links to a uniform binding point
 	//glBindBufferRange(GL_UNIFORM_BUFFER, _binding_point_index, _buffer_object, 0, _buffer_size);	// Buffer certain range to binding point
-	glBindBufferBase(GL_UNIFORM_BUFFER, _binding_point_index, _buffer_object);	// Bind everything to binding point
+	glBindBufferBase(GL_UNIFORM_BUFFER, _uniform_bind_index, _buffer_object);	// Bind everything to binding point
 
 	// Buffer subdata for each static element
 	glBindBuffer(GL_UNIFORM_BUFFER, _buffer_object);
 
 	for (auto i = 0; i < _uniform_block_data.size(); ++i)
 		BufferSubData(i);
-
 
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
 }

@@ -12,6 +12,7 @@ protected:
 
 public:
 	GLRenderMode() {}
+	virtual ~GLRenderMode() {}
 
 	std::vector<std::shared_ptr<Shader>>&	GetShaders();
 	std::vector<std::shared_ptr<Shader>>&	GetActiveShaders();

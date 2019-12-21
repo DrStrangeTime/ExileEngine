@@ -1,18 +1,18 @@
-#ifndef __UNIFORM_BLOCK_ELEMENT_H__
-#define __UNIFORM_BLOCK_ELEMENT_H__
+#ifndef __BLOCK_ELEMENT_H__
+#define __BLOCK_ELEMENT_H__
 
 #include "Headers.h"
 
 /* Contains information about a GLSL uniform block */
-struct UniformBlockElement
+struct BlockElement
 {
 	float*		data;
 	uint32_t	offset;
 	uint32_t	comp_size;
 	uint32_t	size_in_bytes;
 
-	UniformBlockElement() = default;
-	UniformBlockElement(float* d, uint32_t cs) : data(nullptr), offset(0), comp_size(0), size_in_bytes(0)
+	BlockElement() = default;
+	BlockElement(float* d, uint32_t cs) : data(nullptr), offset(0), comp_size(0), size_in_bytes(0)
 	{
 		if (!d)
 		{

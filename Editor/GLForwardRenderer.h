@@ -8,11 +8,11 @@
 	#include "NormalVisualisationS.h"
 #endif
 
-
 class GLForwardRenderer : public GLRenderMode
 {
 public:
 	GLForwardRenderer();
+	~GLForwardRenderer();
 
 	virtual void LoadShaders(std::vector<uint16_t> shader_indices) override;
 	virtual void Initialise() override;

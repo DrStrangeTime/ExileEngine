@@ -215,7 +215,7 @@
     <ClInclude Include="Plane.h" />
     <ClInclude Include="ShaderStorageBufferObject.h" />
     <ClInclude Include="Uint64VertexBufferObject.h" />
-    <ClInclude Include="UniformBlockElement.h" />
+    <ClInclude Include="BlockElement.h" />
     <ClInclude Include="UniformBufferObject.h" />
     <ClInclude Include="WavefrontLoader.h" />
     <ClInclude Include="World.h" />
