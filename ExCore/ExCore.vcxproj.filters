@@ -24,6 +24,7 @@
     <ClInclude Include="Includes\MouseInput.h" />
     <ClInclude Include="Includes\FixedTimestep.h" />
     <ClInclude Include="Includes\Precision.h" />
+    <ClInclude Include="Includes\DataStructures.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

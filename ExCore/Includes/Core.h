@@ -5,6 +5,7 @@
 #include "Precision.h"
 #include "Application.h"
 #include "FixedTimestep.h"
+#include "DataStructures.h"
 
 // Gloal macro definitions
 #define ExCoreInit()					ExCore::Logger::Initialise()

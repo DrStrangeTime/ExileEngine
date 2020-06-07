@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="Includes\Core.h" />
     <ClInclude Include="Includes\Cursor.h" />
+    <ClInclude Include="Includes\DataStructures.h" />
     <ClInclude Include="Includes\Hardware.h" />
     <ClInclude Include="Includes\InputEvent.h" />
     <ClInclude Include="Includes\KeyInput.h" />

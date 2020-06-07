@@ -241,7 +241,9 @@
     <ClCompile Include="Uint64VertexBufferObject.cpp">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderStorageBufferObject.cpp" />
+    <ClCompile Include="ShaderStorageBufferObject.cpp">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vertex.h">
@@ -385,9 +387,11 @@
     <ClInclude Include="Uint64VertexBufferObject.h">
       <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers\VertexBufferObjects</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderStorageBufferObject.h" />
     <ClInclude Include="BlockElement.h">
       <Filter>Core\ExRenderer %28TBM%29\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderStorageBufferObject.h">
+      <Filter>Core\ExRenderer %28TBM%29\OpenGL\Buffers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

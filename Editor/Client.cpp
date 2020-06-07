@@ -138,7 +138,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 
 
 	// SSBO TEST!!!
-	ssbo = std::make_unique<ShaderStorageBufferObject>(1, 2 * sizeof(float));
+	/*ssbo = std::make_unique<ShaderStorageBufferObject>(1, 2 * sizeof(float));
 	float scale[2] = { 1.f, 1.f };
 	ssbo->WriteData(&scale);
 	float scaleX = 4.f;
@@ -147,7 +147,7 @@ void Client::Create(int w, int h, const char* t, bool maximise, bool fullscreen,
 	ssbo->WriteDataRange(sizeof(float), sizeof(float), &scaleY);
 	float s[2] = { 0.f, 0.f };
 	ssbo->ReadData(&s);
-	std::cout << s[0] << std::endl;
+	std::cout << s[0] << std::endl;*/
 	// SSBO TEST!!!
 
 

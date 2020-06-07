@@ -26,14 +26,14 @@ Plane::Plane(uint32_t& shader_program, Texture& t1,float x, float y, float z, ui
 
 	//_mesh_data = MeshData(v, i, c);															// MESH DATA
 
-	_mesh_data = Wavefront::LoadDataFromFile("models/TwoCubes.obj");
+	_mesh_data = Wavefront::LoadDataFromFile("models/Torus.obj");
 
 	//_vertex_data.vertexElements.reserve(1);
 	//_vertex_data.vertexElements.emplace_back(VertexElement(3, {}));		// Create empty container for tangents
 	//_vertex_data.vertexElements[3] = VertexOptimiser::PackTangents(indices, _vertex_data.vertexElements[2]);
 	
 	// Texture handles
-	std::vector<GLuint64> tex_handles1(48, t1.GetTextureHandle());	// TEMP
+	std::vector<GLuint64> tex_handles1(_mesh_data.vertex_data.vertexElements[0].data.size(), t1.GetTextureHandle());	// TEMP
 
 	// Texture handle arrays
 	_vertex_buffer_objects.emplace_back(std::make_shared<Uint64VertexBufferObject>(tex_handles1, 3));
